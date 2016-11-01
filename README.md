@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+CMPT 470 Group 1's Final project
 
-Things you may want to cover:
+By: James Leong
+	Riku Kenju
+	Carlson Chan
+	Tyler Wong
+	Eric Liu
 
-* Ruby version
+to run app in development mode
 
-* System dependencies
+navigate to ./Final_Project
 
-* Configuration
+run vagrant up
 
-* Database creation
+go to browser and open up localhost:3000
 
-* Database initialization
+If wanting to deploy production mode:
 
-* How to run the test suite
+When migrating (or doing other management commands), make sure you specify production mode:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rake db:migrate RAILS_ENV=production
