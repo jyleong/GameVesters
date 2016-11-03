@@ -22,17 +22,17 @@ package "git"
 package "postgresql"
 
 
-cookbook_file "default" do
-  path "/etc/nginx/sites-available/default"
-end
+# cookbook_file "default" do
+#   path "/etc/nginx/sites-available/default"
+# end
 
-execute 'nginx_restart' do
-  command 'service nginx restart'
-end
+# execute 'nginx_restart' do
+#   command 'service nginx restart'
+# end
 
-execute 'postgres_user db setup' do
-	command 'echo "CREATE DATABASE mydb; CREATE USER ubuntu; GRANT ALL PRIVILEGES ON DATABASE mydb TO ubuntu;" | sudo -u postgres psql'
-end
+# execute 'postgres_user db setup' do
+# 	command 'echo "CREATE DATABASE mydb; CREATE USER ubuntu; GRANT ALL PRIVILEGES ON DATABASE mydb TO ubuntu;" | sudo -u postgres psql'
+# end
 
 # Rails setup
 package "ruby-dev"
