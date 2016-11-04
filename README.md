@@ -56,11 +56,18 @@ FOR DEV WORK AND COMMITS (THAT MEANS YOU TOO TYLER)
 we will merge to development first before updating the master for our final project
 
 do this by
+<<<<<<< HEAD
 
 pulling initial repo then
 
 $git checkout -b origin/development
 
+=======
+pulling initial repo then
+$git fetch
+
+*this updates your local with our remote
+>>>>>>> development
 make your own branch from here as stated in step 1)
 
 1) everyone works on their own branch
