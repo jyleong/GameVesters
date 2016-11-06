@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-
 	resources :user_stocks, except: [:show, :edit,:update]
 	resources :stocks
 	get 'sessions/new'
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 	root 'static_pages#home'
@@ -35,5 +33,5 @@ Rails.application.routes.draw do
     resources :notifications, only: [:update, :destroy]
     get '/refresh_notifications', to: 'notifications#refresh'
     patch '/mark_all_notifications', to: 'notifications#mark_all'
-    
+
 end

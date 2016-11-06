@@ -6,15 +6,8 @@ class Stock < ApplicationRecord
 	# validates :symbol, :presence => true, :uniqueness => true
 
 	def self.find_by_symbol(ticker_symbol)
-		
-		retrievedStock = where(symbol: ticker_symbol.upcase).first
 
-		## logic to always query?
-		looked_up_stock = StockQuote::Stock.quote(ticker_symbol)
-		if (retrievedStock)
-			retrievedStock.update(current_price: looked_up_stock.ask, amount_change: looked_up_stock.change)
-			retrievedStock.save
-		end
+		retrievedStock = where(symbol: ticker_symbol.upcase).first
 		return retrievedStock
 	end
 
@@ -23,11 +16,8 @@ class Stock < ApplicationRecord
 		return nil unless looked_up_stock.name
 		@new_stock = Stock.create(symbol: looked_up_stock.symbol, name: looked_up_stock.name)
 		##debugger
-		
-		@new_stock.current_price = looked_up_stock.ask
-		@new_stock.year_high = looked_up_stock.year_high
-		@new_stock.year_low = looked_up_stock.year_low
-		@new_stock.amount_change = looked_up_stock.change
+
+		@new_stock.current_price = @new_stock.price ##
 		@new_stock.save
 		@new_stock
 	end
@@ -41,9 +31,4 @@ class Stock < ApplicationRecord
 		return "#{opening_price.open} (Opening)" if opening_price.open
 	'Unavailable'
 	end
-	def compareTime()
-      currentTime = DateTime.now
-
-      return ((currentTime.to_i - updated_at.to_i)/3600 > 0)
-    end
 end

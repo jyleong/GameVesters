@@ -72,5 +72,4 @@ ActiveRecord::Schema.define(version: 20161115045323) do
     t.string   "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
-
 end
