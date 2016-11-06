@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @user_stocks = @user.stocks
   end
 
   def create 
@@ -51,19 +52,24 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def my_portfolio
+    @user_stocks = current_user.stocks
+    @user = current_user
+  end
+
   private
 
-	def user_params
-	  params.require(:user).permit(:name, :email, :password,
-	                               :password_confirmation)
-	end
+  	def user_params
+  	  params.require(:user).permit(:name, :email, :password,
+  	                               :password_confirmation)
+  	end
 
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_path) unless current_user?(@user)
-  end
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
 
-  def admin_user
-    redirect_to(root_url) unless current_user.admin?
-  end
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 end
