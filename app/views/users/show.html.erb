@@ -20,4 +20,9 @@
     <%= render 'follow_form' if logged_in? %>
 
   </div>
+  <% if @user == current_user %>
+  <%= render 'stocks/lookup' %>
+
+  <%= render 'stocks/list' %>
+  <% end %>
 </div>
