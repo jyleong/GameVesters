@@ -16,14 +16,14 @@
   </div>
   <% end %>
   <%= render 'common/spinner'%>
-  <% if @stock %>
+  <% if resource %>
     <div id="stock-lookup-results" class="well results-block">
-      <p> "@stock is here"</p>
-      <strong>Symbol: </strong><%= @stock.symbol %>
-      <strong>Name: </strong><%= @stock.name %>
-      <strong>Price: </strong><%= @stock.current_price %>
-      <% if current_user.can_add_stock?(@stock.symbol) %>
-        <%= link_to "Add to my Stocks", user_stocks_path(user: current_user, stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : ''), class: 'btn btn-xs btn-success', method: :post %>
+      
+      <strong>Symbol: </strong><%= resource.symbol %>
+      <strong>Name: </strong><%= resource.name %>
+      <strong>Price: </strong><%= resource.current_price %>
+      <% if current_user.can_add_stock?(resource.symbol) %>
+        <%= link_to "Add to my Stocks", user_stocks_path(user: current_user, stock_symbol: resource.symbol, stock_id: resource.id ? resource.id : ''), class: 'btn btn-xs btn-success', method: :post %>
       <% else %>
         <!-- chec why user can or cannot add-->
         <span class="label label-default">
@@ -31,7 +31,7 @@
           <% if !current_user.under_stock_limit? %>
           10 stocks
           <% end %>
-          <% if current_user.stock_already_added?(@stock.symbol) %>
+          <% if current_user.stock_already_added?(resource.symbol) %>
           this stock
           <% end %>
         </span>

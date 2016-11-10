@@ -15,23 +15,20 @@ class Stock < ApplicationRecord
 		puts looked_up_stock.ask
 		puts looked_up_stock.previous_close
 		@new_stock = new(symbol: looked_up_stock.symbol, name: looked_up_stock.name)
-		begin
-			@new_stock.current_price = @new_stock.price ##
-			raise 'error occured'
-		rescue
-			puts "rescue done"
-		end
+		##debugger
+		
+		@new_stock.current_price = @new_stock.price ##
+		
 		@new_stock
 	end
 
 	def price
-		closing_price = StockQuote::Stock.quote(:symbol).ask
+		closing_price = StockQuote::Stock.quote(symbol)
 
-		puts "trying this execution"
-		return "#{closing_price} (Closing)" if closing_price ## basicalyl if not nill
+		return "#{closing_price.previous_close} (Closing)" if closing_price.previous_close ## basicalyl if not nill
 
-		opening_price = StockQuote::Stock.quote(:symbol).open
-		return "#{opening_price} (Opening)" if opening_price
+		opening_price = StockQuote::Stock.quote(symbol)
+		return "#{opening_price.open} (Opening)" if opening_price.open
 	'Unavailable'
 	end
 end
