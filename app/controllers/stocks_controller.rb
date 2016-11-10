@@ -16,4 +16,23 @@ class StocksController < ApplicationController
 		  render status: :not_found, nothing: true
 		end
 	end
+
+	def new
+	    @stock = Stock.new
+	end
+	
+	def index
+	    @stocks = Stock.all
+	end
+
+	def show
+		@stock = User.find(params[:id])
+		
+	end
+
+	def search_page
+
+	end
+
+
 end

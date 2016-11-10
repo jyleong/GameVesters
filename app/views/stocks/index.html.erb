@@ -1,0 +1,13 @@
+<% provide(:title, 'All company Listings') %>
+<h1>All Company listings</h1>
+
+
+<ul class="stocks">
+
+  <% @stocks.each do |stock| %>
+    <li>
+      <%= "#{stock.symbol}: #{stock.current_price}" %>
+    </li>
+  <% end %>
+</ul>
+

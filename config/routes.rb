@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 	end
 
 	get 'search_stocks', to: "stocks#search" #stocks controller search action
-
+	get 'search_page', to: "stocks#search_page"
 	resources :relationships, only: [:create, :destroy]
 
 end
