@@ -20,9 +20,13 @@
     <%= render 'follow_form' if logged_in? %>
 
   </div>
-  <% if @user == current_user %>
-  <%= render 'stocks/lookup' %>
-
-  <%= render 'stocks/list' %>
-  <% end %>
+  
+    <% if @user.stocks.size > 0 %>
+      <%= render 'stocks/list' %>
+    <% else %>
+      <% if @user != current_user %>
+        <p class="lead">This user is not tracking any stocks</p>
+      <% end %>
+    <% end %>
+  
 </div>
