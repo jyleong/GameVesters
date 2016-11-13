@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   resources :user_stocks, except: [:show, :edit,:update]
   resources :stocks
   get 'sessions/new'
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
 		member do
 			get :following, :followers
 		end
+		resources :transactions, only: [:create, :show, :index]
 	end
 
 	get 'search_stocks', to: "stocks#search" #stocks controller search action
