@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 	resources :relationships, only: [:create, :destroy]
 
     resources :notifications, only: [:update, :destroy]
+    get '/refresh_notifications', to: 'notifications#refresh'
     patch '/mark_all_notifications', to: 'notifications#mark_all'
     
 end
