@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 	get 'login', to: 'sessions#new'
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
-
+	get 'my_portfolio', to: "users#my_portfolio"
 	resources :users do
 		member do
 			get :following, :followers
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 	end
 
 	get 'search_stocks', to: "stocks#search" #stocks controller search action
-	get 'search_page', to: "stocks#search_page"
+
 	resources :relationships, only: [:create, :destroy]
 
 end
