@@ -42,7 +42,7 @@ class UserStocksController < ApplicationController
 
 		respond_to do |format|
 		  if @user_stock.save
-		    format.html { redirect_to redirect_to current_user, 
+		    format.html { redirect_to current_user, 
 		    notice: "Stock #{@user_stock.stock.symbol} was successfully added" }
 		    format.json { render :show, status: :created, location: @user_stock }
 		  else
