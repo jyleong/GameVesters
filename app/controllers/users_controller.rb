@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def my_portfolio
+    @user_stocks = current_user.stocks
+    @user = current_user
+  end
+
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -50,11 +55,6 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to users_url
-  end
-
-  def my_portfolio
-    @user_stocks = current_user.stocks
-    @user = current_user
   end
 
   private
