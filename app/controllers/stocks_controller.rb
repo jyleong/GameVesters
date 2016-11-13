@@ -1,19 +1,29 @@
 class StocksController < ApplicationController
+	
 	def search
+		
 		if params[:stock]
 		  @stock = Stock.find_by_symbol(params[:stock])
 		  @stock ||= Stock.new_from_lookup(params[:stock])
-			@stock.save
 		end
+		# if @stock
+		# 	# render json: @stock
+		# 	render partial: 'lookup'
+		# else
+		# 	flash[:error] ="Stock not found"
+		# 	render body: nil
+		# end
 
-		if @stock
-			
-		# render json: @stock
-		  # to see if functionality is working
-
-		  render partial: 'lookup'
-		else
-		  render status: :not_found, nothing: true
+		respond_to do |f|
+			if @stock
+				f.html {redirect_to 'my_portfolio'}
+				f.json {render partial: 'lookup', locals: {stock: @stock}}
+				f.js
+			else
+				flash[:error] = "Stock not found"
+				f.json {render body: nil}
+				f.js
+			end
 		end
 	end
 
@@ -26,12 +36,7 @@ class StocksController < ApplicationController
 	end
 
 	def show
-		@stock = User.find(params[:id])
-		
-	end
-
-	def search_page
-
+		@stock = User.find(params[:id])	
 	end
 
 

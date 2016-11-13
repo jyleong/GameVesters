@@ -26,11 +26,11 @@ class UserStocksController < ApplicationController
 		if params[:stock_id].present?
 		  @user_stock = UserStock.new(stock_id: params[:stock_id], user: current_user)
 		else
-		  stock = Stock.find_by_symbol(params[:stock_ticker]) ## given by the lnk add to my stocks
+		  stock = Stock.find_by_symbol(params[:symbol]) ## given by the lnk add to my stocks
 		  if stock
 		    @user_stock = UserStock.new(user: current_user, stock: stock)
 		  else
-		    stock = Stock.new_from_lookup(params[:stock_ticker])
+		    stock = Stock.new_from_lookup(params[:symbol])
 		    if stock.save
 		      @user_stock = UserStock.new(user: current_user, stock: stock)
 		    else
@@ -43,7 +43,7 @@ class UserStocksController < ApplicationController
 		respond_to do |format|
 		  if @user_stock.save
 		    format.html { redirect_to redirect_to current_user, 
-		    notice: "Stock #{@user_stock.stock.ticker} was successfully added" }
+		    notice: "Stock #{@user_stock.stock.symbol} was successfully added" }
 		    format.json { render :show, status: :created, location: @user_stock }
 		  else
 		    format.html { render :new }
