@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20161112211147) do
     t.string   "answer"
   end
 
+ActiveRecord::Schema.define(version: 20161105214610) do
+
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
