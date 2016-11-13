@@ -23,6 +23,7 @@ class User < ApplicationRecord
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 8 }
 
+    has_many :notifications
 
 	def User.digest(string)
 		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -80,6 +81,16 @@ class User < ApplicationRecord
 		return false unless stock
 		user_stocks.where(stock_id: stock.id).exists?
 	end
+    
+    # Functions for Notifications
+    def create_notification(message, link)
+        notifications.create(
+            user_id: self.id,
+            message: message,
+            link: link,
+            read: false,
+        )
+    end
 	
 	private
 
