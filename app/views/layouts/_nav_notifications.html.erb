@@ -5,7 +5,7 @@
     <% end %>
 </div>
 
-<% current_user.notifications.each do |notification| %>
+<% current_user.notifications.order(created_at: :desc).each do |notification| %>
 
     <li class="divider"></li>
 
@@ -14,8 +14,11 @@
             <% if not notification.read %>
                 <div class="glyphicon glyphicon-exclamation-sign" title="Unread"></div>
             <% end %>
+
             <span><%= notification.message %></span>
+
             <br>
+
             <span title="<%= notification.created_at.strftime("%c") %>">
                 <% if Time.now.strftime("%D") == notification.created_at.strftime("%D") %>
                     <%= notification.created_at.strftime("%I:%M %p") %>
