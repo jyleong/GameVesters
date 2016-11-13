@@ -27,8 +27,7 @@ Rails.application.routes.draw do
 	get 'search_stocks', to: "stocks#search" #stocks controller search action
 
 	resources :relationships, only: [:create, :destroy]
-    
-    
+
     resources :notifications, only: [:update, :destroy]
     patch '/mark_all_notifications', to: 'notifications#mark_all'
     
