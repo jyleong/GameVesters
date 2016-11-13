@@ -2,18 +2,25 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
   <b class="glyphicon glyphicon-inbox"></b>
 </a>
-<ul class="dropdown-menu">
-
-  <% @user_notifications.each_with_index do |notification, index| %>
-    <% if index != 0 %>
-        <li class="divider"></li>
-    <% end %>
+<ul class="dropdown-menu notification-list">  
+  <div style="width:auto">
+  <%= form_for current_user, url: "/mark_all_notifications" do |f| %>
+    <div><%= hidden_field_tag :user_id, current_user.id %></div>
+    <%= f.submit "Mark all as read", class: "btn btn-sm" %>
+  <% end %>
+  </div>
+  
+  <% current_user.notifications.each do |notification| %>
+    <li class="divider"></li>
     
-    <li>
-        <a href="<%= notification.link %>">
-            <span><%= notification.created_at.strftime("%D") %></span>
+    <li class="notification-item">
+        <a href=<%= notification.link %> data-redirect-to="<%= notification.link %>" data-path=<%= notification_path(notification) %> >
+            <% if not notification.read %>
+                <div class="glyphicon glyphicon-exclamation-sign" title="Unread"></div>
+            <% end %>
+            <span><%= notification.message %></span>
             <br>
-            <%= notification.message %>
+            <span><%= notification.created_at.strftime("%D") %></span>
         </a>
     </li>
   <% end %>
