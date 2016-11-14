@@ -4,6 +4,17 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
+
+
+  def search
+    @users = User.search(params[:search])
+    if @users
+      @users = @current_user.except_current_user(@users)
+      render partial: 'search'
+    else
+      render status: :not_found, nothing: true
+    end
+  end
   def new
     @user = User.new
   end
@@ -14,7 +25,15 @@ class UsersController < ApplicationController
   end
 
   def index
+    #@users = User.all
     @users = User.paginate(page: params[:page])
+
+     if params[:search]
+       @users = User.search(params[:search]).order("name ASC")
+     else
+       @users = User.paginate(page: params[:page])
+     end
+
   end
 
   def show
@@ -23,14 +42,14 @@ class UsersController < ApplicationController
     @user_notifications = @user.notifications
   end
 
-  def create 
+  def create
   	@user = User.new(user_params)
   	if @user.save
   		#handle succesful save ,login upon new signup
       log_in @user
-      
+
   		flash[:success] = "Welcome to the Sample app!"
-  		
+
       redirect_to @user
   	else
   		render 'new'
@@ -44,12 +63,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      ## 
+      ##
       flash[:success] = "Account successfully saved!"
       redirect_to @user
     else
       render 'edit'
-    end   
+    end
   end
 
   def destroy

@@ -5,6 +5,9 @@ class StocksController < ApplicationController
 		if params[:stock]
 		  @stock = Stock.find_by_symbol(params[:stock])
 		  @stock ||= Stock.new_from_lookup(params[:stock])
+		  if @stock.nil?
+		  	@stock = Stock.new_from_lookup(params[:stock])
+		  end
 		end
 		# if @stock
 		# 	# render json: @stock
@@ -30,14 +33,14 @@ class StocksController < ApplicationController
 	def new
 	    @stock = Stock.new
 	end
-	
+
 	def index
 	    @stocks = Stock.all
 	end
 
 	def show
 		@stock = User.find(params[:id])	
-	end
 
+	end
 
 end
