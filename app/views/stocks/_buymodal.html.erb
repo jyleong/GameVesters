@@ -1,4 +1,4 @@
-<div id="BuyModal" class="modal fade" role="dialog">
+<div id="transaction-modal" class="modal fade" role="dialog">
 	<div class="modal dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -6,11 +6,11 @@
 					</button>
 					<h4 class="modal-title">Buy</h4>
 				</div>
-			<%= form_tag new_user_transaction_path(user: current_user, user_id: current_user.id, stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : '', stock_price: @stock.current_price), remote: true, method: "post", id: 'stock-buy-form' do %>
+			<%= form_for(transaction) remote: true, method: "post", id: 'stock-buy-form' do |f|%>
 				<div class="form-group row no-padding text-center col-md-12">
 					<div class="col-md-10">
 					<p><%= "#{@stock.symbol} current price: #{@stock.current_price}"%></p>
-				  	<%= number_field_tag :quantity, params[:quantity], placeholder: "Quantity", autofocus: true,
+				  	<%= f.number_field_tag :quantity, params[:quantity], placeholder: "Quantity", autofocus: true,
 					class: 'form-control' %>
 				  
 					</div>

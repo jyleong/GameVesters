@@ -1,0 +1,9 @@
+<% if @transaction.errors.empty? %>
+  // add the row to the table, show alert and hide modal
+  
+  $('.alert-success').html("Transaction success").show();
+  $('#transaction-modal').modal('hide');
+<% else %>
+  // show first error
+  alert('<%= @transaction.errors.full_messages[0] %>');
+<% end %>
