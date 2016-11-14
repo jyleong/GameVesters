@@ -16,4 +16,4 @@
 </span>
 <% end %>
 
-<%= button_to 'Buy', "data-target" => "#transaction-modal", "data-toggle" => "modal", class: "btn btn-xs btn-primary", data: {user: current_user, user_id: current_user.id, stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : '', stock_price: @stock.current_price} %>
+<%= button_tag 'Buy', "data-target" => "#transaction-modal", "data-toggle" => "modal", class: "btn btn-xs btn-primary", data: {user: current_user, user_id: current_user.id, stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : '', stock_price: @stock.current_price} %>
