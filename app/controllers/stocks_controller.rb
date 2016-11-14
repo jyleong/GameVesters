@@ -5,7 +5,7 @@ class StocksController < ApplicationController
 		  if @stock.nil?
 		  	@stock = Stock.new_from_lookup(params[:stock])
 		  end
-			
+
 		end
 
 		if @stock
@@ -23,14 +23,14 @@ class StocksController < ApplicationController
 	def new
 	    @stock = Stock.new
 	end
-	
+
 	def index
 	    @stocks = Stock.all
 	end
 
 	def show
 		@stock = User.find(params[:id])
-		
+
 	end
 
 	def search_page
