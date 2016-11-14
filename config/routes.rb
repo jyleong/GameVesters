@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 		member do
 			get :following, :followers
 		end
-		resources :transactions, only: [:create, :show, :index]
+		resources :transactions, only: [:new,:create, :show, :index]
 	end
 
 	get 'search_stocks', to: "stocks#search" #stocks controller search action
