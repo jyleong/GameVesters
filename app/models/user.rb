@@ -10,7 +10,7 @@ class User < ApplicationRecord
 	                               dependent:   :destroy
 	has_many :following, through: :active_relationships,  source: :followed
 	has_many :followers, through: :passive_relationships, source: :follower
-	
+
 	has_many :user_stocks
 	has_many :stocks, through: :user_stocks
 	attr_accessor :remember_token
@@ -18,10 +18,26 @@ class User < ApplicationRecord
 	before_save {self.email = email.downcase}
 	validates(:name, presence: true, length: {maximum: 30})
 	validates(:email, presence: true, length: {maximum: 40},
-		format: {with: VALID_EMAIL_REGEX}, uniqueness: 
+		format: {with: VALID_EMAIL_REGEX}, uniqueness:
 		{case_sensitive: false})
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 8 }
+    has_many :notifications
+
+	def except_current_user(users)
+	    users.reject{|user| user.id == self.id}
+	end
+
+	def self.search(param)
+	# debugger
+		return User.none if param.blank?
+
+		param.strip!
+		param.downcase!
+			where("name LIKE ?", "%#{param}%") 
+	#name_matches(param).uniq
+	##must define thsese methods, object oriented programming, outsource parts of it
+	end
 
 
 	def User.digest(string)
@@ -80,6 +96,16 @@ class User < ApplicationRecord
 		return false unless stock
 		user_stocks.where(stock_id: stock.id).exists?
 	end
+    
+    # Functions for Notifications
+    def create_notification(message, link)
+        notifications.create(
+            user_id: self.id,
+            message: message,
+            link: link,
+            read: false,
+        )
+    end
 	
 	private
 

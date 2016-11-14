@@ -13,6 +13,17 @@ User.create!(name:  "James Leong",
              password_confirmation: "Password1",
              )
 
+user1 = User.create!(name:  "Eric Liu",
+             email: "007.ericliu@gmail.com",
+             admin: true,
+             password:              "Password1",
+             password_confirmation: "Password1",
+             )
+
+user1.create_notification("This is an example notification!", "/");
+user1.create_notification("This notification links to a user!", "/users/5");
+user1.create_notification("All notifications start as unread.", "/");
+
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
