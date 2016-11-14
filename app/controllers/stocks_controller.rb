@@ -7,10 +7,8 @@ class StocksController < ApplicationController
 		end
 
 		if @stock
-			
 		# render json: @stock
 		  # to see if functionality is working
-
 		  render partial: 'lookup'
 		else
 		  render status: :not_found, nothing: true

@@ -128,6 +128,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.0)
+      byebug (~> 9.0)
+      pry (~> 0.10)
     puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -239,6 +242,8 @@ DEPENDENCIES
   listen (~> 3.0.5)
   minitest-reporters (= 1.1.9)
   pg (= 0.18.4)
+  pry
+  pry-byebug
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-controller-testing (= 0.1.1)
@@ -256,4 +261,4 @@ DEPENDENCIES
   will_paginate (= 3.1.0)
 
 BUNDLED WITH
-   1.13.5
+   1.13.6
