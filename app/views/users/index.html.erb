@@ -1,14 +1,36 @@
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
+<%= form_tag users_path, :method => 'get' do %>
+    <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>
+    </p>
+<% end %>
 
-<%= will_paginate %>
-<ul class="users">
-
-  <% @users.each do |user| %>
-    <li>
-      <%= render user %>
-    </li>
+<% if params.include?(:search) %>
+  <% if @users.present? %>
+    <%= render @users %>
+  <% else %>
+    <p>There are no users called <%= params[:search] %>.</p>
   <% end %>
-</ul>
+<% else %>
+  <h1>All users</h1>
 
-<%= will_paginate %>
+  <%= will_paginate %>
+  <ul class="users">
+
+    <% @users.each do |user| %>
+      <li>
+        <%= render user %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= will_paginate %>
+
+<% end %>
+<br>
+<br>
+
+<button class="btn btn-xs btn-danger">
+<%= link_to 'Back', '/users', :class => "btn"  %>
+</button>
