@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20161113215047) do
 
-
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "message"

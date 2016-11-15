@@ -1,8 +1,6 @@
 <% if current_user.can_add_stock?(@stock.symbol) %>
 <%= link_to "Add to my Stocks", user_stocks_path(user: current_user, stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : ''), class: 'btn btn-xs btn-success', method: :post %>
 
-<!--<%= link_to "Buy", new_user_transaction_path(user: current_user, user_id: current_user.id, stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : '', stock_price: @stock.current_price), remote: true, class: "btn btn-xs btn-primary" %>-->
-
 <% else %>
 
 <span class="label label-default">
@@ -16,4 +14,5 @@
 </span>
 <% end %>
 
-<%= button_tag 'Buy', "data-target" => "#transaction-modal", "data-toggle" => "modal", class: "btn btn-xs btn-primary", data: {user: current_user, user_id: current_user.id, stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : '', stock_price: @stock.current_price} %>
+<%= link_to "Buy", new_transaction_path, user_id: current_user.id, stock_id: @stock.id, stock_price: @stock.current_price, buy_sell: true, method: "get", class: "btn btn-xs btn-primary"%>
+

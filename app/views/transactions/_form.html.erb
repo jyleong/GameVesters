@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
+    <%= f.number_field :user_id , value: @user_id%>
   </div>
 
   <div class="field">
@@ -29,11 +29,6 @@
   <div class="field">
     <%= f.label :quantity %>
     <%= f.number_field :quantity %>
-  </div>
-
-  <div class="field">
-    <%= f.label :total_price %>
-    <%= f.text_field :total_price %>
   </div>
 
   <div class="field">
