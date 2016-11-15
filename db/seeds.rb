@@ -41,3 +41,13 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+Stock.create(symbol: "WIFI", name: "Boingo Wireless, Inc.",current_price: 11.37)
+Stock.create(symbol:"AAPL", name: "Apple Inc.", current_price: 105.35)
+
+
+
+
+
+
+

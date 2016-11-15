@@ -36,10 +36,17 @@ class StocksController < ApplicationController
 
 	def index
 	    @stocks = Stock.all
+
+	    ## for each stock do find_by?
+	    @stocks.each do |stock|
+	    	stock = Stock.find_by_symbol(stock.symbol)
+	    end
+	    @stocks ## make sure we return it
+
 	end
 
 	def show
-		@stock = User.find(params[:id])	
+		@stock = Stock.find(params[:id])	
 
 	end
 

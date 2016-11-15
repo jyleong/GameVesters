@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113215047) do
+ActiveRecord::Schema.define(version: 20161115045323) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 20161113215047) do
     t.float    "current_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.float    "amount_change"
+    t.float    "year_high"
+    t.float    "year_low"
   end
 
   create_table "transactions", force: :cascade do |t|
