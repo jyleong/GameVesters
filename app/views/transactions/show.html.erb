@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @transaction.user_id %>
+</p>
+
+<p>
+  <strong>Stock:</strong>
+  <%= @transaction.stock_id %>
+</p>
+
+<p>
+  <strong>Current stock val:</strong>
+  <%= @transaction.current_stock_val %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @transaction.quantity %>
+</p>
+
+<p>
+  <strong>Total price:</strong>
+  <%= @transaction.total_price %>
+</p>
+
+<p>
+  <strong>Buy sell:</strong>
+  <%= @transaction.buy_sell %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Back', transactions_path %>

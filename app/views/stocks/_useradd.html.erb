@@ -1,5 +1,6 @@
 <% if current_user.can_add_stock?(@stock.symbol) %>
 <%= link_to "Add to my Stocks", user_stocks_path(user: current_user, stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : ''), class: 'btn btn-xs btn-success', method: :post %>
+
 <% else %>
 
 <span class="label label-default">
@@ -12,3 +13,6 @@
   <% end %>
 </span>
 <% end %>
+
+<%= link_to "Buy", new_transaction_path, user_id: current_user.id, stock_id: @stock.id, stock_price: @stock.current_price, buy_sell: true, method: "get", class: "btn btn-xs btn-primary"%>
+
