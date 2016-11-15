@@ -45,6 +45,8 @@ group :development do
   gem 'sqlite3', '>= 0.0'
   gem 'byebug', platform: :mri
   gem 'faker', '1.6.6'
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :development do

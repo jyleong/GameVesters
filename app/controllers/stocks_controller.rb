@@ -16,7 +16,7 @@ class StocksController < ApplicationController
 		# 	flash[:error] ="Stock not found"
 		# 	render body: nil
 		# end
-
+		
 		respond_to do |f|
 			if @stock
 				f.html {redirect_to 'my_portfolio'}
