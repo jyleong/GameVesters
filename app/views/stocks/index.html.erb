@@ -9,16 +9,17 @@
 		<th>Quote:</th>
 		<th>Up/Down</th>
 		<th>Actions:</th>
-
+		<th>View:</th>
 	</tr>
 	
   <% @stocks.each do |stock| %>
     <tr>
-      <td><%= stock.name %></td>
+      <td><%= stock.name%></td>
       <td><%= stock.symbol %></td>
 		<td><%= stock.current_price%></td>
-		<td><%= stock.amount_change %></td>
+		<td class="change"><%= stock.amount_change %></td>
 		<td>3 buttons</td>
+		<td><%= link_to 'Details', stock, class: "btn btn-xs btn-primary" %></td>
     </tr>
   <% end %>
 </table>
