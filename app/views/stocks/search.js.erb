@@ -23,6 +23,10 @@ var init_stock_lookup = function() {
   //make a clickable button
   stocklookup.append("<br/>")
   stocklookup.append("<%= j render 'useradd' %>")
+
+  var stockLookupChart = $("#stock-lookup-chart")
+  stockLookupChart.empty();
+  stockLookupChart.append('<img src=<%= @chart_url %> />');
 }
 
 $(document).ready(function() {

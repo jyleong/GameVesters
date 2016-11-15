@@ -1,7 +1,6 @@
 class StocksController < ApplicationController
-	
+
 	def search
-		
 		if params[:stock]
 		  @stock = Stock.find_by_symbol(params[:stock])
 		  @stock ||= Stock.new_from_lookup(params[:stock])
@@ -19,6 +18,9 @@ class StocksController < ApplicationController
 
 		respond_to do |f|
 			if @stock
+				chart_url_query = build_url_params
+				chart_url_base = "http://chart.finance.yahoo.com"
+				@chart_url = "#{chart_url_base}/#{chart_url_query}"
 				f.html {redirect_to 'my_portfolio'}
 				f.json {render partial: 'lookup', locals: {stock: @stock}}
 				f.js
@@ -31,16 +33,20 @@ class StocksController < ApplicationController
 	end
 
 	def new
-	    @stock = Stock.new
+    @stock = Stock.new
 	end
 
 	def index
-	    @stocks = Stock.all
+    @stocks = Stock.all
 	end
 
 	def show
-		@stock = User.find(params[:id])	
-
+	@stock = User.find(params[:id])
 	end
 
+	private
+	def build_url_params
+		symbol = @stock.symbol
+		url_query = "z?s=#{symbol}&t=6m&q=l&l=on&z=s&p=m50,m356"
+	end
 end
