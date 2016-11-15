@@ -1,0 +1,16 @@
+<div class="container">
+	<div class=" row stock-vals">
+		<h4 class="col-sm-4">
+			<%= @stock.name %> | <%= @stock.symbol %>
+		</h4>
+		<h4 class="col-sm-4">
+			Quote: <%= @stock.current_price %>
+		</h4>
+
+	</div>
+	<br/>
+	<div id="stock-lookup-chart">
+		<img src=<%= @chart_url %> />
+	</div>
+
+</div>

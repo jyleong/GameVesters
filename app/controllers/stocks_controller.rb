@@ -37,7 +37,11 @@ class StocksController < ApplicationController
 
 	    ## for each stock do find_by?
 	    @stocks.each do |stock|
-	    	stock = Stock.find_by_symbol(stock.symbol)
+        if (stock.compareTime())
+          stock = Stock.find_by_symbol(stock.symbol)
+          
+        end
+	    	
 	    end
 	    @stocks ## make sure we return it
 
@@ -45,6 +49,9 @@ class StocksController < ApplicationController
 
 	def show
 		@stock = Stock.find(params[:id])
+    chart_url_query = build_url_params
+    chart_url_base = "http://chart.finance.yahoo.com"
+    @chart_url = "#{chart_url_base}/#{chart_url_query}"
   end
 
   def new
@@ -58,4 +65,5 @@ class StocksController < ApplicationController
       symbol = @stock.symbol
       url_query = "z?s=#{symbol}&t=6m&q=l&l=on&z=s&p=m50,m356"
     end
+
 end
