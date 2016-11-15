@@ -1,0 +1,34 @@
+<div class="container">
+	<div class=" row stock-vals">
+		<h4 class="col-sm-4">
+			<%= @stock.name %> | <%= @stock.symbol %>
+		</h4>
+		<h4 class="col-sm-4">
+			Quote: <%= @stock.current_price %>
+		</h4>
+		<!-- will float a well of info on right -->
+		
+	</div>
+	<div id="stock-lookup-chart">
+		<img src=<%= @chart_url %> />
+	</div>
+	<br/>
+	<section class="well well-sm" id="DetailWell">
+		<div class="wellDiv">
+			<h5><b>Statistics</b></h5>
+			<table class="table">
+				<tr>
+					<th>Metric:</th>
+					<th>Value:</th>
+				</tr>
+				<% @stock.attributes.each do |key, value|%>
+					<tr>
+						<td><%= key %></td>
+						<td><%= value%></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</section>
+
+</div>
