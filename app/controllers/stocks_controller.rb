@@ -39,7 +39,7 @@ class StocksController < ApplicationController
 	    @stocks.each do |stock|
         if (stock.compareTime())
           stock = Stock.find_by_symbol(stock.symbol)
-          
+
         end
 	    	
 	    end
@@ -48,7 +48,12 @@ class StocksController < ApplicationController
 	end
 
 	def show
-		@stock = Stock.find(params[:id])
+		@stock = Stock.where(id: params[:id]).select(:id,:symbol, 
+            :name, :current_price, 
+            :amount_change, 
+            :year_high, 
+            :year_low).take
+    puts @stock[2]
     chart_url_query = build_url_params
     chart_url_base = "http://chart.finance.yahoo.com"
     @chart_url = "#{chart_url_base}/#{chart_url_query}"
