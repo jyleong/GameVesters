@@ -19,15 +19,13 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   # no need for new page
   def new
-
-    @user_id = params[:user_id]
-    @stock_id = params[:stock_id]
-    @stock_price = params[:stock_price]
+    @stock = Stock.find_by_symbol(params[:symbol])
     @buy_sell = params[:buy_sell]
     @transaction = Transaction.new()
 
     respond_to do |f|
       f.html
+      f.js
     end
   end
 

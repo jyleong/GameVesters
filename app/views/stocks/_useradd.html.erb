@@ -14,5 +14,8 @@
 </span>
 <% end %>
 
-<%= link_to "Buy", new_transaction_path, user_id: current_user.id, stock_id: @stock.id, stock_price: @stock.current_price, buy_sell: true, method: "get", class: "btn btn-xs btn-primary"%>
+<%= link_to "Buy", new_transaction_path(:symbol => @stock.symbol, buy_sell: true), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#new-transaction-modal" %>
 
+<%= link_to "Sell", new_transaction_path(:symbol => @stock.symbol, buy_sell: false), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#new-transaction-modal" %>
+
+<%= render 'transactions/form_modal' %>
