@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   resources :user_stocks, except: [:show, :edit,:update]
   resources :stocks
+  resources :questions 
+  get '/questions/:id/display_question', to: 'questions#display_question', as: 'display_question'
+	
+
   get 'sessions/new'
 
 
@@ -12,11 +16,7 @@ Rails.application.routes.draw do
 	get '/about', to: 'static_pages#about'
 	get '/contact', to: 'static_pages#contact'
 	get '/signup', to: 'users#new'
-	get '/question', to: 'questions#display_question'
-
-
 	post '/signup', to: 'users#create'
-
 	get 'login', to: 'sessions#new'
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
