@@ -4,12 +4,12 @@
 <% else %>
 
 <span class="label label-default">
-  Stock cannot be added because you ahve already added
+  Cannot track this stock becuase you have tracked
   <% if !current_user.under_stock_limit? %>
-  10 stocks
+  10 stocks.
   <% end %>
   <% if current_user.stock_already_added?(@stock.symbol) %>
-  this stock
+  this stock.
   <% end %>
 </span>
 <% end %>
