@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 20161115045323) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string   "qid"
+    t.integer  "reward"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "ans1"
+    t.string   "ans2"
+    t.string   "ans3"
+    t.string   "ans4"
+    t.string   "answer"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"

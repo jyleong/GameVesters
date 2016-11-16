@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
 		param.strip!
 		param.downcase!
-			where("name LIKE ?", "%#{param}%") 
+			where("name LIKE ?", "%#{param}%")
 	#name_matches(param).uniq
 	##must define thsese methods, object oriented programming, outsource parts of it
 	end
@@ -97,7 +97,7 @@ class User < ApplicationRecord
 		return false unless stock
 		user_stocks.where(stock_id: stock.id).exists?
 	end
-    
+
     # Functions for Notifications
     def create_notification(message, link)
         notifications.create(
@@ -107,7 +107,7 @@ class User < ApplicationRecord
             read: false,
         )
     end
-	
+
 	private
 
 		def defaults

@@ -22,18 +22,18 @@ package "libpq-dev"
 package "postgresql"
 
 cookbook_file "nginx-default" do
-	path "/etc/nginx/sites-available/default"
+  path "/etc/nginx/sites-available/default"
 end
 execute 'nginx_restart' do
-	command 'service nginx restart'
+  command 'service nginx restart'
 end
 
 execute 'setup_db' do
-	command 'echo "CREATE DATABASE mydb; CREATE USER ubuntu; GRANT ALL PRIVILEGES ON DATABASE mydb TO ubuntu;" | sudo -u postgres psql'
+  command 'echo "CREATE DATABASE mydb; CREATE USER ubuntu; GRANT ALL PRIVILEGES ON DATABASE mydb TO ubuntu;" | sudo -u postgres psql'
 end
 
 execute 'nginx_reload' do
-	command 'service nginx reload'
+  command 'service nginx reload'
 end
 
 # # Rails setup
@@ -46,19 +46,19 @@ package "nodejs"
 package "build-essential"
 
 execute 'bundler install' do
-	command 'gem install bundler --conservative'
+  command 'gem install bundler --conservative'
 end
 
 execute 'bundler' do
-	user 'ubuntu'
-	cwd '/home/ubuntu/project'
-	command 'bundle install'
+  user 'ubuntu'
+  cwd '/home/ubuntu/project'
+  command 'bundle install'
 end
 
 execute 'migrate' do
-	user 'ubuntu'
-	cwd '/home/ubuntu/project'
-	command 'rails db:migrate RAILS_ENV=production'
+  user 'ubuntu'
+  cwd '/home/ubuntu/project'
+  command 'rails db:migrate RAILS_ENV=production'
 end
 
 cookbook_file "unicorn_rails" do
@@ -66,20 +66,20 @@ cookbook_file "unicorn_rails" do
 end
 
 execute 'enable unicorn' do
-	user 'ubuntu'
-	cwd '/home/ubuntu/project'
-	command "update-rc.d unicorn_rails defaults"
+  user 'ubuntu'
+  cwd '/home/ubuntu/project'
+  command "update-rc.d unicorn_rails defaults"
 end
 
 execute 'run unicorn production ' do
-	user 'ubuntu'
-	cwd '/home/ubuntu/project'
-	command "bundle exec unicorn -c config/unicorn.rb -E production -D"
+  user 'ubuntu'
+  cwd '/home/ubuntu/project'
+  command "bundle exec unicorn -c config/unicorn.rb -E production -D"
 end
 
 
 # execute 'run server' do
-# 	user 'ubuntu'
-# 	cwd '/home/ubuntu/project'
-# 	command 'rails server -d -b 0.0.0.0'
+#   user 'ubuntu'
+#   cwd '/home/ubuntu/project'
+#   command 'rails server -d -b 0.0.0.0'
 # end
