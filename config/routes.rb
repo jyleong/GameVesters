@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 	resources :transactions, only: [:new,:create, :show, :index]
 	##note for show an dindex, only if its user id is for current user
 
-	get 'search_stocks', to: "stocks#search" #stocks controller search action
+	get '/search_stocks', to: "stocks#search" #stocks controller search action
 
 	resources :relationships, only: [:create, :destroy]
 
