@@ -4,30 +4,24 @@ class StocksController < ApplicationController
     if params[:stock]
       @stock = Stock.find_by_symbol(params[:stock])
       @stock ||= Stock.new_from_lookup(params[:stock])
-      if @stock.nil?
-        @stock = Stock.new_from_lookup(params[:stock])
-      end
     end
-# if @stock
-# 	# render json: @stock
-# 	render partial: 'lookup'
-# else
-# 	flash[:error] ="Stock not found"
-# 	render body: nil
-# end
 
     respond_to do |f|
       if @stock
         chart_url_query = build_url_params
         chart_url_base = "http://chart.finance.yahoo.com"
         @chart_url = "#{chart_url_base}/#{chart_url_query}"
+        puts @stock.name
+        # debugger
         f.html {redirect_to 'my_portfolio'}
         f.json {render partial: 'lookup', locals: {stock: @stock}}
         f.js
+
       else
         flash[:error] = "Stock not found"
         f.json {render body: nil}
         f.js
+
       end
     end
   end
