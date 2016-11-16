@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20161115045323) do
     t.boolean  "read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
 
   create_table "questions", force: :cascade do |t|
     t.string   "qid"
@@ -32,7 +33,6 @@ ActiveRecord::Schema.define(version: 20161115045323) do
     t.string   "ans4"
     t.string   "answer"
   end
-
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -85,4 +85,5 @@ ActiveRecord::Schema.define(version: 20161115045323) do
     t.string   "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
+
 end
