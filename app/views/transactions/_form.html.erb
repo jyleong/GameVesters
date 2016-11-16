@@ -1,4 +1,12 @@
 <%= form_for(transaction) do |f| %>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h3 class="modal-title" id="myModalLabel"><%= @stock.name %></h3>
+    <h4><%= @stock.current_price %></h4>
+</div>
+
+<div class="modal-body">
+        
   <% if transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
@@ -10,33 +18,35 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="form-group btn-group" data-toggle="buttons">
+      <label class="btn btn-primary active">
+        <input type="radio" name="buy_sell" id="toggle_buy" value="true" autocomplete="off" checked> Buy
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" name="buy_sell" id="toggle_sell" value="false" autocomplete="off"> Sell
+      </label>
+    </div>
 
   <div class="form-group">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id , value: @user_id%>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :stock_id %>
-    <%= f.number_field :stock_id %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :current_stock_val %>
-    <%= f.text_field :current_stock_val %>
+    <%= f.label :amount %>
+    <div class="input-group">
+        <div class="input-group-addon">$</div>
+        <%= f.number_field :total_price, :step => 0.01, class: "form-control" %>
+    </div>
   </div>
 
   <div class="form-group">
     <%= f.label :quantity %>
-    <%= f.number_field :quantity %>
+    <%= f.number_field :quantity, class: "form-control" %>
   </div>
+</div>
+      
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <button type="submit" class="btn btn-primary">Make Transaction</button>
+</div>
 
-  <div class="form-group">
-    <%= f.label :buy_sell %>
-    <%= f.check_box :buy_sell %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+
+

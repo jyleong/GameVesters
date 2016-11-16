@@ -21,7 +21,14 @@ class TransactionsController < ApplicationController
   def new
     @stock = Stock.find_by_symbol(params[:symbol])
     @buy_sell = params[:buy_sell]
-    @transaction = Transaction.new()
+    
+    default_amount = 10000
+    transaction_quantity = (default_amount / @stock.current_price).round
+    
+    @transaction = Transaction.new(
+        total_price: @stock.current_price * transaction_quantity,
+        quantity: transaction_quantity
+    )
 
     respond_to do |f|
       f.html
@@ -33,15 +40,13 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     # @transaction = Transaction.new(transaction_params)
-
     @symbol = Stock.find(params[:stock_id])
     current_stock = StockQuote::Stock.quote(symbol)
     total_price = current_stock.ask * params[:transaction[:quantity]]
-    @user_id = params[:user_id]
     @stock_id = params[:stock_id]
     @stock_price = params[:stock_price]
     @transaction = user.transactions.create(
-      user_id: @user_id, 
+      user_id: current_user.id, 
       stock_id: @stock_id, 
       quantity: params[:transaction[:quantity]], 
       current_stock_val: current_stock.ask, 
