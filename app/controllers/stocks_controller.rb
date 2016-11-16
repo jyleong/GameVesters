@@ -15,7 +15,8 @@ class StocksController < ApplicationController
         f.html {redirect_to my_portfolio_path}
         puts @stock.name
         # debugger
-        f.html {redirect_to 'my_portfolio'}
+        f.html {redirect_to my_portfolio_path}
+        puts "passed the redirect "
         f.json {render partial: 'lookup', locals: {stock: @stock}}
         f.js
 
