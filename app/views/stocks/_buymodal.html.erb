@@ -1,0 +1,28 @@
+
+<%= form_for([@transaction.user, @transaction]) do |f|%>
+	<% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+      <% @transaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="form-group col-md-12">
+		<div class="col-md-10">
+		<%= f.label :quantity %>
+	  	<%= f.number_field(:quantity, in: 1.0..20.0, step: 1.0)%>
+	  
+		</div>
+	<div class="col-md-2">
+  
+ 	<%= button_tag(type: :submit, class: "btn btn-success") do %>
+	Buy
+	<% end %>
+	</div>
+	</div>
+<% end %>

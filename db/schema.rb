@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112211147) do
+ActiveRecord::Schema.define(version: 20161115045323) do
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "message"
+    t.string   "link"
+    t.boolean  "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
 
   create_table "questions", force: :cascade do |t|
     t.string   "qid"
@@ -25,7 +33,6 @@ ActiveRecord::Schema.define(version: 20161112211147) do
     t.string   "answer"
   end
 
-ActiveRecord::Schema.define(version: 20161105214610) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -43,6 +50,20 @@ ActiveRecord::Schema.define(version: 20161105214610) do
     t.float    "current_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.float    "amount_change"
+    t.float    "year_high"
+    t.float    "year_low"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "stock_id"
+    t.float    "current_stock_val"
+    t.integer  "quantity"
+    t.float    "total_price"
+    t.boolean  "buy_sell"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "user_stocks", force: :cascade do |t|
@@ -64,5 +85,4 @@ ActiveRecord::Schema.define(version: 20161105214610) do
     t.string   "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
-
 end

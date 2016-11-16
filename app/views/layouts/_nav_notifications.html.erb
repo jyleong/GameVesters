@@ -1,0 +1,32 @@
+<div style="width:130px; padding: 0 10px">
+    <%= form_for current_user, url: "/mark_all_notifications" do |f| %>
+        <div><%= hidden_field_tag :user_id, current_user.id %></div>
+        <%= f.submit "Mark all as read", class: "btn btn-sm" %>
+    <% end %>
+</div>
+
+<% current_user.notifications.order(created_at: :desc).each do |notification| %>
+
+    <li class="divider"></li>
+
+    <li class="notification-item">
+        <a href=<%= notification.link %> data-redirect-to="<%= notification.link %>" data-path=<%= notification_path(notification) %> >
+            <% if not notification.read %>
+                <div class="glyphicon glyphicon-exclamation-sign" title="Unread"></div>
+            <% end %>
+
+            <span><%= notification.message %></span>
+
+            <br>
+
+            <span title="<%= notification.created_at.strftime("%c") %>">
+                <% if Time.now.strftime("%D") == notification.created_at.strftime("%D") %>
+                    <%= notification.created_at.strftime("%I:%M %p") %>
+                <% else %>
+                    <%= notification.created_at.strftime("%D") %>
+                <% end %>
+            </span>
+        </a>
+    </li>
+
+<% end %>

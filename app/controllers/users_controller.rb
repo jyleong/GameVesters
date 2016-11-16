@@ -4,31 +4,56 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
+
+
+  def search
+    @users = User.search(params[:search])
+    if @users
+      @users = @current_user.except_current_user(@users)
+      render partial: 'search'
+    else
+      render status: :not_found, nothing: true
+    end
+  end
   def new
     @user = User.new
   end
 
+  def my_portfolio
+    @user_stocks = current_user.stocks
+    @user = current_user
+  end
+
   def index
+    #@users = User.all
     @users = User.paginate(page: params[:page])
+
+     if params[:search]
+       @users = User.search(params[:search]).order("name ASC")
+     else
+       @users = User.paginate(page: params[:page])
+     end
+
   end
 
   def show
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
     @user_stocks = @user.stocks
+    @user_notifications = @user.notifications
   end
 
-  def create 
-  	@user = User.new(user_params)
-  	if @user.save
-  		#handle succesful save ,login upon new signup
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      #handle succesful save ,login upon new signup
       log_in @user
-      
-  		flash[:success] = "Welcome to the Sample app!"
-  		
+
+      flash[:success] = "Welcome to the Sample app!"
+
       redirect_to @user
-  	else
-  		render 'new'
-  	end
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -38,12 +63,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      ## 
+      ##
       flash[:success] = "Account successfully saved!"
       redirect_to @user
     else
       render 'edit'
-    end   
+    end
   end
 
   def destroy
@@ -52,17 +77,26 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  def my_portfolio
-    @user_stocks = current_user.stocks
-    @user = current_user
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private
 
-  	def user_params
-  	  params.require(:user).permit(:name, :email, :password,
-  	                               :password_confirmation)
-  	end
+    def user_params
+      params.require(:user).permit(:name, :email, :password,
+                                   :password_confirmation)
+    end
 
     def correct_user
       @user = User.find(params[:id])

@@ -1,0 +1,34 @@
+
+var hide_spinner = function() {
+  $('#spinner').hide();
+}
+
+var show_spinner = function() {
+  $('#spinner').show();
+}
+
+var init_stock_lookup = function() {
+
+  $('#stock-lookup-form').on('ajax:before', function(event, data, status) {
+    show_spinner();
+  })
+  $('#stock-lookup-form').on('ajax:after', function(event, data, status) {
+    hide_spinner();
+  })
+  var stocklookup = $("#stock-lookup-results")
+  stocklookup.empty();
+  //apend the symbols
+  stocklookup.
+  append('<strong>Symbol: </strong><%= @stock.symbol %> <strong>Name: </strong><%= @stock.name %> <strong>Price: </strong><%= @stock.current_price %>');
+  //make a clickable button
+  stocklookup.append("<br/>")
+  stocklookup.append("<%= j render 'useradd' %>")
+
+  var stockLookupChart = $("#stock-lookup-chart")
+  stockLookupChart.empty();
+  stockLookupChart.append('<img src=<%= @chart_url %> />');
+}
+
+$(document).ready(function() {
+  init_stock_lookup();
+});
