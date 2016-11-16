@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       #handle succesful save ,login upon new signup
       log_in @user
 
-      flash[:success] = "Welcome to the Sample app!"
+  		flash[:success] = "Welcome to the Investors app!"
 
       redirect_to @user
     else
