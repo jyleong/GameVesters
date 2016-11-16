@@ -1,23 +1,20 @@
 
 
 
- <% @question.each do |question| %>
+  
 
-<h1><%= question.content %></h1>
- 	<h2>This question is worth <%= question.reward %> currency</h2>
-
-   
-
+<h1><%= @question.content %></h1>
+ 	<h2>This question is worth <%= @question.reward %> currency</h2>
 <%= form_tag("answer", method: "post") do %>
 <%= radio_button_tag(:useranswer, "A") %>
-<%= label_tag(:optiona, question.ans1 ) %>
+<%= label_tag(:optiona, @question.ans1 ) %>
 <%= radio_button_tag(:useranswer, "B") %>
-<%= label_tag(:optionb, question.ans2) %>
+<%= label_tag(:optionb, @question.ans2) %>
 <%= radio_button_tag(:useranswer, "C") %>
-<%= label_tag(:optionc, question.ans3) %>
+<%= label_tag(:optionc, @question.ans3) %>
 <%= radio_button_tag(:useranswer, "D") %>
-<%= label_tag(:optiond, question.ans4) %>
+<%= label_tag(:optiond, @question.ans4) %>
+
  <% end %>
 
    
-  <% end %>
