@@ -1,13 +1,30 @@
 <% provide(:title, 'All company Listings') %>
-<h1>All Company listings</h1>
+<h1>Company listings</h1>
 
 
-<ul class="stocks">
-
+<table class="table">
+	<tr>
+		<th>Name:</th>
+		<th>Symbol:</th>
+		<th>Quote:</th>
+		<th>Up/Down</th>
+		<th>Actions:</th>
+		<th>View:</th>
+	</tr>
+	
   <% @stocks.each do |stock| %>
-    <li>
-      <%= "#{stock.symbol}: #{stock.current_price}" %>
-    </li>
+    <tr>
+      <td><%= stock.name%></td>
+      <td><%= stock.symbol %></td>
+		<td><%= stock.current_price%></td>
+		<td class="change"><%= stock.amount_change %></td>
+		<td>3 buttons</td>
+		<td><%= link_to 'Details', stock, class: "btn btn-xs btn-primary" %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
+
+
+
+
 

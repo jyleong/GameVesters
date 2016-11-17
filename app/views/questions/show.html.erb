@@ -1,0 +1,18 @@
+
+<table>
+	<tr>
+		<td><%= @question.qid %>. <%= @question.content %></td> Value:<td><%= @question.reward %></td>
+ 	
+ 	<td><%= @question.ans1 %></td>
+ 	<td><%= @question.ans2 %></td>
+ 	<td><%= @question.ans3 %></td>
+ 	<td><%= @question.ans4 %></td>
+ 	</tr>
+ 	<tr>
+ 	<%= @question.answer %>
+ 	</tr>
+ 	</table>
+ 	
+<%= link_to 'Back', questions_path %>
+
+

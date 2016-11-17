@@ -8,7 +8,7 @@
 
       </h1>
       <p>
-      	<%= @user.currency %>
+        <%= @user.currency %>
       </p>
     </section>
     <section class="stats">
@@ -20,7 +20,7 @@
     <%= render 'follow_form' if logged_in? %>
 
   </div>
-  
+
     <% if @user.stocks.size > 0 %>
       <%= render 'stocks/list' %>
     <% else %>
@@ -28,5 +28,5 @@
         <p class="lead">This user is not tracking any stocks</p>
       <% end %>
     <% end %>
-  
+
 </div>

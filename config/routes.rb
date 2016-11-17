@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-
   resources :user_stocks, except: [:show, :edit,:update]
   resources :stocks
-  get 'sessions/new'
 
+  resources :questions 
+  get '/questions/:id/display_question', to: 'questions#display_question', as: 'display_question'
+  get 'sessions/new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 	root 'static_pages#home'
@@ -13,9 +14,6 @@ Rails.application.routes.draw do
 	get '/contact', to: 'static_pages#contact'
 	get '/signup', to: 'users#new'
 	post '/signup', to: 'users#create'
-
-
-
 	get 'login', to: 'sessions#new'
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
@@ -35,5 +33,5 @@ Rails.application.routes.draw do
     resources :notifications, only: [:update, :destroy]
     get '/refresh_notifications', to: 'notifications#refresh'
     patch '/mark_all_notifications', to: 'notifications#mark_all'
-    
+
 end

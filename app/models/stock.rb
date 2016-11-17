@@ -6,7 +6,7 @@ class Stock < ApplicationRecord
 	# validates :symbol, :presence => true, :uniqueness => true
 
 	def self.find_by_symbol(ticker_symbol)
-		
+
 		retrievedStock = where(symbol: ticker_symbol.upcase).first
 		return retrievedStock
 	end
@@ -16,7 +16,7 @@ class Stock < ApplicationRecord
 		return nil unless looked_up_stock.name
 		@new_stock = Stock.create(symbol: looked_up_stock.symbol, name: looked_up_stock.name)
 		##debugger
-		
+
 		@new_stock.current_price = @new_stock.price ##
 		@new_stock.save
 		@new_stock

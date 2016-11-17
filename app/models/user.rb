@@ -23,7 +23,7 @@ class User < ApplicationRecord
 		{case_sensitive: false})
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 8 }
-    has_many :notifications
+  has_many :notifications
 
 	def except_current_user(users)
 	    users.reject{|user| user.id == self.id}
@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
 		param.strip!
 		param.downcase!
-			where("name LIKE ?", "%#{param}%") 
+			where("name LIKE ?", "%#{param}%")
 	#name_matches(param).uniq
 	##must define thsese methods, object oriented programming, outsource parts of it
 	end
@@ -97,7 +97,7 @@ class User < ApplicationRecord
 		return false unless stock
 		user_stocks.where(stock_id: stock.id).exists?
 	end
-    
+
     # Functions for Notifications
     def create_notification(message, link)
         notifications.create(
@@ -107,11 +107,9 @@ class User < ApplicationRecord
             read: false,
         )
     end
-	
-	private
 
-		def defaults
-			self.admin = false unless self.admin
-			self.currency = 0
-		end
+	private
+	def defaults
+		self.admin = false unless self.admin
+	end
 end
