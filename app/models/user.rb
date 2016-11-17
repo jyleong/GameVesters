@@ -23,7 +23,7 @@ class User < ApplicationRecord
 		{case_sensitive: false})
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 8 }
-    has_many :notifications
+  has_many :notifications
 
 	def except_current_user(users)
 	    users.reject{|user| user.id == self.id}
@@ -109,9 +109,7 @@ class User < ApplicationRecord
     end
 
 	private
-
-		def defaults
-			self.admin = false unless self.admin
-			self.currency = 0
-		end
+	def defaults
+		self.admin = false unless self.admin
+	end
 end
