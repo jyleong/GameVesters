@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 	get 'login', to: 'sessions#new'
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
-	get 'my_portfolio', to: "users#my_portfolio"
+	get '/my_portfolio', to: "users#my_portfolio"
 	resources :users do
 		member do
 			get :following, :followers
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 	resources :transactions, only: [:new,:create, :show, :index]
 	##note for show an dindex, only if its user id is for current user
 
-	get 'search_stocks', to: "stocks#search" #stocks controller search action
+	get '/search_stocks', to: "stocks#search" #stocks controller search action
 
 	resources :relationships, only: [:create, :destroy]
 
