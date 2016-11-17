@@ -1,10 +1,6 @@
 class StocksController < ApplicationController
   before_action :getStock, only: :search
   def search
-    if params[:stock]
-      @stock = Stock.find_by_symbol(params[:stock])
-      @stock ||= Stock.new_from_lookup(params[:stock])
-    end
 
     respond_to do |f|
       redirect_to my_portfolio_path
@@ -16,10 +12,9 @@ class StocksController < ApplicationController
         puts @stock.name
         # debugger
         f.html {redirect_to my_portfolio_path}
-        puts "passed the redirect "
+
         f.json {render partial: 'lookup', locals: {stock: @stock}}
         f.js
-
       else
         flash[:error] = "Stock not found"
         f.json {render body: nil}
@@ -27,7 +22,6 @@ class StocksController < ApplicationController
 
       end
     end
-
   end
 
 	def index
