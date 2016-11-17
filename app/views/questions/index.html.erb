@@ -1,0 +1,23 @@
+<% @question.each do |question| %>
+<%= link_to 'New Question', new_question_path %>
+<table>
+	<tr>
+		<td>Question#<%= question.qid %>. <%= question.content %></td> <td>Value:<%= question.reward %></td>
+ 	</tr>
+ 	<tr>
+ 		<td>Choices</td>
+ 		<td><%= question.ans1 %></td>
+ 		<td><%= question.ans2 %></td>
+ 		<td><%= question.ans3 %></td>
+ 		<td><%= question.ans4 %></td>
+ 	</tr>
+ 	<tr>
+ 		<td>Correct Answer:<%= question.answer %></td> 
+ 		<td><%= link_to 'Show', question_path(question) %></td>
+
+ 		<td><%= link_to 'Answer Question',display_question_path(question) %></td>
+ 	</tr>
+ 	</table><br>
+
+   
+  <% end %>
