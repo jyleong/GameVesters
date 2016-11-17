@@ -12,23 +12,24 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show
-    
-    @transaction = Transactions.find(params[:id])
+    @transaction = Transaction.find(params[:id])
   end
 
   # GET /transactions/new
   # no need for new page
   def new
     @stock = Stock.find_by_symbol(params[:symbol])
-    @buy_sell = params[:buy_sell]
-    
+
     default_amount = 10000
     transaction_quantity = (default_amount / @stock.current_price).round
-    
+
     @transaction = Transaction.new(
         total_price: @stock.current_price * transaction_quantity,
-        quantity: transaction_quantity
+        quantity: transaction_quantity,
+        buy_sell: params[:buy_sell]
     )
+
+    puts @transaction.inspect
 
     respond_to do |f|
       f.html
@@ -39,19 +40,40 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    # @transaction = Transaction.new(transaction_params)
-    @symbol = Stock.find(params[:stock_id])
-    current_stock = StockQuote::Stock.quote(symbol)
-    total_price = current_stock.ask * params[:transaction[:quantity]]
-    @stock_id = params[:stock_id]
-    @stock_price = params[:stock_price]
-    @transaction = user.transactions.create(
-      user_id: current_user.id, 
-      stock_id: @stock_id, 
-      quantity: params[:transaction[:quantity]], 
-      current_stock_val: current_stock.ask, 
-      total_price: total_price)
-    
+    curr_transaction_params = transaction_params
+
+    stock = Stock.find_by_symbol(params[:stock_symbol])
+    total_price = stock.current_price * curr_transaction_params[:quantity].to_i
+
+    # Buy operation
+    if (transaction_params.buy_sell == true)
+
+        # Check if user has enough money
+
+        # Subtract from user's money
+
+        # Add to user's assets
+
+    # Sell operation
+    else
+
+        # Check if user has enough stocks to sell
+
+        # Add to user's money
+
+        # Remove from user's assets
+
+    end
+
+    # Record transaction
+    curr_transaction_params[:user_id] = current_user.id
+    curr_transaction_params[:stock_id] = stock.id
+    curr_transaction_params[:current_stock_val] = stock.current_price
+    curr_transaction_params[:total_price] = total_price
+
+    puts curr_transaction_params.inspect
+    @transaction = current_user.transactions.create(curr_transaction_params)
+
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
@@ -71,7 +93,7 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:user_id, :stock_id, :current_stock_val, :quantity, :total_price, :buy_sell)
+      params.require(:transaction).permit(:stock_id, :quantity, :buy_sell)
     end
 
     def getUser()
