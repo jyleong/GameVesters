@@ -45,6 +45,8 @@ followers.each { |follower| follower.follow(user) }
 
 Stock.create(symbol: "WIFI", name: "Boingo Wireless, Inc.",current_price: 11.37)
 Stock.create(symbol:"AAPL", name: "Apple Inc.", current_price: 105.35)
+Stock.create(symbol:"OPTT", name: "Ocean Power Technologies, Inc.", current_price: 3.2377)
+
 
 Question.create(qid:  "1",
              reward: 1000,
