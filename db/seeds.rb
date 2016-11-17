@@ -42,12 +42,52 @@ followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
+
 Stock.create(symbol: "WIFI", name: "Boingo Wireless, Inc.",current_price: 11.37)
 Stock.create(symbol:"AAPL", name: "Apple Inc.", current_price: 105.35)
 
-
-
-
-
-
-
+Question.create(qid:  "1",
+             reward: 1000,
+             content: "test1",
+             ans1: "Password1",
+             ans2: "Password1",
+             ans3: "Password1",
+             ans4: "Password1",
+             answer: "Password1"
+             )
+Question.create(qid:  "2",
+             reward: 1000,
+             content: "test1",
+             ans1: "Password1",
+             ans2: "Password1",
+             ans3: "Password1",
+             ans4: "Password1",
+             answer: "Password1"
+             )
+Question.create(qid:  "3",
+             reward: 1000,
+             content: "test1",
+             ans1: "Password1",
+             ans2: "Password1",
+             ans3: "Password1",
+             ans4: "Password1",
+             answer: "Password1"
+             )
+Question.create(qid:  "4",
+             reward: 1000,
+             content: "test1",
+             ans1: "Password1",
+             ans2: "Password1",
+             ans3: "Password1",
+             ans4: "Password1",
+             answer: "Password1"
+             )
+Question.create(qid:  "5",
+             reward: 1000,
+             content: "test1",
+             ans1: "Password1",
+             ans2: "Password1",
+             ans3: "Password1",
+             ans4: "Password1",
+             answer: "Password1"
+             )

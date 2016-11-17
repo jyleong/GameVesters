@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115045323) do
+ActiveRecord::Schema.define(version: 20161117021922) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,6 +19,19 @@ ActiveRecord::Schema.define(version: 20161115045323) do
     t.boolean  "read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "qid"
+    t.integer  "reward"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "ans1"
+    t.string   "ans2"
+    t.string   "ans3"
+    t.string   "ans4"
+    t.string   "answer"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -63,13 +76,14 @@ ActiveRecord::Schema.define(version: 20161115045323) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.float    "currency"
+    t.decimal  "currency"
     t.text     "description"
     t.boolean  "admin"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.datetime "last_login"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

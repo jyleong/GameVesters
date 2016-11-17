@@ -35,23 +35,23 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
     @user_stocks = @user.stocks
     @user_notifications = @user.notifications
   end
 
   def create
-  	@user = User.new(user_params)
-  	if @user.save
-  		#handle succesful save ,login upon new signup
+    @user = User.new(user_params)
+    if @user.save
+      #handle succesful save ,login upon new signup
       log_in @user
 
   		flash[:success] = "Welcome to the Investors app!"
 
       redirect_to @user
-  	else
-  		render 'new'
-  	end
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -90,9 +90,8 @@ class UsersController < ApplicationController
   end
 
   private
-
   	def user_params
-  	  params.require(:user).permit(:name, :email, :password,
+  	  params.require(:user).permit(:name, :email, :currency, :password,
   	                               :password_confirmation)
   	end
 

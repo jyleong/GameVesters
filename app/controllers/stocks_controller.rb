@@ -9,9 +9,8 @@ class StocksController < ApplicationController
         chart_url_query = build_url_params
         chart_url_base = "http://chart.finance.yahoo.com"
         @chart_url = "#{chart_url_base}/#{chart_url_query}"
-        
+
         f.html {redirect_to my_portfolio_path}
-        
         f.json {render partial: 'lookup', locals: {stock: @stock}}
         f.js
       else
@@ -21,7 +20,7 @@ class StocksController < ApplicationController
 
       end
     end
-    
+
   end
 
 	def index
@@ -33,17 +32,17 @@ class StocksController < ApplicationController
           stock = Stock.find_by_symbol(stock.symbol)
 
         end
-	    	
+
 	    end
 	    @stocks ## make sure we return it
 
 	end
 
 	def show
-		@stock = Stock.where(id: params[:id]).select(:id,:symbol, 
-            :name, :current_price, 
-            :amount_change, 
-            :year_high, 
+		@stock = Stock.where(id: params[:id]).select(:id,:symbol,
+            :name, :current_price,
+            :amount_change,
+            :year_high,
             :year_low).take
     puts @stock[2]
     chart_url_query = build_url_params
@@ -54,8 +53,6 @@ class StocksController < ApplicationController
   def new
     @stock = Stock.new
   end
-
-
 
   private
     def build_url_params
