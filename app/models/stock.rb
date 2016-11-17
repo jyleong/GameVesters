@@ -31,4 +31,9 @@ class Stock < ApplicationRecord
 		return "#{opening_price.open} (Opening)" if opening_price.open
 	'Unavailable'
 	end
+
+	def compareTime()
+    	currentTime = DateTime.now
+    	return ((currentTime.to_i - updated_at.to_i)/3600 > 0)
+	end
 end

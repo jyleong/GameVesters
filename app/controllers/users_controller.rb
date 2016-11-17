@@ -4,8 +4,6 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
-
-
   def search
     @users = User.search(params[:search])
     if @users
@@ -48,7 +46,7 @@ class UsersController < ApplicationController
       #handle succesful save ,login upon new signup
       log_in @user
 
-      flash[:success] = "Welcome to the Sample app!"
+  		flash[:success] = "Welcome to the Investors app!"
 
       redirect_to @user
     else
