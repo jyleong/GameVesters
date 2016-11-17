@@ -33,12 +33,15 @@ class SessionsController < ApplicationController
   private
   def been_24_hours?(last_login_time)
     if last_login_time != nil
-      ((Time.now - last_login_time) / 1.hour).round > 24
+      ((Time.now - last_login_time) / 1.hour).round < 24
     end
   end
 
   def gib_daily_bonus
     current_amount = @user.currency
+    if current_amount == nil
+      current_amount = BigDecimal.new(0.0, 0)
+    end
     reward_amount = BigDecimal.new(20000.00, 0)
     current_amount = current_amount + reward_amount
     @user.update_attribute(:currency, current_amount)
