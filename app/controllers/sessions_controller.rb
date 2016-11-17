@@ -34,6 +34,8 @@ class SessionsController < ApplicationController
   def been_24_hours?(last_login_time)
     if last_login_time != nil
       ((Time.now - last_login_time) / 1.hour).round < 24
+    else
+      @user.update_attribute(:last_login, Time.now)
     end
   end
 
