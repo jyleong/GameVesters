@@ -3,7 +3,7 @@ class StocksController < ApplicationController
   def search
 
     respond_to do |f|
-      redirect_to my_portfolio_path
+      
       if @stock
         chart_url_query = build_url_params
         chart_url_base = "http://chart.finance.yahoo.com"
@@ -41,7 +41,7 @@ class StocksController < ApplicationController
 	def show
 		@stock = Stock.where(id: params[:id]).select(:id,:symbol,
             :name, :current_price,
-            :amount_change,
+            :amount_change, :percent_change,
             :year_high,
             :year_low).take
     puts @stock[2]
