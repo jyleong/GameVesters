@@ -3,13 +3,14 @@ class StocksController < ApplicationController
   def search
 
     respond_to do |f|
-
       redirect_to my_portfolio_path
       if @stock
         chart_url_query = build_url_params
         chart_url_base = "http://chart.finance.yahoo.com"
         @chart_url = "#{chart_url_base}/#{chart_url_query}"
-
+        f.html {redirect_to my_portfolio_path}
+        puts @stock.name
+        # debugger
         f.html {redirect_to my_portfolio_path}
         f.json {render partial: 'lookup', locals: {stock: @stock}}
         f.js
@@ -20,7 +21,6 @@ class StocksController < ApplicationController
 
       end
     end
-
   end
 
 	def index
