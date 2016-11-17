@@ -12,7 +12,6 @@ class StocksController < ApplicationController
         puts @stock.name
         # debugger
         f.html {redirect_to my_portfolio_path}
-
         f.json {render partial: 'lookup', locals: {stock: @stock}}
         f.js
       else
@@ -67,4 +66,5 @@ class StocksController < ApplicationController
         @stock ||= Stock.new_from_lookup(params[:stock])
       end
     end
+
 end
