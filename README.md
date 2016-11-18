@@ -59,6 +59,8 @@ go to browser and open up localhost:3000
 ### CHECKPOINT SUBMISSION TASKS FLOWS AND FEATURES TO ASSESS
 **Disclaimer: All currencies are virtual and are not to be confused with real dollars**
 
+### Current Features
+
 **New user creation**
 - create new user with any email.
 - default currency will be given at 100,000 for first time sign up.
