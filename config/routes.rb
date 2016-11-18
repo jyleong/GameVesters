@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :questions
   get '/questions/:id/display_question', to: 'questions#display_question', as: 'display_question'
+  post '/questions/:id/display_question', to: 'questions#answer_question', as: 'answer_question'
   get 'sessions/new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
