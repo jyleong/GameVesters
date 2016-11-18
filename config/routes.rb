@@ -23,8 +23,8 @@ Rails.application.routes.draw do
 			get :following, :followers
 		end
 	end
+	# Note: show and index is only for the current user
 	resources :transactions, only: [:new,:create, :show, :index]
-	##note for show an dindex, only if its user id is for current user
 
 	get '/search_stocks', to: "stocks#search" #stocks controller search action
 
