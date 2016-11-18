@@ -57,11 +57,12 @@ go to browser and open up localhost:3000
 ----------------------------------------------------
 
 ### CHECKPOINT SUBMISSION TASKS FLOWS AND FEATURES TO ASSESS
-**All currencies are virtual and does no have any connections to real dollars**
+**Disclaimer: All currencies are virtual and are not to be confused with real dollars**
 
 **New user creation**
 - create new user with any email.
-- default currency will be given at 100,000.
+- default currency will be given at 100,000 for first time sign up.
+- After first time sign in, you will land in your user page, click the 'Gamevesters' logo to navigate to Home
 
 **Search stocks by symbol**
 - currently user can only search stocks by their official symbol.
@@ -71,7 +72,7 @@ go to browser and open up localhost:3000
 1. searhbar on the header
 2. searchbar in the '/my_portfolio' path
 
-**Add stocks to your portfolio**
+**Add stocks to your portfolio (track stocks)**
 - after searching for a stock (by symbol) click the 'Add to my Stocks' button to add it to your portfolio.
 - the stocks just added will be displayed on Home page above trending stocks.
 - added stocks will also be displayed in your "My Profile" page for you to have quick glance over basic stats.
