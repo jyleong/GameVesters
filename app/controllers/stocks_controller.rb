@@ -1,7 +1,7 @@
 class StocksController < ApplicationController
   before_action :getStock, only: :search
   def search
-
+    ## this method user getStock function
     respond_to do |f|
       
       if @stock
@@ -9,12 +9,13 @@ class StocksController < ApplicationController
         chart_url_base = "http://chart.finance.yahoo.com"
         @chart_url = "#{chart_url_base}/#{chart_url_query}"
 
-        f.html {redirect_to my_portfolio_path}
-        f.json {render partial: 'lookup', locals: {stock: @stock}}
+        # f.html {redirect_to my_portfolio_path}
+        # f.json {render partial: 'lookup', locals: {stock: @stock}}
+        # redirect_to my_portfolio_path
         f.js
       else
         flash[:error] = "Stock not found"
-        f.json {render body: nil}
+        # f.json {render body: nil}
         f.js
 
       end
@@ -42,7 +43,7 @@ class StocksController < ApplicationController
             :amount_change, :percent_change,
             :year_high,
             :year_low).take
-    puts @stock[2]
+    
     chart_url_query = build_url_params
     chart_url_base = "http://chart.finance.yahoo.com"
     @chart_url = "#{chart_url_base}/#{chart_url_query}"
