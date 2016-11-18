@@ -8,5 +8,4 @@ class Transaction < ApplicationRecord
 		return current_user.currency > (stock.current_price * quantity)
 	end
 
-
 end
