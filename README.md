@@ -59,34 +59,42 @@ go to browser and open up localhost:3000
 ### CHECKPOINT SUBMISSION TASKS FLOWS AND FEATURES TO ASSESS
 **All currencies are virtual and does no have any connections to real dollars**
 
-New user creation
+**New user creation**
 - create new user with any email
 - default currency will be given at 100,000
 
-Search stocks by symbol
+**Search stocks by symbol**
+- currently user can only search stocks by their official symbol
 - example symbols => 'goog', 'aapl', 'yhoo'
 
-Add stocks to your portfolio
-- after searching for a stock (by symbol) click the 'add' button to add it to your portfolio
-- added stocks will be displayed in your "Profile???" page for you to have quick glance over basic stats
+- there are 2 ways to search stocks
+1. searhbar on the header
+2. searchbar in the '/my_portfolio' path
 
-(Daily) login rewards
-- currently, for demo pruposes, all users will be awarded 20,000 everytime they login. In final version this will be once every 24 hours
+**Add stocks to your portfolio**
+- after searching for a stock (by symbol) click the 'Add to my Stocks' button to add it to your portfolio
+- the stocks just added will be displayed on Home page above trending stocks
+- added stocks will also be displayed in your "My Profile" page for you to have quick glance over basic stats
+- the added stocks will have the **'tracked'** status
 
-Daily challenge questions
-- answer some random trading related questions for additional rewards!
+**(Daily) login rewards**
+- currently, for demo pruposes, all users will be awarded 20,000 everytime they login. In final version this will be once every 24 hours.
 
-See trending stocks on Home page
+**Daily challenge questions**
+- this is a planned feature, the back-end code is ready however not front-end is in place
+
+**See trending stocks on Home page**
 - 5 most trending stokcs will be displayed on Home page
+- this information is currently being pulled from external site, in the final version we will display the top 5 stocks in user's tracked stocks
 
-Follow other users
+**Follow other users**
 - you can follow other users to see how they are doing and learn their trading behavior
 
-Notification System
+**Notification System**
 - Back-end and polling is done, but no actual messages being sent out yet
 - Front-end is in place for viewing
 
-Buy/Sell stocks
+**Buy/Sell stocks**
 - users can make trasactions when buying or selling stocks using their virtual currency
 
 
