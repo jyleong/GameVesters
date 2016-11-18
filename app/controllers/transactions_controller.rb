@@ -29,8 +29,6 @@ class TransactionsController < ApplicationController
         buy_sell: params[:buy_sell]
     )
 
-    puts @transaction.inspect
-
     respond_to do |f|
       f.html
       f.js
@@ -42,45 +40,56 @@ class TransactionsController < ApplicationController
   def create
     curr_transaction_params = transaction_params
 
-    stock = Stock.find_by_symbol(params[:stock_symbol])
-    total_price = stock.current_price * curr_transaction_params[:quantity].to_i
+    @stock = Stock.find_by_symbol(params[:stock_symbol])
+    total_price = @stock.current_price * curr_transaction_params[:quantity].to_i
+
+    # Record transaction
+    curr_transaction_params[:user_id] = current_user.id
+    curr_transaction_params[:stock_id] = @stock.id
+    curr_transaction_params[:current_stock_val] = @stock.current_price
+    curr_transaction_params[:total_price] = total_price
+
+    @transaction = Transaction.new(curr_transaction_params)
 
     # Buy operation
-    if (transaction_params.buy_sell == true)
+    if transaction_params[:buy_sell] == "true"
 
         # Check if user has enough money
+        if current_user.currency < total_price
+            @transaction.errors.add(:total_price, :invalid, message: "is too expensive. You do not have enough money.")
+        else
+            # Subtract from user's money
+            current_user.subtract_currency(total_price)
 
-        # Subtract from user's money
-
-        # Add to user's assets
+            # Add to user's owned stocks
+            current_user.add_owned_stock(@transaction)
+        end
 
     # Sell operation
     else
 
         # Check if user has enough stocks to sell
+        num_stocks = current_user.user_owned_stocks.find_by(stock_id: @transaction.stock_id).quantity_owned
+        if num_stocks < @transaction.quantity
+            @transaction.errors.add(:quantity, :invalid, message: "is too high. You do not own that many stocks.")
+        else
 
-        # Add to user's money
+            # Add to user's money
+            current_user.add_currency(total_price)
 
-        # Remove from user's assets
+            # Remove from user's owned stocks
+            current_user.remove_owned_stock(@transaction)
+        end
 
     end
 
-    # Record transaction
-    curr_transaction_params[:user_id] = current_user.id
-    curr_transaction_params[:stock_id] = stock.id
-    curr_transaction_params[:current_stock_val] = stock.current_price
-    curr_transaction_params[:total_price] = total_price
-
-    puts curr_transaction_params.inspect
-    @transaction = current_user.transactions.create(curr_transaction_params)
-
-    respond_to do |format|
-      if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
-        format.json { render :show, status: :created, location: @transaction }
+    respond_to do |f|
+      if @transaction.errors.count == 0 and @transaction.save
+        f.json { render :show, status: :created, location: @transaction }
+        f.js
       else
-        format.html { render :new }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        #f.json { render json: @transaction.errors, status: :unprocessable_entity }
+        f.js
       end
     end
   end

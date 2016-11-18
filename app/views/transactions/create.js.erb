@@ -1,9 +1,14 @@
-<% if @transaction.errors.empty? %>
-  // add the row to the table, show alert and hide modal
-  
-  $('.alert-success').html("Transaction success").show();
+// After a create transaction request, check if there are errors
+<% if @transaction.errors.count == 0 %>
+
+  // No errors: hide modal and display success
   $('#transaction-modal').modal('hide');
+  
+  $(".flash-alerts").html('<div class="alert alert-success alert-dismissible"><%= @transaction.buy_sell ? "Bought" : "Sold" %> $<%= @transaction.total_price %> of <%= @stock.symbol %> at $<%= @transaction.current_stock_val %>. </div>');
+  
 <% else %>
-  // show first error
-  alert('<%= @transaction.errors.full_messages[0] %>');
+
+  // Re-render the form with additional errors
+  $(".transaction-modal-content").html('<%= j render "form", transaction: @transaction %>');
+  
 <% end %>
