@@ -1,3 +1,12 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.user-search-form {
+  position: absolute;
+  right: 5%;
+  top: 85px;
+  width: 200px;
+}
+
+#user-page-title {
+  font-size: 28px;
+  position: relative;
+  left: 35px;
+}
