@@ -143,6 +143,6 @@ class User < ApplicationRecord
   private
   def defaults
     self.admin = false unless self.admin
-    # self.currency = 30000
+    self.currency = 100000 if self.currency == nil
   end
 end
