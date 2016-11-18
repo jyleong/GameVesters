@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :user_stocks, except: [:show, :edit,:update]
   resources :stocks
 
-  resources :questions 
+  resources :questions
   get '/questions/:id/display_question', to: 'questions#display_question', as: 'display_question'
   get 'sessions/new'
 
@@ -15,16 +15,17 @@ Rails.application.routes.draw do
 	get '/signup', to: 'users#new'
 	post '/signup', to: 'users#create'
 	get 'login', to: 'sessions#new'
+  get '/search', to: 'users#search'
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
-	get '/my_portfolio', to: "users#my_portfolio"
+	get '/my_portfolio', to: "users#my_portfolio", as: 'my_portfolio'
 	resources :users do
 		member do
 			get :following, :followers
 		end
 	end
+	# Note: show and index is only for the current user
 	resources :transactions, only: [:new,:create, :show, :index]
-	##note for show an dindex, only if its user id is for current user
 
 	get '/search_stocks', to: "stocks#search" #stocks controller search action
 

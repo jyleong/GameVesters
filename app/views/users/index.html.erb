@@ -1,36 +1,36 @@
 <% provide(:title, 'All users') %>
-<%= form_tag users_path, :method => 'get' do %>
-    <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search", :name => nil %>
-    </p>
+<span id="user-page-title">Users</span>
+<%= form_tag users_path, method: "get", class: "user-search-form" do %>
+  <div class="input-group user-search">
+    <%= text_field_tag :search, params[:search], placeholder: "Search Username",
+    class: 'form-control search-box' %>
+      <div class="input-group-btn">
+        <%= button_tag(type: :submit, class: "btn btn-default") do %>
+          <i class="glyphicon glyphicon-search"></i>
+        <% end %>
+      </div>
+  </div>
 <% end %>
 
 <% if params.include?(:search) %>
   <% if @users.present? %>
-    <%= render @users %>
-  <% else %>
-    <p>There are no users called <%= params[:search] %>.</p>
-  <% end %>
+  <%= render @users %>
 <% else %>
-  <h1>All users</h1>
-
-  <%= will_paginate %>
+  <p>No such user!</p>
+<% end %>
+<% else %>
   <ul class="users">
-
     <% @users.each do |user| %>
-      <li>
-        <%= render user %>
-      </li>
+    <li>
+      <%= render user %>
+    </li>
     <% end %>
   </ul>
-
   <%= will_paginate %>
-
 <% end %>
 <br>
 <br>
 
 <button class="btn btn-xs btn-danger">
-<%= link_to 'Back', '/users', :class => "btn"  %>
+  <%= link_to 'Back', '/users', :class => "btn"  %>
 </button>

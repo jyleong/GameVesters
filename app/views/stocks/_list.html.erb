@@ -12,7 +12,8 @@
   <tbody>
     <% @user_stocks.each do |user_stock| %>
     <tr>
-      <td><%= user_stock.name %></td>
+      <!-- <td><%= user_stock.name %></td> -->
+      <td><%= link_to user_stock.name, stock_path(id: user_stock) %></td>
       <td><%= user_stock.symbol %></td>
       <td><%= user_stock.current_price %></td>
       <% if @user.id == current_user.id %>
@@ -20,6 +21,11 @@
         <%= link_to 'Un-track', user_stock_path(user_stock), :method => :delete,
         :data => {:confirm => "Are you sure?"}, :class => "btn btn-xs btn-danger" %>
         <!--## will only delte association-->
+
+        <%= link_to "Buy", new_transaction_path(:symbol => user_stock.symbol, buy_sell: true), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+
+        <%= link_to "Sell", new_transaction_path(:symbol => user_stock.symbol, buy_sell: false), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+
       </td>
       <% end %>
     </tr>
@@ -27,3 +33,5 @@
 
   </tbody>
 </table>
+
+<%= render 'transactions/form_modal' %>

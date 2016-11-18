@@ -9,12 +9,11 @@ class SessionsController < ApplicationController
       # Log the user in and redirect to the user's show page.
     	log_in @user
 
-      if logged_in? && been_24_hours?(@user.last_login)
+      if been_24_hours?(@user.last_login)
         gib_daily_bonus
-        @user.update_attribute(:last_login, Time.now)
         flash[:success] = "You have obtained $20,000 for daily login bonus!"
       end
-      ## step to remember if checked
+      @user.update_attribute(:last_login, Time.now)
 
 		params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
     	redirect_back_or @user
@@ -34,6 +33,8 @@ class SessionsController < ApplicationController
   def been_24_hours?(last_login_time)
     if last_login_time != nil
       ((Time.now - last_login_time) / 1.hour).round < 24
+    else
+      @user.update_attribute(:last_login, Time.now)
     end
   end
 

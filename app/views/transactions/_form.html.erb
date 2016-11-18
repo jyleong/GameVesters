@@ -1,4 +1,12 @@
-<%= form_for(transaction) do |f| %>
+<%= form_for(transaction, remote: true) do |f| %>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h3 class="modal-title" id="myModalLabel"><%= @stock.name %></h3>
+    <h4><%= @stock.current_price %></h4>
+</div>
+
+<div class="modal-body">
+
   <% if transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
@@ -11,32 +19,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id , value: @user_id%>
+    <div class="form-group btn-group" data-toggle="buttons">
+      <% if transaction.buy_sell == true  %>
+          <label class="btn btn-primary active">
+            <%= f.radio_button :buy_sell, true, checked: true %> Buy
+          </label>
+          <label class="btn btn-primary">
+            <%= f.radio_button :buy_sell, false %> Sell
+          </label>
+      <% else %>
+          <label class="btn btn-primary">
+            <%= f.radio_button :buy_sell, true %> Buy
+          </label>
+          <label class="btn btn-primary active">
+            <%= f.radio_button :buy_sell, false, checked: true %> Sell
+          </label>
+      <% end %>
+    </div>
+
+  <div class="form-group">
+    <%= f.label :amount %>
+    <div class="input-group">
+        <div class="input-group-addon">$</div>
+        <%= f.number_field :total_price, :step => 0.01, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :stock_id %>
-    <%= f.number_field :stock_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_stock_val %>
-    <%= f.text_field :current_stock_val %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= f.label :quantity %>
-    <%= f.number_field :quantity %>
+    <%= f.number_field :quantity, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :buy_sell %>
-    <%= f.check_box :buy_sell %>
+  <% owned_stock = current_user.user_owned_stocks.find_by(stock_id: @stock.id) %>
+  <div class="form-group">
+    You currently have <strong>$<%= current_user.currency %></strong> available
+    <br>
+    and own <strong>$<%= owned_stock != nil ? @stock.current_price * owned_stock.quantity_owned : "0" %></strong> of <%= @stock.symbol %> in value.
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= hidden_field_tag :stock_symbol, @stock.symbol %>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <button type="submit" class="btn btn-primary">Make Transaction</button>
+</div>
+
 <% end %>
+
+

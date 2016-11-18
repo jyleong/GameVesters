@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117021922) do
+ActiveRecord::Schema.define(version: 20161118061814) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161117021922) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "qid"
-    t.integer  "reward"
+    t.decimal  "reward"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,23 +47,32 @@ ActiveRecord::Schema.define(version: 20161117021922) do
   create_table "stocks", force: :cascade do |t|
     t.string   "symbol"
     t.string   "name"
-    t.float    "current_price"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.decimal  "current_price"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.float    "amount_change"
     t.float    "year_high"
     t.float    "year_low"
+    t.string   "percent_change"
   end
 
   create_table "transactions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "stock_id"
-    t.float    "current_stock_val"
+    t.decimal  "current_stock_val"
     t.integer  "quantity"
-    t.float    "total_price"
+    t.decimal  "total_price"
     t.boolean  "buy_sell"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "user_owned_stocks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "stock_id"
+    t.integer  "quantity_owned"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "user_stocks", force: :cascade do |t|

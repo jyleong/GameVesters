@@ -1,23 +1,36 @@
 class Stock < ApplicationRecord
 
 	has_many :user_stocks
-	has_many :transcations
+	has_many :transactions
 	has_many :users, through: :user_stocks
-	# validates :symbol, :presence => true, :uniqueness => true
 
 	def self.find_by_symbol(ticker_symbol)
-
 		retrievedStock = where(symbol: ticker_symbol.upcase).first
+		looked_up = StockQuote::Stock.quote(ticker_symbol)
+		if (retrievedStock)
+			retrievedStock.update(current_price: looked_up.ask,
+			amount_change: looked_up.change,
+			year_high: looked_up.year_high,
+			year_low: looked_up.year_low,
+			percent_change: looked_up.percent_change
+			)
+			retrievedStock.save
+		end
 		return retrievedStock
 	end
 
 	def self.new_from_lookup(ticker_symbol)
 		looked_up_stock = StockQuote::Stock.quote(ticker_symbol)
 		return nil unless looked_up_stock.name
-		@new_stock = Stock.create(symbol: looked_up_stock.symbol, name: looked_up_stock.name)
+		@new_stock = Stock.create(symbol: looked_up_stock.symbol, 
+			name: looked_up_stock.name, 
+			current_price: looked_up_stock.ask,
+			amount_change: looked_up_stock.change,
+			year_high: looked_up_stock.year_high,
+			year_low: looked_up_stock.year_low,
+			percent_change: looked_up_stock.percent_change
+			)
 		##debugger
-
-		@new_stock.current_price = @new_stock.price ##
 		@new_stock.save
 		@new_stock
 	end
@@ -30,5 +43,10 @@ class Stock < ApplicationRecord
 		opening_price = StockQuote::Stock.quote(symbol)
 		return "#{opening_price.open} (Opening)" if opening_price.open
 	'Unavailable'
+	end
+
+	def compareTime()
+    	currentTime = DateTime.now
+    	return ((currentTime.to_i - updated_at.to_i)/3600 > 0)
 	end
 end

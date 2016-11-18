@@ -6,11 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(name:  "James Leong",
-             email: "james.leong94@gmail.com",
+User.create!(name:  "UserName Username",
+             email: "Admin.user@gmail.com",
              admin: true,
              password:              "Password1",
              password_confirmation: "Password1",
+             currency: 200000
              )
 
 user1 = User.create!(name:  "Eric Liu",
@@ -18,6 +19,7 @@ user1 = User.create!(name:  "Eric Liu",
              admin: true,
              password:              "Password1",
              password_confirmation: "Password1",
+             currency: 200000
              )
 
 user1.create_notification("This is an example notification!", "/");
@@ -31,7 +33,8 @@ user1.create_notification("All notifications start as unread.", "/");
   User.create!(name:  name,
                email: email,
                password:              password,
-               password_confirmation: password)
+               password_confirmation: password,
+               currency: 200000)
 end
 
 # Following relationships
@@ -45,6 +48,8 @@ followers.each { |follower| follower.follow(user) }
 
 Stock.create(symbol: "WIFI", name: "Boingo Wireless, Inc.",current_price: 11.37)
 Stock.create(symbol:"AAPL", name: "Apple Inc.", current_price: 105.35)
+Stock.create(symbol:"OPTT", name: "Ocean Power Technologies, Inc.", current_price: 3.2377)
+
 
 Question.create(qid:  "1",
              reward: 1000,
