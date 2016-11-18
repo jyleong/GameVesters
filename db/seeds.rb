@@ -11,6 +11,7 @@ User.create!(name:  "James Leong",
              admin: true,
              password:              "Password1",
              password_confirmation: "Password1",
+             currency: 200000
              )
 
 user1 = User.create!(name:  "Eric Liu",
@@ -18,6 +19,7 @@ user1 = User.create!(name:  "Eric Liu",
              admin: true,
              password:              "Password1",
              password_confirmation: "Password1",
+             currency: 200000
              )
 
 user1.create_notification("This is an example notification!", "/");
@@ -31,7 +33,8 @@ user1.create_notification("All notifications start as unread.", "/");
   User.create!(name:  name,
                email: email,
                password:              password,
-               password_confirmation: password)
+               password_confirmation: password,
+               currency: 200000)
 end
 
 # Following relationships
