@@ -56,7 +56,7 @@
     <br>
     and own <strong>$<%= owned_stock != nil ? @stock.current_price * owned_stock.quantity_owned : "0" %></strong> of <%= @stock.symbol %> in value.
   </div>
-  
+
   <%= hidden_field_tag :stock_symbol, @stock.symbol %>
 </div>
 
