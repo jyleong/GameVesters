@@ -60,42 +60,53 @@ go to browser and open up localhost:3000
 **All currencies are virtual and does no have any connections to real dollars**
 
 **New user creation**
-- create new user with any email
-- default currency will be given at 100,000
+- create new user with any email.
+- default currency will be given at 100,000.
 
 **Search stocks by symbol**
-- currently user can only search stocks by their official symbol
+- currently user can only search stocks by their official symbol.
 - example symbols => 'goog', 'aapl', 'yhoo'
 
-- there are 2 ways to search stocks
+- there are 2 ways to search stocks:
 1. searhbar on the header
 2. searchbar in the '/my_portfolio' path
 
 **Add stocks to your portfolio**
-- after searching for a stock (by symbol) click the 'Add to my Stocks' button to add it to your portfolio
-- the stocks just added will be displayed on Home page above trending stocks
-- added stocks will also be displayed in your "My Profile" page for you to have quick glance over basic stats
-- the added stocks will have the **'tracked'** status
+- after searching for a stock (by symbol) click the 'Add to my Stocks' button to add it to your portfolio.
+- the stocks just added will be displayed on Home page above trending stocks.
+- added stocks will also be displayed in your "My Profile" page for you to have quick glance over basic stats.
+- the added stocks will have the **'tracked'** status.
 
 **(Daily) login rewards**
 - currently, for demo pruposes, all users will be awarded 20,000 everytime they login. In final version this will be once every 24 hours.
 
 **Daily challenge questions**
-- this is a planned feature, the back-end code is ready however not front-end is in place
+- this is a planned feature, the back-end code is ready however not front-end is in place.
 
 **See trending stocks on Home page**
-- 5 most trending stokcs will be displayed on Home page
-- this information is currently being pulled from external site, in the final version we will display the top 5 stocks in user's tracked stocks
+- 5 most trending stokcs will be displayed on Home page.
+- this information is currently being pulled from external site, in the final version we will display the top 5 stocks in user's tracked stocks.
 
 **Follow other users**
-- you can follow other users to see how they are doing and learn their trading behavior
+- You can follow other users to see how they are doing and learn their trading behavior.
+- To follow a user, go to Users page, and search for a particular user or select one from the list.
+- Click on the user name and jump to their public profile page.
+- Click the big blue 'Follow' button to follow them.
+- In final version more information about the user will be displayed and some sensitive information will be hidden to other users.
 
 **Notification System**
-- Back-end and polling is done, but no actual messages being sent out yet
-- Front-end is in place for viewing
+- Back-end and polling is done, but no actual messages being sent out yet.
+- Notification system will be used for following status or followed users' buying/selling information.
+- Front-end is in place for viewing on the top right hand corner.
 
 **Buy/Sell stocks**
-- users can make trasactions when buying or selling stocks using their virtual currency
+- Users can make transactions when buying or selling stocks using their virtual currency.
+- To make transactions users can click the buy/sell button on their tracked stocks.
+- A popup will show with a form to buy/sell the particular stock.
+- Adjust the ammount and click 'Make Transaction'.
+- Flash message will appear comfirming the transaction (if successful).
+- Error messages will be displated in the popup if illegal transaction amount is entered.
+- Final price will change based on the quantity, however not fully functional at this checkpoint.
 
 
 ----------------------------------------------------
