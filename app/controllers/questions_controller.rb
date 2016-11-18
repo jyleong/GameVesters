@@ -6,6 +6,12 @@ def display_question
     @question = Question.find(params[:id])
    
   end
+def answer_question
+redirect_to new_question_path
+end
+
+
+
 def create
 	 @question = Question.new(question_params)
   	@question.save
