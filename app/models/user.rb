@@ -14,6 +14,9 @@ class User < ApplicationRecord
 	has_many :user_stocks
 	has_many :stocks, through: :user_stocks
 	has_many :transactions
+    has_many :user_owned_stocks
+    has_many :owned_stocks, through: :user_owned_stocks
+
 	attr_accessor :remember_token
 	before_save :defaults
 	before_save {self.email = email.downcase}
@@ -39,7 +42,6 @@ class User < ApplicationRecord
 	#name_matches(param).uniq
 	##must define thsese methods, object oriented programming, outsource parts of it
 	end
-
 
 	def User.digest(string)
 		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -98,6 +100,47 @@ class User < ApplicationRecord
 		user_stocks.where(stock_id: stock.id).exists?
 	end
 
+
+    # Functions for currency
+    # TODO eric: BUG: new_amount always converts to 0.0
+    def add_currency(amount)
+        new_amount = currency + amount
+        update_attribute(:currency, new_amount)
+    end
+
+    def subtract_currency(amount)
+        new_amount = currency - amount
+        update_attribute(:currency, new_amount)
+    end
+
+
+    # Functions for user owned stocks
+    def add_owned_stock(transaction)
+        owned_stock = user_owned_stocks.find_by(stock_id: transaction.stock_id)
+        if owned_stock == nil
+            # Create new entry if it doesnt exist
+            user_owned_stocks.create(
+                user_id: self.id,
+                stock_id: transaction.stock_id,
+                quantity_owned: transaction.quantity
+            )
+        else
+            new_quantity = owned_stock.quantity_owned + transaction.quantity
+            owned_stock.update_attribute(:quantity_owned, new_quantity)
+        end
+    end
+
+    def remove_owned_stock(transaction)
+        owned_stock = user_owned_stocks.find_by(stock_id: transaction.stock_id)
+        if owned_stock == nil
+            # Do nothing
+        else
+            new_quantity = owned_stock.quantity_owned - transaction.quantity
+            owned_stock.update_attribute(:quantity_owned, new_quantity)
+        end
+    end
+
+    
     # Functions for Notifications
     def create_notification(message, link)
         notifications.create(
