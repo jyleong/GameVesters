@@ -18,7 +18,7 @@ user1 = User.create!(name:  "Eric Liu",
              email: "007.ericliu@gmail.com",
              admin: true,
              password:              "Password1",
-             password_confirmation: "Password1"
+             password_confirmation: "Password1",
              currency: 200000
              )
 
