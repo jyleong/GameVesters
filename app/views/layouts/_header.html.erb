@@ -19,7 +19,7 @@
 
         <%= form_tag search_stocks_path, remote: true, method: "get", class: "navbar-form" do %>
           <div class="input-group">
-            <%= text_field_tag :stock, params[:stock], placeholder: "Stock symbol", autofocus: true,
+            <%= text_field_tag :stock, params[:stock], placeholder: "Stock symbol",
         class: 'form-control search-box' %>
             <div class="input-group-btn">
               <%= button_tag(type: :submit, class: "btn btn-default") do %>
