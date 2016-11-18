@@ -78,10 +78,10 @@ go to browser and open up localhost:3000
 - the added stocks will have the **'tracked'** status.
 
 **(Daily) login rewards**
-- currently, for demo pruposes, all users will be awarded 20,000 everytime they login. In final version this will be once every 24 hours.
+- currently, for demo purpose, all users will be awarded 20,000 everytime they login. In final version this will be once every 24 hours.
 
 **Daily challenge questions**
-- this is a planned feature, the back-end code is ready however not front-end is in place.
+- this is a planned feature, the back-end code is ready however no front-end is in place.
 
 **See trending stocks on Home page**
 - 5 most trending stokcs will be displayed on Home page.
