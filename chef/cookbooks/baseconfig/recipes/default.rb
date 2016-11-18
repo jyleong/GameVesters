@@ -16,25 +16,25 @@ execute 'ntp_restart' do
   command 'service ntp restart'
 end
 
-package "nginx"
+# package "nginx"
 package "git"
 package "libpq-dev"
-package "postgresql"
+# package "postgresql"
 
-cookbook_file "nginx-default" do
-  path "/etc/nginx/sites-available/default"
-end
-execute 'nginx_restart' do
-  command 'service nginx restart'
-end
+# cookbook_file "nginx-default" do
+#   path "/etc/nginx/sites-available/default"
+# end
+# execute 'nginx_restart' do
+#   command 'service nginx restart'
+# end
 
-execute 'setup_db' do
-  command 'echo "CREATE DATABASE mydb; CREATE USER ubuntu; GRANT ALL PRIVILEGES ON DATABASE mydb TO ubuntu;" | sudo -u postgres psql'
-end
+# execute 'setup_db' do
+#   command 'echo "CREATE DATABASE mydb; CREATE USER ubuntu; GRANT ALL PRIVILEGES ON DATABASE mydb TO ubuntu;" | sudo -u postgres psql'
+# end
 
-execute 'nginx_reload' do
-  command 'service nginx reload'
-end
+# execute 'nginx_reload' do
+#   command 'service nginx reload'
+# end
 
 # # Rails setup
 
@@ -58,28 +58,40 @@ end
 execute 'migrate' do
   user 'ubuntu'
   cwd '/home/ubuntu/project'
-  command 'rails db:migrate RAILS_ENV=production'
+  command 'rails db:migrate:reset'
 end
 
-cookbook_file "unicorn_rails" do
-  path "/etc/init.d/unicorn_rails"
-end
-
-execute 'enable unicorn' do
+execute 'seed database' do
   user 'ubuntu'
   cwd '/home/ubuntu/project'
-  command "update-rc.d unicorn_rails defaults"
+  command 'rails db:seed'
 end
 
-execute 'run unicorn production ' do
-  user 'ubuntu'
-  cwd '/home/ubuntu/project'
-  command "bundle exec unicorn -c config/unicorn.rb -E production -D"
-end
-
-
-# execute 'run server' do
+# execute 'migrate' do
 #   user 'ubuntu'
 #   cwd '/home/ubuntu/project'
-#   command 'rails server -d -b 0.0.0.0'
+#   command 'rails db:migrate RAILS_ENV=production'
 # end
+
+# cookbook_file "unicorn_rails" do
+#   path "/etc/init.d/unicorn_rails"
+# end
+
+# execute 'enable unicorn' do
+#   user 'ubuntu'
+#   cwd '/home/ubuntu/project'
+#   command "update-rc.d unicorn_rails defaults"
+# end
+
+# execute 'run unicorn production ' do
+#   user 'ubuntu'
+#   cwd '/home/ubuntu/project'
+#   command "bundle exec unicorn -c config/unicorn.rb -E production -D"
+# end
+
+
+execute 'run server' do
+  user 'ubuntu'
+  cwd '/home/ubuntu/project'
+  command 'rails server -d -b 0.0.0.0'
+end
