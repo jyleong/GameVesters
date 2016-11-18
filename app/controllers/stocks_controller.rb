@@ -10,9 +10,7 @@ class StocksController < ApplicationController
         chart_url_query = build_url_params
         chart_url_base = "http://chart.finance.yahoo.com"
         @chart_url = "#{chart_url_base}/#{chart_url_query}"
-        
-        # puts @stock.name
-        # debugger
+
         f.html {redirect_to my_portfolio_path}
         f.json {render partial: 'lookup', locals: {stock: @stock}}
         f.js

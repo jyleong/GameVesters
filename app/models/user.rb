@@ -18,7 +18,7 @@ class User < ApplicationRecord
     has_many :owned_stocks, through: :user_owned_stocks
 
 	attr_accessor :remember_token
-	before_save :defaults
+	# before_save :defaults
 	before_save {self.email = email.downcase}
 	validates(:name, presence: true, length: {maximum: 30})
 	validates(:email, presence: true, length: {maximum: 40},
@@ -26,7 +26,8 @@ class User < ApplicationRecord
 		{case_sensitive: false})
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 8 }
-  has_many :notifications
+  	has_many :notifications
+  	after_initialize :defaults
 
 	def except_current_user(users)
 	    users.reject{|user| user.id == self.id}
@@ -154,5 +155,6 @@ class User < ApplicationRecord
 	private
 	def defaults
 		self.admin = false unless self.admin
+		self.currency = 30000
 	end
 end
