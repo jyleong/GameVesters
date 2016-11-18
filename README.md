@@ -21,10 +21,6 @@ rails db:migrate:reset
 
 this resets db under db/seeds.rb
 
-you can put your own scripts to seed database here
-
-in example creates fake admin user 99 fake users and the follow graph
-
 ----------------------------------------------------
 to run in regular development mode (our own work/testing)
 
@@ -36,10 +32,32 @@ rails db:seed
 rails s <- start server
 
 ----------------------------------------------------
-to run in integrated development mode (vagrant for same env)
-run vagrant up
+FOR CHECKPOINT SUBMISSION
+To run in Vagrant Development Mode
+
+run 
+$vagrant up
+
+to be sane run 
+$Vagrant provision
+
+this will run vagrant installing and setting up the virtual machine,
+this will seed the database and everything else as a admin user
+
+your user email and password are:
+
+user email: Admin.user@gmail.com
+Password: Password1
 
 go to browser and open up localhost:3000
+
+----------------------------------------------------
+
+CHECKPOINT SUBMISSION TASKS FLOWS AND FEATURES TO ASSESS
+
+
+
+----------------------------------------------------
 
 If wanting to deploy production mode:
 
@@ -49,25 +67,19 @@ rake db:migrate RAILS_ENV=production
 
 ----------------------------------------------------
 
-FOR DEV WORK AND COMMITS (THAT MEANS YOU TOO TYLER)
+FOR DEV WORK AND COMMITS
 
 ** We will have a master branch and a development branch
 
 we will merge to development first before updating the master for our final project
 
 do this by
-<<<<<<< HEAD
 
-pulling initial repo then
-
-$git checkout -b origin/development
-
-=======
 pulling initial repo then
 $git fetch
 
 *this updates your local with our remote
->>>>>>> development
+
 make your own branch from here as stated in step 1)
 
 1) everyone works on their own branch
