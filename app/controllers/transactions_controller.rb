@@ -73,7 +73,6 @@ class TransactionsController < ApplicationController
         if num_stocks < @transaction.quantity
             @transaction.errors.add(:quantity, :invalid, message: "is too high. You do not own that many stocks.")
         else
-
             # Add to user's money
             current_user.add_currency(total_price)
 
@@ -102,7 +101,7 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:stock_id, :quantity, :buy_sell)
+      params.require(:transaction).permit(:stock_id, :quantity, :total_price, :buy_sell)
     end
 
     def getUser()

@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       render status: :not_found, nothing: true
     end
   end
+  
   def new
     @user = User.new
   end
