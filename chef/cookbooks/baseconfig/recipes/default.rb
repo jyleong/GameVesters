@@ -55,7 +55,19 @@ execute 'bundler' do
   command 'bundle install'
 end
 
-execute 'migrate' do
+execute 'create db and setup' do
+  user 'ubuntu'
+  cwd '/home/ubuntu/project'
+  command 'rails db:setup'
+end
+
+execute 'migration' do
+  user 'ubuntu'
+  cwd '/home/ubuntu/project'
+  command 'rails db:migrate'
+end
+
+execute 'migration and reset' do
   user 'ubuntu'
   cwd '/home/ubuntu/project'
   command 'rails db:migrate:reset'
