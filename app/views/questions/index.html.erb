@@ -1,5 +1,8 @@
+<h1><%= link_to 'New Question', new_question_path %></h1>
+<h1><%= link_to 'Answer Question',display_question_path %></h1>
+Question List:
 <% @question.each do |question| %>
-<%= link_to 'New Question', new_question_path %>
+
 <table>
 	<tr>
 		<td>Question#<%= question.qid %>. <%= question.content %></td> <td>Value:<%= question.reward %></td>
@@ -15,7 +18,7 @@
  		<td>Correct Answer:<%= question.answer %></td> 
  		<td><%= link_to 'Show', question_path(question) %></td>
  		<td><%= link_to 'Edit', edit_question_path(question) %></td>
- 		<td><%= link_to 'Answer Question',display_question_path(question) %></td>
+ 		
  		<td><%= link_to 'Destroy', question_path(question),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
