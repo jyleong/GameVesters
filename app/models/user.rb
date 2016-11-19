@@ -108,12 +108,12 @@ class User < ApplicationRecord
   def add_owned_stock(transaction)
     owned_stock = user_owned_stocks.find_by(stock_id: transaction.stock_id)
     if owned_stock == nil
-    # Create new entry if it doesnt exist
-    user_owned_stocks.create(
-      user_id: self.id,
-      stock_id: transaction.stock_id,
-      quantity_owned: transaction.quantity
-      )
+      # Create new entry if it doesnt exist
+      user_owned_stocks.create(
+        user_id: self.id,
+        stock_id: transaction.stock_id,
+        quantity_owned: transaction.quantity
+        )
     else
       new_quantity = owned_stock.quantity_owned + transaction.quantity
       owned_stock.update_attribute(:quantity_owned, new_quantity)
@@ -123,11 +123,11 @@ class User < ApplicationRecord
   def remove_owned_stock(transaction)
     owned_stock = user_owned_stocks.find_by(stock_id: transaction.stock_id)
     if owned_stock == nil
-  # Do nothing
-  else
-    new_quantity = owned_stock.quantity_owned - transaction.quantity
-    owned_stock.update_attribute(:quantity_owned, new_quantity)
-  end
+      # Do nothing
+    else
+      new_quantity = owned_stock.quantity_owned - transaction.quantity
+      owned_stock.update_attribute(:quantity_owned, new_quantity)
+    end
   end
 
   # Functions for Notifications
@@ -142,7 +142,8 @@ class User < ApplicationRecord
 
   private
   def defaults
+    default_currency = BigDecimal.new(100000.00, 0)
     self.admin = false unless self.admin
-    # self.currency = 30000
+    self.currency = default_currency if self.currency == nil
   end
 end
