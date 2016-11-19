@@ -49,7 +49,7 @@ this will seed the database and everything else as a admin user
 
 your user email and password are:
 
-user email: Admin.user@gmail.com
+user email: fakeadminUser@gmail.com
 Password: Password1
 
 go to browser and open up localhost:3000
