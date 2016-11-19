@@ -61,24 +61,6 @@ execute 'create db and setup' do
   command 'rails db:setup'
 end
 
-execute 'migration' do
-  user 'ubuntu'
-  cwd '/home/ubuntu/project'
-  command 'rails db:migrate'
-end
-
-execute 'migration and reset' do
-  user 'ubuntu'
-  cwd '/home/ubuntu/project'
-  command 'rails db:migrate:reset'
-end
-
-execute 'seed database' do
-  user 'ubuntu'
-  cwd '/home/ubuntu/project'
-  command 'rails db:seed'
-end
-
 # execute 'migrate' do
 #   user 'ubuntu'
 #   cwd '/home/ubuntu/project'
