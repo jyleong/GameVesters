@@ -1,18 +1,21 @@
-
 <table>
-	<tr>
-		<td><%= @question.qid %>. <%= @question.content %></td> Value:<td><%= @question.reward %></td>
+		<tr><td>Question Number<%= @question.qid %></td></tr> 
+		<tr><td><%= @question.content %></td></tr> 
+		<tr><td>Reward:<%= @question.reward %></td></tr>
+
+ 	<tr><td>A) <%= @question.ans1 %><td></tr>
+ 	<tr><td>B) <%= @question.ans2 %></td></tr>
+ 	<tr><td>C) <%= @question.ans3 %></td></tr>
+ 	<tr><td>D) <%= @question.ans4 %></td></tr>
  	
- 	<td><%= @question.ans1 %></td>
- 	<td><%= @question.ans2 %></td>
- 	<td><%= @question.ans3 %></td>
- 	<td><%= @question.ans4 %></td>
- 	</tr>
  	<tr>
- 	<%= @question.answer %>
+ 		<td>
+ 			Ans) <%= @question.answer %>
+ 		</td>
  	</tr>
- 	</table>
+ </table>
  	
+<%= link_to 'Edit', edit_question_path(@question) %>
 <%= link_to 'Back', questions_path %>
 
 

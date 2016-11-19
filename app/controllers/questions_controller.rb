@@ -7,7 +7,11 @@ def display_question
    
   end
 def answer_question
-redirect_to new_question_path
+#render plain: params[:reward].inspect
+@user = current_user
+@user.add_currency(params[:reward].to_d)
+#render plain: @user.currency
+redirect_to questions_path
 end
 
 
@@ -27,6 +31,21 @@ def show
  def edit
     @question = Question.find(params[:id])
   end
+def update
+  @question = Question.find(params[:id])
+ 
+  if @question.update(question_params)
+    redirect_to @question
+  else
+    render 'edit'
+  end
+end
+def destroy
+  @question = Question.find(params[:id])
+  @question.destroy
+ 
+  redirect_to questions_path
+end
 
 
  def index

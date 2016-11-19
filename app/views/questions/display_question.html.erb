@@ -1,6 +1,9 @@
 <h1><%= @question.content %></h1>
  	<h2>This question is worth <%= @question.reward %> currency</h2>
+
+
 <%= form_tag(answer_question_path, method: "post") do %>
+<%= hidden_field_tag(:reward, @question.reward) %>
 <%= radio_button_tag(:useranswer, "A") %>
 <%= label_tag(:optiona, @question.ans1 ) %>
 <%= radio_button_tag(:useranswer, "B") %>
