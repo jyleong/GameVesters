@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120045758) do
+ActiveRecord::Schema.define(version: 20161120211642) do
+
+  create_table "feed_entries", force: :cascade do |t|
+    t.string   "name"
+    t.text     "summary"
+    t.string   "url"
+    t.datetime "published_at"
+    t.string   "guid"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"

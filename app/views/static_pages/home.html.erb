@@ -79,3 +79,12 @@
 
   </tbody>
 </table>
+<div id="recent_episodes">
+  <h3>Recent Stock Markets Analysis & Opinion</h3>
+  <ul>
+  <% @feed.each do |entry| %>
+    <li><%= link_to h(entry.name), entry.url %></li>
+		<li><%= entry.published_at %></li>
+  <% end %>
+  </ul>
+</div>
