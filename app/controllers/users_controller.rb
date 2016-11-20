@@ -40,11 +40,16 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
     #handle succesful save ,login upon new signup
-    log_in @user
 
-    flash[:success] = "Welcome to the Investors app!"
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
 
-    redirect_to @user
+      # log_in @user
+
+      # flash[:success] = "Welcome to the Investors app!"
+
+      # redirect_to @user
     else
       render 'new'
     end
