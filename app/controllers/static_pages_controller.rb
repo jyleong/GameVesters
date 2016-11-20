@@ -5,7 +5,11 @@ class StaticPagesController < ApplicationController
    #   	@feed_items = current_user.feed.paginate(page: params[:page], per_page: 15)
   	# end
     @stocks = StockQuote::Stock.quote(["optt", "dcix", "esea", "ship","drys"])
+    @feed = FeedEntry.update_from_feed("http://www.investing.com/rss/stock.rss")
 
+    #http://rss.cnn.com/rss/money_markets.rss
+
+    @feed = FeedEntry.limit(5).all()
     if logged_in?
       @user_stocks = current_user.stocks
       @user = current_user

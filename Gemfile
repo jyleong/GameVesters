@@ -23,6 +23,9 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'stock_quote'
 
+# See http://feedjira.com/ for more information about RSS feed parser
+gem'feedjira'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

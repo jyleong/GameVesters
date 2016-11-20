@@ -53,7 +53,7 @@ class User < ApplicationRecord
   def User.new_token
     SecureRandom.urlsafe_base64
   end
-  
+
   #remember in db for user persisent session
   def remember
     self.remember_token = User.new_token
