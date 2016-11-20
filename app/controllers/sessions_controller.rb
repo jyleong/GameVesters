@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
     ## pull user out of db
     if @user && @user.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page.
-    	if user.activated?
-        log_in @user
+    	if @user.activated?
+        log_in@ user
 
         if been_24_hours?(@user.last_login)
           gib_daily_bonus

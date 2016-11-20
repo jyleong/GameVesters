@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+	
+	get 'password_resets/new'
+	get 'password_resets/edit'
+	get 'password_rests/new'
+	get 'password_rests/edit'
+
 	resources :user_stocks, except: [:show, :edit,:update]
 	resources :stocks
 
@@ -26,6 +32,7 @@ Rails.application.routes.draw do
 	end
 	# Note: show and index is only for the current user
 	resources :account_activations, only: [:edit]
+	resources :password_resets,     only: [:new, :create, :edit, :update]
 	resources :transactions, only: [:new,:create, :show, :index]
 
 	get '/search_stocks', to: "stocks#search" #stocks controller search action
