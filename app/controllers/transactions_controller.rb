@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: :show
+  before_action :logged_in_user ,only: [:index, :create, :show, :new]
 
   # GET /transactions
   # GET /transactions.json
