@@ -1,5 +1,9 @@
-<h1><%= link_to 'New Question', new_question_path %></h1>
+
 <h1><%= link_to 'Answer Question',display_question_path %></h1>
+
+
+<% if current_user.admin %>
+<h1><%= link_to 'New Question', new_question_path %></h1>
 Question List:
 <% @question.each do |question| %>
 
@@ -25,5 +29,5 @@ Question List:
  	</tr>
  	</table><br>
 
-   
+    <% end %>
   <% end %>

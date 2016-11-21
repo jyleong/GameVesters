@@ -21,6 +21,13 @@ user1 = User.create!(name:  "Eric Liu",
              password_confirmation: "Password1",
              currency: 200000
              )
+user2 = User.create!(name:  "Tyler Wong",
+             email: "tylerwong333@gmail.com",
+             admin: false,
+             password:              "Password1",
+             password_confirmation: "Password1",
+             currency: 200000
+             )
 
 user1.create_notification("This is an example notification!", "/");
 user1.create_notification("This notification links to a user!", "/users/5");
