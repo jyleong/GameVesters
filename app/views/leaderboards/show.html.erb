@@ -1,0 +1,12 @@
+<h1>Leaderboard</h1>
+<table style='width: 100%'>
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Value</th>
+  </tr>
+  <% @entries.each do |entry|  %>
+    <%= render_cell :entry, :show, entry: entry %>
+  <% end %>
+</table>
+<%= paginate @page_array %>

@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-	
+
+  get 'entries/show'
+
+  get 'entries/create'
+
+  get 'entries/index'
+
+  get 'entries/destroy'
+
+  get '/leaderboard', to: 'leaderboards#show'
+
 	get 'password_resets/new'
 	get 'password_resets/edit'
 	get 'password_rests/new'
@@ -8,6 +18,7 @@ Rails.application.routes.draw do
 
 	resources :user_stocks, except: [:show, :edit,:update]
 	resources :stocks
+	resources :entries
 
  	resources :questions
 	get '/display_question', to: 'questions#display_question', as: 'display_question'
