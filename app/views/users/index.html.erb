@@ -31,6 +31,9 @@
 <br>
 <br>
 
+
+<% if params.include?(:search) %>
 <button class="btn btn-xs btn-danger">
   <%= link_to 'Back', '/users', :class => "btn"  %>
 </button>
+<% end %>

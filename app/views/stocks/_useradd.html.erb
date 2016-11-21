@@ -1,21 +1,33 @@
-<% if current_user.can_add_stock?(@stock.symbol) %>
-<%= link_to "Add to my Stocks", user_stocks_path(user: current_user, stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : ''), class: 'btn btn-xs btn-success', method: :post %>
+<% if logged_in? %>
 
+	<% if current_user.can_add_stock?(@stock.symbol) %>
+	<%= link_to "Add to my Stocks", user_stocks_path(user: current_user, stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : ''), class: 'btn btn-xs btn-success', method: :post %>
+
+	<% else %>
+
+	<span class="label label-default">
+	  Cannot track this stock becuase you have tracked
+	  <% if !current_user.under_stock_limit? %>
+	  10 stocks.
+	  <% end %>
+	  <% if current_user.stock_already_added?(@stock.symbol) %>
+	  this stock.
+	  <% end %>
+	</span>
+	<% end %>
+
+	<%= link_to "Buy", new_transaction_path(:symbol => @stock.symbol, buy_sell: true), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+
+	<%= link_to "Sell", new_transaction_path(:symbol => @stock.symbol, buy_sell: false), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+
+	<%= render 'transactions/form_modal' %>
 <% else %>
 
-<span class="label label-default">
-  Cannot track this stock becuase you have tracked
-  <% if !current_user.under_stock_limit? %>
-  10 stocks.
-  <% end %>
-  <% if current_user.stock_already_added?(@stock.symbol) %>
-  this stock.
-  <% end %>
-</span>
+	<span class="label label-default">
+		Sign up <%= link_to "here", signup_path %> to track the stock!
+
+	</span>
+
 <% end %>
 
-<%= link_to "Buy", new_transaction_path(:symbol => @stock.symbol, buy_sell: true), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
 
-<%= link_to "Sell", new_transaction_path(:symbol => @stock.symbol, buy_sell: false), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
-
-<%= render 'transactions/form_modal' %>

@@ -11,12 +11,23 @@ User.create!(name:  "UserName Username",
              admin: true,
              password:              "Password1",
              password_confirmation: "Password1",
-             currency: 200000
+             currency: 200000,
+             activated: true,
+             activated_at: Time.zone.now
              )
 
 user1 = User.create!(name:  "Eric Liu",
              email: "007.ericliu@gmail.com",
              admin: true,
+             password:              "Password1",
+             password_confirmation: "Password1",
+             currency: 200000,
+             activated: true,
+             activated_at: Time.zone.now
+             )
+user2 = User.create!(name:  "Tyler Wong",
+             email: "tylerwong333@gmail.com",
+             admin: false,
              password:              "Password1",
              password_confirmation: "Password1",
              currency: 200000
@@ -34,7 +45,10 @@ user1.create_notification("All notifications start as unread.", "/");
                email: email,
                password:              password,
                password_confirmation: password,
-               currency: 200000)
+               currency: 200000,
+               activated: true,
+            activated_at: Time.zone.now
+               )
 end
 
 # Following relationships

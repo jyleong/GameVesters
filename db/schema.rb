@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118061814) do
+ActiveRecord::Schema.define(version: 20161120045758) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -48,12 +48,11 @@ ActiveRecord::Schema.define(version: 20161118061814) do
     t.string   "symbol"
     t.string   "name"
     t.decimal  "current_price"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.float    "amount_change"
     t.float    "year_high"
     t.float    "year_low"
-    t.string   "percent_change"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -88,11 +87,16 @@ ActiveRecord::Schema.define(version: 20161118061814) do
     t.decimal  "currency"
     t.text     "description"
     t.boolean  "admin"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.datetime "last_login"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
