@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'entries/show'
-
-  get 'entries/create'
-
-  get 'entries/index'
-
-  get 'entries/destroy'
-
   get '/leaderboard', to: 'leaderboards#show'
 
 	get 'password_resets/new'
@@ -18,17 +9,16 @@ Rails.application.routes.draw do
 
 	resources :user_stocks, except: [:show, :edit,:update]
 	resources :stocks
-	resources :entries
-
  	resources :questions
 	get '/display_question', to: 'questions#display_question', as: 'display_question'
 	post '/display_question', to: 'questions#answer_question', as: 'answer_question'
-	#get 'questions/:id/display_question', to: 'questions#display_question', as: 'display_question'
 
-	#post '/questions/:id/display_question', to: 'questions#answer_question', as: 'answer_question'
+	resources :questions
+
+	get '/questions/:id/display_question', to: 'questions#display_question', as: 'display_question'
 	get 'sessions/new'
 
-	
+
 
 	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 	root 'static_pages#home'
@@ -43,6 +33,7 @@ Rails.application.routes.draw do
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
 	get '/my_portfolio', to: "users#my_portfolio", as: 'my_portfolio'
+
 	resources :users do
 		member do
 			get :following, :followers
@@ -56,9 +47,8 @@ Rails.application.routes.draw do
 	get '/search_stocks', to: "stocks#search" #stocks controller search action
 
 	resources :relationships, only: [:create, :destroy]
-
 	resources :notifications, only: [:update, :destroy]
+
 	get '/refresh_notifications', to: 'notifications#refresh'
 	patch '/mark_all_notifications', to: 'notifications#mark_all'
-
 end

@@ -1,5 +1,6 @@
 class LeaderboardsController < ApplicationController
   before_action :query_options
+  before_action :logged_in_user, only: [:show]
 
   def show
     @lb = Boards.default_leaderboard
