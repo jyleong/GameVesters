@@ -32,6 +32,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'unicorn'
 
+# faker for both dev and production
+
+gem 'faker', '1.6.6'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -44,7 +48,7 @@ group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3', '>= 0.0'
   gem 'byebug', platform: :mri
-  gem 'faker', '1.6.6'
+  
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
