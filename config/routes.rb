@@ -13,9 +13,6 @@ Rails.application.routes.draw do
 	get '/display_question', to: 'questions#display_question', as: 'display_question'
 	post '/display_question', to: 'questions#answer_question', as: 'answer_question'
 
-	resources :questions
-
-	get '/questions/:id/display_question', to: 'questions#display_question', as: 'display_question'
 	get 'sessions/new'
 
 
