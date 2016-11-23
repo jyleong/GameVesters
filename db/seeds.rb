@@ -14,7 +14,7 @@ User.create!(name:  "UserName Username",
              currency: 200000,
              activated: true,
              activated_at: Time.zone.now,
-             percent_increase: BigDecimal.new(100.0, 0)
+             percent_increase: BigDecimal.new(1.0, 0)
              )
 
 user1 = User.create!(name:  "Eric Liu",
@@ -50,7 +50,7 @@ user1.create_notification("All notifications start as unread.", "/");
                currency: 200000,
                activated: true,
                activated_at: Time.zone.now,
-               percent_increase: BigDecimal.new((rand*100).round(2), 0)
+               percent_increase: BigDecimal.new((rand*25).round(2), 0)
                )
 end
 
