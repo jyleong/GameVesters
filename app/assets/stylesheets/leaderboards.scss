@@ -23,6 +23,13 @@ td {
   padding: 10px;
 }
 
+td a {
+  font-weight: 600;
+  &:hover{
+    color: #000000;
+  }
+}
+
 #first-place td {
   font-size: 24px;
 }

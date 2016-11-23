@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 	get 'password_rests/new'
 	get 'password_rests/edit'
 
-
 	resources :user_stocks, except: [:show, :edit,:update]
 	resources :stocks
  	resources :questions
@@ -14,8 +13,6 @@ Rails.application.routes.draw do
 	post '/display_question', to: 'questions#answer_question', as: 'answer_question'
 
 	get 'sessions/new'
-
-
 
 	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 	root 'static_pages#home'
