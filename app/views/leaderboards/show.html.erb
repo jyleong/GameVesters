@@ -1,12 +1,30 @@
 <h1>Leaderboard</h1>
-<table style='width: 100%'>
-  <tr>
+<table id="leaderboards">
+  <tr class='leader-table-header'>
     <th>Rank</th>
-    <th>Name</th>
-    <th>Value</th>
+    <th class="center-align">Name</th>
+    <th class="rank-value">Percent Increase</th>
+  </tr>
+  <tr id="first-place">
+    <td class="ranking">1st</td>
+    <td class="ranker"><%= @first[0] %></td>
+    <td class="rank-value"><%= @first[1] %>%</td>
+  </tr>
+  <tr id="second-place">
+    <td class="ranking">2nd</td>
+    <td class="ranker"><%= @second[0] %></td>
+    <td class="rank-value"><%= @second[1] %>%</td>
+  </tr>
+  <tr id="third-place">
+    <td class="ranking">3rd</td>
+    <td class="ranker"><%= @third[0] %></td>
+    <td class="rank-value"><%= @third[1] %>%</td>
   </tr>
   <% @leaders.each do |leader|  %>
-    <%= render_cell :entry, :show, entry: entry %>
+    <tr id="leaders">
+      <td class="ranking"><%= leader[2] %>th</td>
+      <td class="ranker"><%= leader[0] %></td>
+      <td class="rank-value"><%= leader[1] %>%</td>
+    </tr>
   <% end %>
 </table>
-<%= paginate @page_array %>

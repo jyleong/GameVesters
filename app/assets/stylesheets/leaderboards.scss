@@ -1,0 +1,36 @@
+#leaderboards {
+  width: 600px;
+  margin: 0 auto;
+}
+
+th.center-align {
+  text-align: center;
+}
+
+.rank-value {
+  text-align: right;
+}
+
+tr.leader-table-header {
+  background-color: #85bf4b;
+}
+
+tr {
+  border-top: solid 1px #85bf4b;
+}
+
+td {
+  padding: 10px;
+}
+
+#first-place td {
+  font-size: 24px;
+}
+
+#second-place td {
+  font-size: 20px;
+}
+
+#third-place td {
+  font-size: 16px;
+}
