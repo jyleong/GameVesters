@@ -1,7 +1,7 @@
 <%= form_for(transaction, remote: true) do |f| %>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h3 class="modal-title" id="myModalLabel"><%= @stock.name %></h3>
+    <h3 class="modal-title" id="myModalLabel"><%= @stock.name %> (<%= @stock.symbol %>)</h3>
     <h4><%= @stock.current_price %></h4>
 </div>
 
@@ -41,20 +41,20 @@
     <%= f.label :amount %>
     <div class="input-group">
         <div class="input-group-addon">$</div>
-        <%= f.number_field :total_price, :step => 0.01, class: "form-control" %>
+        <%= f.number_field :total_price, :step => 0.01, class: "form-control", disabled: true %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :quantity %>
-    <%= f.number_field :quantity, class: "form-control" %>
+    <%= f.number_field :quantity, min: 0, class: "form-control" %>
   </div>
 
   <% owned_stock = current_user.user_owned_stocks.find_by(stock_id: @stock.id) %>
   <div class="form-group">
     You currently have <strong>$<%= current_user.currency %></strong> available
     <br>
-    and own <strong>$<%= owned_stock != nil ? @stock.current_price * owned_stock.quantity_owned : "0" %></strong> of <%= @stock.symbol %> in value.
+    and own <strong><%= owned_stock.quantity_owned %></strong> stocks of <strong><%= @stock.symbol %></strong> valued at <strong>$<%= owned_stock != nil ? @stock.current_price * owned_stock.quantity_owned : "0" %></strong>.
   </div>
 
   <%= hidden_field_tag :stock_symbol, @stock.symbol %>
