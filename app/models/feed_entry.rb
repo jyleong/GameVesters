@@ -1,7 +1,14 @@
 class FeedEntry < ApplicationRecord
   def self.update_from_feed(feed_url)
     feed = Feedjira::Feed.fetch_and_parse feed_url
-    feed.entries.each do |entry|
+    add_entries(feed.entries)
+  end
+
+
+
+private
+  def self.add_entries(entries)
+    entries.each do |entry|
       unless exists? :guid => entry.id
         create!(
         :name => entry.title,
