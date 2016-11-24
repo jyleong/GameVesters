@@ -54,7 +54,7 @@
   <div class="form-group">
     You currently have <strong>$<%= current_user.currency %></strong> available
     <br>
-    and own <strong><%= owned_stock.quantity_owned %></strong> stocks of <strong><%= @stock.symbol %></strong> valued at <strong>$<%= owned_stock != nil ? @stock.current_price * owned_stock.quantity_owned : "0" %></strong>.
+    and own <strong><%= owned_stock != nil ? owned_stock.quantity_owned : "0" %></strong> stocks of <strong><%= @stock.symbol %></strong> valued at <strong>$<%= owned_stock != nil ? @stock.current_price * owned_stock.quantity_owned : "0" %></strong>.
   </div>
 
   <%= hidden_field_tag :stock_symbol, @stock.symbol %>
@@ -66,5 +66,3 @@
 </div>
 
 <% end %>
-
-
