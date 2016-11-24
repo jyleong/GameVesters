@@ -9,7 +9,9 @@ class StaticPagesController < ApplicationController
 
     #http://rss.cnn.com/rss/money_markets.rss
 
-    @feed = FeedEntry.limit(5).all()
+    @feed = FeedEntry.all().order('updated_at desc').limit(5)
+
+    #@feed.order('updated_at desc').limit(5)
     if logged_in?
       @user_stocks = current_user.stocks
       @user = current_user

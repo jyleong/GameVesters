@@ -79,11 +79,11 @@
 
   </tbody>
 </table>
-<div id="recent_episodes">
+<div id="recent_stocks">
   <h3>Recent Stock Markets Analysis & Opinion</h3>
   <ul>
   <% @feed.each do |entry| %>
-    <li><%= link_to h(entry.name), entry.url %></li>
+    <li><%= link_to h(entry.name), entry.url, :target => "_blank" %></li>
 		<li><%= entry.published_at %></li>
   <% end %>
   </ul>
