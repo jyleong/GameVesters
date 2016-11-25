@@ -53,7 +53,7 @@ class User < ApplicationRecord
   def User.new_token
     SecureRandom.urlsafe_base64
   end
-  
+
   #remember in db for user persisent session
   def remember
     self.remember_token = User.new_token
@@ -179,8 +179,10 @@ class User < ApplicationRecord
   private
     def defaults
       default_currency = BigDecimal.new(100000.00, 0)
+      default_percent_increase = BigDecimal.new(0.0, 0)
       self.admin = false unless self.admin
       self.currency = default_currency if self.currency == nil
+      self.percent_increase = default_percent_increase if self.percent_increase == nil
     end
 
     # Converts email to all lower-case.

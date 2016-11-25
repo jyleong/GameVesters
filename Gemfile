@@ -44,6 +44,17 @@ gem 'faker', '1.6.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'leaderboard'
+
+# Using redis for leaderboard serevr
+gem 'redis', '~>3.2'
+
+# Using kaminari for leaderboard pagination
+gem 'kaminari'
+
+# Using cells for leaderboard
+gem 'cells'
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3', '>= 0.0'
