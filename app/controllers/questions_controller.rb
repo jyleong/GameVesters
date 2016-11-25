@@ -9,10 +9,21 @@ def display_question
   end
 def answer_question
 #render plain: params[:reward].inspect
+if (params[:useranswer]==params[:answer])
+
 @user = current_user
 @user.add_currency(params[:reward].to_d)
+redirect_to confirmation_path
+
 #render plain: @user.currency
-redirect_to questions_path
+#redirect_to questions_path
+else
+ 
+  redirect_to incorrect_path(params[:answer])
+end
+
+
+#redirect_to confirmation_path(params[:id])
 end
 def create
 	 @question = Question.new(question_params)
@@ -20,6 +31,14 @@ def create
   	redirect_to @question
 	 #render plain: params[:question].inspect
 end
+
+def confirmation
+  end
+
+def incorrect
+ @correct_answer=params[:answer]
+
+end 
 
 def new
 end
@@ -45,7 +64,6 @@ def destroy
   redirect_to questions_path
 end
 
-
  def index
     #@question = Question.limit(5).order("RANDOM()")
     @question = Question.all
@@ -54,15 +72,5 @@ private
   def question_params
     params.require(:question).permit(:qid, :content, :reward, :ans1, :ans2, :ans3, :ans4, :answer)
   end
-
-
-
-
-
-
-
-
-
-
 end
 
