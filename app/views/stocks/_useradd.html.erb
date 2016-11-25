@@ -20,14 +20,10 @@
 
 	<%= link_to "Sell", new_transaction_path(:symbol => @stock.symbol, buy_sell: false), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
 
-	<%= render 'transactions/form_modal' %>
 <% else %>
 
 	<span class="label label-default">
 		Sign up <%= link_to "here", signup_path %> to track the stock!
-
 	</span>
 
 <% end %>
-
-

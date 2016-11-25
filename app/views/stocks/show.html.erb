@@ -1,34 +1,45 @@
 <div class="container">
-	<div class=" row stock-vals">
-		<h4 class="col-sm-4">
-			<%= @stock.name %> | <%= @stock.symbol %>
-		</h4>
-		<h4 class="col-sm-4">
-			Quote: <%= @stock.current_price %>
-		</h4>
-		<!-- will float a well of info on right -->
-		
-	</div>
-	<div id="stock-lookup-chart">
-		<img src=<%= @chart_url %> />
-	</div>
-	<br/>
-	<section class="well well-sm" id="DetailWell">
-		<div class="wellDiv">
-			<h5><b>Statistics</b></h5>
-			<table class="table">
-				<tr>
-					<th>Metric:</th>
-					<th>Value:</th>
-				</tr>
-				<% @stock.attributes.each do |key, value|%>
-					<tr>
-						<td><%= key %></td>
-						<td><%= value%></td>
-					</tr>
-				<% end %>
-			</table>
-		</div>
-	</section>
+    <div class="row stock-vals">
+        <div class="col-sm-8">
+            <h1><%= @stock.name %> | <%= @stock.symbol %></h1>
+            <h3>Quote: <%= @stock.current_price %></h3>
+        </div>
+        <div class="col-sm-4">
+            <br/>
+            <%= link_to "Buy", new_transaction_path(:symbol => @stock.symbol, buy_sell: true), method: :get, class: "btn btn-lg btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+
+            <%= link_to "Sell", new_transaction_path(:symbol => @stock.symbol, buy_sell: false), method: :get, class: "btn btn-lg btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+
+            <% if current_user.can_add_stock?(@stock.symbol) %>
+                <%= link_to "Track", user_stocks_path(stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : ""), class: "btn btn-lg btn-success", method: :post %>
+            <% else %>
+                <%= link_to "Un-track", user_stock_path(@stock), method: :delete, class: "btn btn-lg btn-danger" %>
+            <% end %>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div id="stock-lookup-chart">
+        <img src=<%= @chart_url %> />
+    </div>
+    <br/>
+    <section class="well well-sm" id="DetailWell">
+        <div class="wellDiv">
+            <h5><b>Statistics</b></h5>
+            <table class="table">
+                <tr>
+                    <th>Metric:</th>
+                    <th>Value:</th>
+                </tr>
+                <% @stock.attributes.each do |key, value|%>
+                    <tr>
+                        <td><%= key %></td>
+                        <td><%= value%></td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+    </section>
 
 </div>

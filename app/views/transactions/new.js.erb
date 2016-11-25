@@ -1,2 +1,5 @@
 // Render the New Transaction form on the popup modal
 $(".transaction-modal-content").html('<%= j render "form", transaction: @transaction %>');
+
+// Variable used by transactions.coffee
+var stock_price = <%= @stock.current_price %>

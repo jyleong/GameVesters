@@ -18,8 +18,7 @@ class UsersController < ApplicationController
   end
 
   def my_portfolio
-    @user_stocks = current_user.stocks
-    @user = current_user
+    @owned_stocks = current_user.owned_stocks.select('*')
   end
 
   def index
