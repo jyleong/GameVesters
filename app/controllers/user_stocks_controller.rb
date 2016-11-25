@@ -43,7 +43,7 @@ class UserStocksController < ApplicationController
     respond_to do |format|
       if @user_stock.save
         format.html { redirect_to :back,
-          :flash => {:success => "Stock #{@user_stock.stock.symbol} was successfully added" }}
+          :flash => {:success => "#{@user_stock.stock.symbol} is now being tracked." }}
         format.json { render :show, status: :created, location: @user_stock }
       else
         format.html { render :new }
@@ -51,13 +51,13 @@ class UserStocksController < ApplicationController
       end
     end
   end
-## flash[:success] = "You have obtained $20,000 for daily login bonus!"
+
   # PATCH/PUT /user_stocks/1
   # PATCH/PUT /user_stocks/1.json
   def update
     respond_to do |format|
       if @user_stock.update(user_stock_params)
-        format.html { redirect_to @user_stock, 
+        format.html { redirect_to @user_stock,
           :flash => {:success => 'User stock was successfully updated.' }}
         format.json { render :show, status: :ok, location: @user_stock }
       else
@@ -72,8 +72,8 @@ class UserStocksController < ApplicationController
   def destroy
     @user_stock.destroy
     respond_to do |format|
-      format.html { redirect_to :back, 
-      :flash => {:success => 'Stock was removed from portfolio' }}
+      format.html { redirect_to :back,
+      :flash => {:success => "#{@user_stock.stock.symbol} is no longer being tracked." }}
       format.json { head :no_content }
     end
   end

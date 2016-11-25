@@ -6,8 +6,6 @@ class TransactionsController < ApplicationController
   # GET /transactions.json
   def index
     @transactions = Transaction.all
-    # user = getUser
-    #@transactions = Transaction.where(user_id: user.id);
   end
 
   # GET /transactions/1
@@ -105,11 +103,4 @@ class TransactionsController < ApplicationController
       params.require(:transaction).permit(:stock_id, :quantity, :total_price, :buy_sell)
     end
 
-    def getUser()
-      return User.find(params[:user_id])
-    end
-
-    def fillRestFields()
-
-    end
 end

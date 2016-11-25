@@ -1,0 +1,2 @@
+module LeaderboardsControllerHelper
+end

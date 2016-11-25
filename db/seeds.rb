@@ -13,7 +13,8 @@ User.create!(name:  "UserName Username",
              password_confirmation: "Password1",
              currency: 200000,
              activated: true,
-             activated_at: Time.zone.now
+             activated_at: Time.zone.now,
+             percent_increase: BigDecimal.new(1.0, 0)
              )
 
 user1 = User.create!(name:  "Eric Liu",
@@ -23,7 +24,8 @@ user1 = User.create!(name:  "Eric Liu",
              password_confirmation: "Password1",
              currency: 200000,
              activated: true,
-             activated_at: Time.zone.now
+             activated_at: Time.zone.now,
+             percent_increase: BigDecimal.new(9000.0, 0)
              )
 user2 = User.create!(name:  "Tyler Wong",
              email: "tylerwong333@gmail.com",
@@ -47,7 +49,8 @@ user1.create_notification("All notifications start as unread.", "/");
                password_confirmation: password,
                currency: 200000,
                activated: true,
-            activated_at: Time.zone.now
+               activated_at: Time.zone.now,
+               percent_increase: BigDecimal.new((rand*25).round(2), 0)
                )
 end
 
