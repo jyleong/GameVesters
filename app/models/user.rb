@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :stocks, through: :user_stocks
   has_many :transactions
   has_many :user_owned_stocks
-  has_many :owned_stocks, through: :user_owned_stocks
+  has_many :owned_stocks, through: :user_owned_stocks, source: :stock
 
   attr_accessor :remember_token
   before_save {self.email = email.downcase}
