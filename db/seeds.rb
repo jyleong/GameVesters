@@ -32,6 +32,8 @@ user2 = User.create!(name:  "Tyler Wong",
              admin: false,
              password:              "Password1",
              password_confirmation: "Password1",
+             activated: true,
+             activated_at: Time.zone.now,
              currency: 200000
              )
 

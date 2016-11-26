@@ -48,11 +48,12 @@ ActiveRecord::Schema.define(version: 20161121211613) do
     t.string   "symbol"
     t.string   "name"
     t.decimal  "current_price"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.float    "amount_change"
     t.float    "year_high"
     t.float    "year_low"
+    t.string   "percent_change"
   end
 
   create_table "transactions", force: :cascade do |t|
