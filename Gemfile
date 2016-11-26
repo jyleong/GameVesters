@@ -27,6 +27,7 @@ gem 'stock_quote'
 
 gem 'lazy_high_charts'
 
+gem 'execjs'
 gem 'therubyracer'
 
 # Use jquery as the JavaScript library

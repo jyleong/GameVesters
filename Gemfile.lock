@@ -235,6 +235,7 @@ DEPENDENCIES
   byebug
   cells
   coffee-rails (~> 4.2)
+  execjs
   faker (= 1.6.6)
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
