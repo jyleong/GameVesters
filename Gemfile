@@ -24,8 +24,10 @@ gem 'coffee-rails', '~> 4.2'
 gem 'stock_quote'
 
 # highcharts include
-# gem 'highcharts-rails'
+
 gem 'lazy_high_charts'
+
+gem 'therubyracer'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

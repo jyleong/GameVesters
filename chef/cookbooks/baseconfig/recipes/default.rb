@@ -50,6 +50,10 @@ package "zlib1g-dev"
 package "nodejs"
 package "build-essential"
 
+execute 'install nokigiri first' do
+  command 'gem install nokogiri -v 1.6.8.1'
+end
+
 execute 'bundler install' do
   command 'gem install bundler --conservative'
 end
@@ -60,11 +64,6 @@ execute 'bundler' do
   command 'bundle install'
 end
 
-# execute 'create db and setup' do
-#   user 'ubuntu'
-#   cwd '/home/ubuntu/project'
-#   command 'rails db:setup RAILS_ENV=production'
-# end
 
 execute 'migrate db' do
   user 'ubuntu'

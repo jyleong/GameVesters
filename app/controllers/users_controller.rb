@@ -89,6 +89,62 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  # @chart = LazyHighCharts::HighChart.new('graph') do |f|
+  # f.title(:text => 'History')
+  # f.xAxis(:type => 'datetime',
+  #         :title => {
+  #           text: 'Date'
+  #         })
+  # f.yAxis(:title => {
+  #           text: 'Values'
+  #         })
+  # f.series(:name => 'Value',
+  #          :data => YourModel
+  #                     .map { |i| [i.created_at.to_time.to_i * 1000,
+  #                                 i.your_value] })
+
+  # f.chart({:defaultSeriesType => 'line'})
+
+#   // function addChart() {
+# //  new Highcharts.Chart({
+# //    chart: {
+# //      type: 'line',
+# //      renderTo: "networth-chart"
+# //    },
+# //    title: {
+# //      text: "Progress Report"
+# //    },
+# //    xAxis: {
+# //      title: {
+# //        text: "Date"
+# //      }
+# //    },
+# //    yAxis: {
+# //      title: {
+# //        text: "Change in net worth ($)"
+# //      },
+# //      tickPositioner: function () {
+
+# //            var maxDeviation = Math.ceil(Math.max(Math.abs(this.dataMax), Math.abs(this.dataMin)));
+# //            var halfMaxDeviation = Math.ceil(maxDeviation / 2);
+
+# //            return [-maxDeviation, -halfMaxDeviation, 0, halfMaxDeviation, maxDeviation];
+# //        }
+# //    },
+# //    series: [{
+# //      name: "values",
+# //      data: <%= @networth %>
+# //    }]
+# //  });
+
+# // };
+
+# // $(document).ready(function() {
+# //  alert("hello");
+# //  addChart();
+  
+# // });
+
   def networth_Change
     networth = Array.new(30) {
 
@@ -96,9 +152,12 @@ class UsersController < ApplicationController
     }
     
     
-    @chart = LazyHighCharts::HighChart.new('line') do |f|
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "Progress Report")
-      f.xAxis(title: {text: "Date"})
+      f.xAxis(
+        title: {text: "Date"},
+        type: 'datetime'
+        )
       f.series(name: "Values", data: networth)
       
       f.yAxis [
