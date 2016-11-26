@@ -100,12 +100,6 @@ execute 'startup' do
   command 'service unicorn_rails start'
 end
 
-# execute 'start_thin' do
-#   command 'RAILS_ENV=production bundle exec rackup private_pub.ru -s thin -E production --daemonize'
-#   cwd 'home/ubuntu/project'
-#   user 'ubuntu'
-# end
-
 # unicorn set up
 # execute 'enable unicorn' do
 #   user 'ubuntu'
