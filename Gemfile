@@ -23,6 +23,10 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'stock_quote'
 
+# highcharts include
+# gem 'highcharts-rails'
+gem 'lazy_high_charts'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

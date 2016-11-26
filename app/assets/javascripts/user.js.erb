@@ -1,0 +1,39 @@
+// function addChart() {
+// 	new Highcharts.Chart({
+// 		chart: {
+// 			type: 'line',
+// 			renderTo: "networth-chart"
+// 		},
+// 		title: {
+// 			text: "Progress Report"
+// 		},
+// 		xAxis: {
+// 			title: {
+// 				text: "Date"
+// 			}
+// 		},
+// 		yAxis: {
+// 			title: {
+// 				text: "Change in net worth ($)"
+// 			},
+// 			tickPositioner: function () {
+
+// 		        var maxDeviation = Math.ceil(Math.max(Math.abs(this.dataMax), Math.abs(this.dataMin)));
+// 		        var halfMaxDeviation = Math.ceil(maxDeviation / 2);
+
+// 		        return [-maxDeviation, -halfMaxDeviation, 0, halfMaxDeviation, maxDeviation];
+// 		    }
+// 		},
+// 		series: [{
+// 			name: "values",
+// 			data: <%= @networth %>
+// 		}]
+// 	});
+
+// };
+
+// $(document).ready(function() {
+// 	alert("hello");
+// 	addChart();
+	
+// });
