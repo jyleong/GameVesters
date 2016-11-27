@@ -24,6 +24,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'stock_quote'
 
 
+
 # See http://feedjira.com/ for more information about RSS feed parser
 gem'feedjira'
 
@@ -33,6 +34,7 @@ gem 'lazy_high_charts'
 
 gem 'execjs'
 gem 'therubyracer'
+
 
 
 # Use jquery as the JavaScript library
