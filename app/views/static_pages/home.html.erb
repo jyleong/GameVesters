@@ -12,6 +12,7 @@
 		</aside>
 
 	</div>
+	<div class ="col-md-8">
 	<h1>Following Stocks</h1>
 	<table class="table table-striped">
 	  <thead>
@@ -49,44 +50,14 @@
 
     <%= render 'transactions/form_modal' %>
 
+</div>
+<div class="col-md-4">
+<%= render 'tickernews.html.erb' %>
+</div>
 <% else %>
 
 	<%= render 'jumbotron' %>
 	<!--<%= link_to image_tag("rails.png", alt: "Rails logo"),
               'http://rubyonrails.org/' %>-->
+	<%= render 'tickernews.html.erb' %>
 <% end %>
-
-<h1>Trending Tickers</h1>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Symbol</th>
-      <th>Current Price</th>
-			<th>Change</th>
-			<th>% Change</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @stocks.each do |stock| %>
-    <tr>
-      <td><%= stock.name %></td>
-      <td><%= stock.symbol %></td>
-      <td><%= stock.last_trade_price_only %></td>
-			<td><%= stock.change %></td>
-			<td><%= stock.percent_change %></td>
-
-    </tr>
-    <% end %>
-
-  </tbody>
-</table>
-<div id="recent_stocks">
-  <h3>Recent Stock Markets Analysis & Opinion</h3>
-  <ul>
-  <% @feed.each do |entry| %>
-    <li><%= link_to h(entry.name), entry.url, :target => "_blank" %></li>
-		<li><%= entry.published_at %></li>
-  <% end %>
-  </ul>
-</div>
