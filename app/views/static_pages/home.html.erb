@@ -14,6 +14,7 @@
 	</div>
 
 	<div class ="col-md-8">
+<!--
 	<h1>Following Stocks</h1>
 	<table class="table table-striped">
 	  <thead>
@@ -36,7 +37,7 @@
 	      <td>
 	        <%= link_to 'Un-track', user_stock_path(user_stock), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
 	        <!--## will only delte association-->
-
+<!--
             <%= link_to "Buy", new_transaction_path(:symbol => user_stock.symbol, buy_sell: true), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
 
             <%= link_to "Sell", new_transaction_path(:symbol => user_stock.symbol, buy_sell: false), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
@@ -51,7 +52,7 @@
 
     <%= render 'transactions/form_modal' %>
 
-
+-->
     <h2>Tracked Stocks</h2>
     <%= render "stocks/list", stocks: @user_stocks %>
 
