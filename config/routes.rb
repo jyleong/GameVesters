@@ -27,10 +27,12 @@ Rails.application.routes.draw do
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
 	get '/my_portfolio', to: "users#my_portfolio", as: 'my_portfolio'
+	
 
 	resources :users do
 		member do
 			get :following, :followers
+			post :block
 		end
 	end
 	# Note: show and index is only for the current user
