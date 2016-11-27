@@ -12,6 +12,7 @@
 		</aside>
 
 	</div>
+
 	<div class ="col-md-8">
 	<h1>Following Stocks</h1>
 	<table class="table table-striped">
@@ -49,6 +50,11 @@
 	</table>
 
     <%= render 'transactions/form_modal' %>
+
+
+    <h2>Tracked Stocks</h2>
+    <%= render "stocks/list", stocks: @user_stocks %>
+
 
 </div>
 <div class="col-md-4">

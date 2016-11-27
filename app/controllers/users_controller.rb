@@ -18,8 +18,7 @@ class UsersController < ApplicationController
   end
 
   def my_portfolio
-    @user_stocks = current_user.stocks
-    @user = current_user
+    @owned_stocks = current_user.owned_stocks.select('*')
   end
 
   def index
@@ -34,6 +33,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_stocks = @user.stocks
     @user_notifications = @user.notifications
+    networth = networth_Change
   end
 
   def create
@@ -87,6 +87,107 @@ class UsersController < ApplicationController
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
+  end
+
+  # @chart = LazyHighCharts::HighChart.new('graph') do |f|
+  # f.title(:text => 'History')
+  # f.xAxis(:type => 'datetime',
+  #         :title => {
+  #           text: 'Date'
+  #         })
+  # f.yAxis(:title => {
+  #           text: 'Values'
+  #         })
+  # f.series(:name => 'Value',
+  #          :data => YourModel
+  #                     .map { |i| [i.created_at.to_time.to_i * 1000,
+  #                                 i.your_value] })
+
+  # f.chart({:defaultSeriesType => 'line'})
+
+#   // function addChart() {
+# //  new Highcharts.Chart({
+# //    chart: {
+# //      type: 'line',
+# //      renderTo: "networth-chart"
+# //    },
+# //    title: {
+# //      text: "Progress Report"
+# //    },
+# //    xAxis: {
+# //      title: {
+# //        text: "Date"
+# //      }
+# //    },
+# //    yAxis: {
+# //      title: {
+# //        text: "Change in net worth ($)"
+# //      },
+# //      tickPositioner: function () {
+
+# //            var maxDeviation = Math.ceil(Math.max(Math.abs(this.dataMax), Math.abs(this.dataMin)));
+# //            var halfMaxDeviation = Math.ceil(maxDeviation / 2);
+
+# //            return [-maxDeviation, -halfMaxDeviation, 0, halfMaxDeviation, maxDeviation];
+# //        }
+# //    },
+# //    series: [{
+# //      name: "values",
+# //      data: <%= @networth %>
+# //    }]
+# //  });
+
+# // };
+
+# // $(document).ready(function() {
+# //  alert("hello");
+# //  addChart();
+  
+# // });
+
+  def networth_Change
+    networth = Array.new(30) {
+
+       rand(15...45)
+    }
+    
+    
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(text: "Progress Report")
+      f.xAxis(
+        title: {text: "Date"},
+        type: 'datetime'
+        )
+      f.series(name: "Values", data: networth)
+      
+      f.yAxis [
+        {title: {text: "Change in net worth ($)", margin: 70} },
+        ]
+
+      f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
+      f.chart({defaultSeriesType: "line"})
+    end
+
+    @chart_globals = LazyHighCharts::HighChartGlobals.new do |f|
+      f.global(useUTC: false)
+      f.chart(
+        backgroundColor: {
+          linearGradient: [0, 0, 500, 500],
+          stops: [
+            [0, "rgb(255, 255, 255)"],
+            [1, "rgb(240, 240, 255)"]
+          ]
+        },
+        borderWidth: 2,
+        plotBackgroundColor: "rgba(255, 255, 255, .9)",
+        plotShadow: true,
+        plotBorderWidth: 1
+      )
+      f.lang(thousandsSep: ",")
+      f.colors(["#90ed7d", "#f7a35c", "#8085e9", "#f15c80", "#e4d354"])
+    end
+
+
   end
 
   private
