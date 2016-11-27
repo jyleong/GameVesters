@@ -1,0 +1,42 @@
+<h1>Trending Tickers</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Symbol</th>
+      <th>Current Price</th>
+			<th>Change</th>
+			<th>% Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks.each do |stock| %>
+    <tr>
+      <td><%= stock.name %></td>
+      <td><%= stock.symbol %></td>
+      <td><%= stock.last_trade_price_only %></td>
+			<td><%= stock.change %></td>
+			<td><%= stock.percent_change %></td>
+
+    </tr>
+    <% end %>
+
+  </tbody>
+</table>
+  <h1>Latest News</h1>
+	<table class="table table-striped">
+  <thead>
+		<tr>
+			<th> Article Name</th>
+			<th> Publish date</th>
+			</tr>
+		</thead>
+		<tbody>
+  		<% @feed.each do |entry| %>
+			<tr>
+		    <td><%= link_to h(entry.name), entry.url, :target => "_blank" %></td>
+				<td><%= entry.published_at.to_formatted_s(:long_ordinal)  %></td>
+			</tr>
+  		<% end %>
+		</tbody>
+	</table>
