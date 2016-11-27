@@ -32,7 +32,10 @@ user2 = User.create!(name:  "Tyler Wong",
              admin: false,
              password:              "Password1",
              password_confirmation: "Password1",
-             currency: 200000
+             currency: 200000,
+             activated: true,
+             activated_at: Time.zone.now,
+             percent_increase: BigDecimal.new((rand*25).round(2), 0)
              )
 
 user1.create_notification("This is an example notification!", "/");
