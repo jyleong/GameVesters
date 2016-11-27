@@ -63,9 +63,9 @@ following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
 
-Stock.create(symbol: "WIFI", name: "Boingo Wireless, Inc.",current_price: 11.37)
-Stock.create(symbol:"AAPL", name: "Apple Inc.", current_price: 105.35)
-Stock.create(symbol:"OPTT", name: "Ocean Power Technologies, Inc.", current_price: 3.2377)
+Stock.create(symbol: "WIFI", name: "Boingo Wireless, Inc.",current_price: 11.37, amount_change: 0.45)
+Stock.create(symbol:"AAPL", name: "Apple Inc.", current_price: 105.35, amount_change: 1.34)
+Stock.create(symbol:"OPTT", name: "Ocean Power Technologies, Inc.", current_price: 3.2377, amount_change: -0.23)
 
 
 Question.create(qid:  "1",
