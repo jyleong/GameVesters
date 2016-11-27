@@ -75,6 +75,24 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def block
+    @user = User.find(params[:id])
+    
+    opposite = !@user.block
+    if @user.update_attribute(:block, opposite)
+
+      if (@user.block) 
+        flash[:success] = "#{@user.name} has been blocked"
+      
+      else 
+        flash[:success] = "#{@user.name} has been unblocked"
+      end
+      redirect_to users_url
+    else
+      redirect_to @user
+    end
+  end
+
   def following
     @title = "Following"
     @user  = User.find(params[:id])
@@ -88,62 +106,6 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
-
-  # @chart = LazyHighCharts::HighChart.new('graph') do |f|
-  # f.title(:text => 'History')
-  # f.xAxis(:type => 'datetime',
-  #         :title => {
-  #           text: 'Date'
-  #         })
-  # f.yAxis(:title => {
-  #           text: 'Values'
-  #         })
-  # f.series(:name => 'Value',
-  #          :data => YourModel
-  #                     .map { |i| [i.created_at.to_time.to_i * 1000,
-  #                                 i.your_value] })
-
-  # f.chart({:defaultSeriesType => 'line'})
-
-#   // function addChart() {
-# //  new Highcharts.Chart({
-# //    chart: {
-# //      type: 'line',
-# //      renderTo: "networth-chart"
-# //    },
-# //    title: {
-# //      text: "Progress Report"
-# //    },
-# //    xAxis: {
-# //      title: {
-# //        text: "Date"
-# //      }
-# //    },
-# //    yAxis: {
-# //      title: {
-# //        text: "Change in net worth ($)"
-# //      },
-# //      tickPositioner: function () {
-
-# //            var maxDeviation = Math.ceil(Math.max(Math.abs(this.dataMax), Math.abs(this.dataMin)));
-# //            var halfMaxDeviation = Math.ceil(maxDeviation / 2);
-
-# //            return [-maxDeviation, -halfMaxDeviation, 0, halfMaxDeviation, maxDeviation];
-# //        }
-# //    },
-# //    series: [{
-# //      name: "values",
-# //      data: <%= @networth %>
-# //    }]
-# //  });
-
-# // };
-
-# // $(document).ready(function() {
-# //  alert("hello");
-# //  addChart();
-  
-# // });
 
   def networth_Change
     networth = Array.new(30) {
