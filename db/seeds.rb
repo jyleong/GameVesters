@@ -32,7 +32,10 @@ user2 = User.create!(name:  "Tyler Wong",
              admin: false,
              password:              "Password1",
              password_confirmation: "Password1",
-             currency: 200000
+             currency: 200000,
+             activated: true,
+             activated_at: Time.zone.now,
+             percent_increase: BigDecimal.new((rand*25).round(2), 0)
              )
 
 user1.create_notification("This is an example notification!", "/");
@@ -63,9 +66,9 @@ following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
 
-Stock.create(symbol: "WIFI", name: "Boingo Wireless, Inc.",current_price: 11.37)
-Stock.create(symbol:"AAPL", name: "Apple Inc.", current_price: 105.35)
-Stock.create(symbol:"OPTT", name: "Ocean Power Technologies, Inc.", current_price: 3.2377)
+Stock.create(symbol: "WIFI", name: "Boingo Wireless, Inc.",current_price: 11.37, amount_change: 0.45)
+Stock.create(symbol:"AAPL", name: "Apple Inc.", current_price: 105.35, amount_change: 1.34)
+Stock.create(symbol:"OPTT", name: "Ocean Power Technologies, Inc.", current_price: 3.2377, amount_change: -0.23)
 
 
 Question.create(qid:  "1",
