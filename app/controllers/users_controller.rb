@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_stocks = @user.stocks
     @user_notifications = @user.notifications
-    networth = networth_Change
+    show_networth_chart(@user)
   end
 
   def create
@@ -77,14 +77,14 @@ class UsersController < ApplicationController
 
   def block
     @user = User.find(params[:id])
-    
+
     opposite = !@user.block
     if @user.update_attribute(:block, opposite)
 
-      if (@user.block) 
+      if (@user.block)
         flash[:success] = "#{@user.name} has been blocked"
-      
-      else 
+
+      else
         flash[:success] = "#{@user.name} has been unblocked"
       end
       redirect_to users_url
@@ -107,24 +107,45 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-  def networth_Change
-    networth = Array.new(30) {
+  def show_networth_chart(user)
 
-       rand(15...45)
-    }
-    
-    
+    networth_data = []
+    historic_data = user.user_historic_data
+    historic_data.each do |data|
+
+        networth_float = data.net_worth.truncate(2).to_f()
+
+        # Multiply 1000 because Javascript DateTimes are in milliseconds
+        data_node = [data.created_at.to_i * 1000, networth_float]
+        networth_data.push(data_node)
+
+        # Create extra data point if the entry has been updated.
+        # It means the net worth has not changed during that time.
+        if data.created_at != data.updated_at
+            data_node = [data.updated_at.to_i * 1000, networth_float]
+            networth_data.push(data_node)
+        end
+    end
+
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
+
       f.title(text: "Progress Report")
-      f.xAxis(
-        title: {text: "Date"},
-        type: 'datetime'
-        )
-      f.series(name: "Values", data: networth)
-      
+      f.options[:xAxis] = {
+          type: 'datetime',
+          dateTimeLabelFormats: {
+            month: '%e. %b',
+            year: '%b'
+          },
+          title: {
+            text: 'Date'
+          }
+      }
+
       f.yAxis [
-        {title: {text: "Change in net worth ($)", margin: 70} },
-        ]
+        { title: { text: "Net Worth ($)" }, margin: 70 },
+      ]
+
+      f.series(name: "Net Worth", data: networth_data)
 
       f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
       f.chart({defaultSeriesType: "line"})
@@ -148,7 +169,6 @@ class UsersController < ApplicationController
       f.lang(thousandsSep: ",")
       f.colors(["#90ed7d", "#f7a35c", "#8085e9", "#f15c80", "#e4d354"])
     end
-
 
   end
 
