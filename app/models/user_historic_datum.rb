@@ -20,7 +20,7 @@ class UserHistoricDatum < ApplicationRecord
             
             # If net_worth is same as last time, don't make a new record
             last_entry = UserHistoricDatum.where(user_id: user.id).last
-            if last_entry.net_worth == net_worth
+            if (last_entry != nil) && (last_entry.net_worth == net_worth)
                 last_entry.touch
             else
                 new_data_entry = UserHistoricDatum.new(user_id: user.id, net_worth: net_worth)
