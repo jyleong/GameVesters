@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121211613) do
+ActiveRecord::Schema.define(version: 20161128002213) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20161121211613) do
     t.boolean  "read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -65,6 +66,15 @@ ActiveRecord::Schema.define(version: 20161121211613) do
     t.boolean  "buy_sell"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
+  create_table "user_historic_data", force: :cascade do |t|
+    t.integer  "user_id"
+    t.decimal  "net_worth"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_historic_data_on_user_id"
   end
 
   create_table "user_owned_stocks", force: :cascade do |t|
@@ -73,6 +83,7 @@ ActiveRecord::Schema.define(version: 20161121211613) do
     t.integer  "quantity_owned"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.index ["user_id"], name: "index_user_owned_stocks_on_user_id"
   end
 
   create_table "user_stocks", force: :cascade do |t|
@@ -80,6 +91,7 @@ ActiveRecord::Schema.define(version: 20161121211613) do
     t.integer  "stock_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_stocks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

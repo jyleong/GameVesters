@@ -14,6 +14,7 @@ class NotificationsController < ApplicationController
   end
 
   def mark_all
+    UserHistoricDatum.update_users_net_worth
     Notification.where('user_id LIKE ?', params[:user_id]).where('read LIKE ?', false).update_all(read: true)
     redirect_back(fallback_location: root_path)
   end
