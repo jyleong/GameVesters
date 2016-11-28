@@ -16,12 +16,13 @@ def display_question
   end
 def answer_question
 #render plain: params[:reward].inspect
-
-
+@user = current_user
+@user.update_attribute(:question_answered, true)
 if (params[:useranswer]==params[:answer])
 
-@user = current_user
+
 @user.add_currency(params[:reward].to_d)
+
 redirect_to confirmation_path
 
 #render plain: @user.currency
