@@ -78,6 +78,7 @@ p {
 /*footer*/
 
 footer {
+	clear:both;
 	margin-top: 45px;
 	padding-top: 5px;
 	border-top: 1px solid $gray-medium-light;
@@ -283,11 +284,19 @@ section#DetailWell {
 	top: 8px;
 }
 
+
 /* question button */
 
 div.fixed {
     position: fixed;
     bottom: 0;
     left: 0;
+}
+
+.positive_change{
+	color:green;
+}
+.negative_change{
+	color:red;
 }
 

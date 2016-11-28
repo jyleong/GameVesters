@@ -50,6 +50,10 @@ package "zlib1g-dev"
 package "nodejs"
 package "build-essential"
 
+execute 'install nokigiri first' do
+  command 'gem install nokogiri -v 1.6.8.1'
+end
+
 execute 'bundler install' do
   command 'gem install bundler --conservative'
 end
@@ -60,11 +64,6 @@ execute 'bundler' do
   command 'bundle install'
 end
 
-# execute 'create db and setup' do
-#   user 'ubuntu'
-#   cwd '/home/ubuntu/project'
-#   command 'rails db:setup RAILS_ENV=production'
-# end
 
 execute 'migrate db' do
   user 'ubuntu'
@@ -101,11 +100,11 @@ execute 'startup' do
   command 'service unicorn_rails start'
 end
 
-# execute 'start_thin' do
-#   command 'RAILS_ENV=production bundle exec rackup private_pub.ru -s thin -E production --daemonize'
-#   cwd 'home/ubuntu/project'
-#   user 'ubuntu'
-# end
+execute 'whenever_cron_tasks' do
+  command 'whenever --update-crontab'
+  cwd 'home/ubuntu/project'
+  user 'ubuntu'
+end
 
 # unicorn set up
 # execute 'enable unicorn' do
