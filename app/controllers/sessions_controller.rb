@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
           if been_24_hours?(@user.last_login)
             gib_daily_bonus
             flash[:success] = "You have obtained $20,000 for daily login bonus!"
+            @user.update_attribute(:question_answered, false)
           end
           @user.update_attribute(:last_login, Time.now)
 

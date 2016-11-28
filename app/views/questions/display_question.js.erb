@@ -1,0 +1,21 @@
+$(".question-modal-content").html('<%= j render "questionform", question: @question %>');
+console.log("hello");
+
+$('#submit_tag').click(function(){
+  $('#question-modal').modal('hide');
+
+
+
+});
+
+
+
+/*
+ $('#question_form_tag').submit(function() {
+    // Coding
+     $('#question-modal').modal('hide');
+    //$('#question-modal').modal('toggle');
+    return false;
+});
+
+*/
