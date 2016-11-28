@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :user_owned_stocks
   has_many :owned_stocks, through: :user_owned_stocks, source: :stock
 
+  has_many :user_historic_data
+
   attr_accessor :remember_token
   before_save {self.email = email.downcase}
   validates(:name, presence: true, length: {maximum: 30})
