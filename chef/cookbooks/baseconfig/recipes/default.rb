@@ -100,6 +100,12 @@ execute 'startup' do
   command 'service unicorn_rails start'
 end
 
+execute 'whenever_cron_tasks' do
+  command 'whenever --update-crontab'
+  cwd 'home/ubuntu/project'
+  user 'ubuntu'
+end
+
 # unicorn set up
 # execute 'enable unicorn' do
 #   user 'ubuntu'

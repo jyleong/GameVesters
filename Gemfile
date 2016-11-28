@@ -69,6 +69,9 @@ gem 'kaminari'
 # Using cells for leaderboard
 gem 'cells'
 
+# Use Whenever to run tasks at set times. See config/schedule.rb
+gem 'whenever', :require => false
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3', '>= 0.0'
