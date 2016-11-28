@@ -6,9 +6,18 @@ def display_question
     @question = Question.order("RANDOM()").first
     #@question = Question.find(params[:id])
    @user = current_user
+   
+
+   respond_to do |f|
+   
+      f.js
+
+    end
   end
 def answer_question
 #render plain: params[:reward].inspect
+
+
 if (params[:useranswer]==params[:answer])
 
 @user = current_user
@@ -21,6 +30,8 @@ else
  
   redirect_to incorrect_path(params[:answer])
 end
+
+
 
 
 #redirect_to confirmation_path(params[:id])

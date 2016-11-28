@@ -72,46 +72,29 @@ Stock.create(symbol:"OPTT", name: "Ocean Power Technologies, Inc.", current_pric
 
 Question.create(qid:  "1",
              reward: 1000,
-             content: "test1",
-             ans1: "Password1",
-             ans2: "Password1",
-             ans3: "Password1",
-             ans4: "Password1",
-             answer: "Password1"
+             content: "The answer is A",
+             ans1: "abcd",
+             ans2: "efgh",
+             ans3: "ijkl",
+             ans4: "mnop",
+             answer: "a"
              )
 Question.create(qid:  "2",
              reward: 1000,
-             content: "test1",
-             ans1: "Password1",
-             ans2: "Password1",
-             ans3: "Password1",
-             ans4: "Password1",
-             answer: "Password1"
+             content: "The answer is B",
+             ans1: "ahahaa ",
+             ans2: "Pick this",
+             ans3: "ajajajaja",
+             ans4: "business",
+             answer: "b"
              )
 Question.create(qid:  "3",
              reward: 1000,
-             content: "test1",
+             content: "The answer is C",
              ans1: "Password1",
              ans2: "Password1",
-             ans3: "Password1",
+             ans3: "correct answer",
              ans4: "Password1",
-             answer: "Password1"
+             answer: "c"
              )
-Question.create(qid:  "4",
-             reward: 1000,
-             content: "test1",
-             ans1: "Password1",
-             ans2: "Password1",
-             ans3: "Password1",
-             ans4: "Password1",
-             answer: "Password1"
-             )
-Question.create(qid:  "5",
-             reward: 1000,
-             content: "test1",
-             ans1: "Password1",
-             ans2: "Password1",
-             ans3: "Password1",
-             ans4: "Password1",
-             answer: "Password1"
-             )
+
