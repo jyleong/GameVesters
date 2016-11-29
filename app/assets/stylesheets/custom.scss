@@ -284,9 +284,19 @@ section#DetailWell {
 	top: 8px;
 }
 
+
+/* question button */
+
+div.fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
 .positive_change{
 	color:green;
 }
 .negative_change{
 	color:red;
 }
+

@@ -29,5 +29,27 @@
       <%= debug(params) if Rails.env.development? %>
 
     </div>
+
+<%= render 'questions/question_modal' %>
+<div class="fixed">
+
+<%if logged_in? %>
+<% @display_question_bool=  !current_user.question_answered %>
+<%end%>
+
+<%if @display_question_bool %>
+<%= link_to 'Answer Daily Questions', display_question_path, method: :get,
+  class: "fixed btn-info btn" , remote: true, "data-toggle": "modal", "data-target": "#question-modal" %>
+
+  <% end %>
+ 
+
+<% if false %>
+
+<%= link_to( 'Answer Daily Question', questions_path, remote: true, "data-toggle": "modal" ) %>
+<%= link_to( 'Answer Daily Question', questions_path, 'data-popup' => true ) %>
+<% end %>
+
+</div>
   </body>
 </html>
