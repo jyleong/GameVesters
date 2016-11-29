@@ -27,36 +27,40 @@
           </div>
         </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <% if logged_in? %>
-              <li><%= link_to "Listings", stocks_path %></li>
-              <li><%= link_to "Users", users_path %></li>
-              <li><%= link_to "Leaderboard", leaderboard_path %></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Account <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", current_user %></li>
-                  <li><%= link_to "Transactions", transactions_path %></li>
-                  <li><%= link_to "My Portfolio", my_portfolio_path %></li>
-                  <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to "Log out", logout_path, method: "delete" %>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <b class="glyphicon glyphicon-inbox"></b>
-                  <span><%= current_user.notifications.unread.count %></span>
-                </a>
-                <ul class="dropdown-menu notification-list">
-                    <%= render 'layouts/nav_notifications' %>
-                </ul>
-              </li>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+
+      <% if logged_in? %>
+        <li><%= link_to stocks_path, class:"button"  do %>
+          <i class="glyphicon glyphicon-book"></i>
+          <% end %>
+        </li>
+        <li><%= link_to "Users", users_path %></li>
+        <li><%= link_to "Leaderboard", leaderboard_path %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <b class="glyphicon glyphicon-user"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Profile", current_user %></li>
+            <li><%= link_to "Transactions", transactions_path %></li>
+            <li><%= link_to "My Portfolio", my_portfolio_path %></li>
+            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to "Log out", logout_path, method: "delete" %>
+            </li>
+          </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <b class="glyphicon glyphicon-inbox"></b>
+              <span><%= current_user.notifications.unread.count %></span>
+            </a>
+            <ul class="dropdown-menu notification-list">
+                <%= render 'layouts/nav_notifications' %>
+            </ul>
+          </li>
             <% else %>
               <li><%= link_to "Log in", login_path %></li>
             <% end %>
@@ -67,5 +71,5 @@
   </div>
 </header>
 <div class="currency-banner">
-  <%= current_user.currency %>
+  <%= sprintf("%2.2f rb",current_user.currency) %>
 </div>
