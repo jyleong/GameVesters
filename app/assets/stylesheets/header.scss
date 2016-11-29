@@ -10,3 +10,63 @@
 a:hover {
     background-color: none;
 }
+
+.container {
+  width: 100%;
+}
+
+#logo {
+  position: absolute;
+  left: 10px;
+}
+
+#logo-image img {
+  position: absolute;
+  left: 10px;
+  margin: 9px;
+  height: 30px;
+  width: 30px;
+}
+
+.header-search-bar{
+  width: 300px;
+  display: inline-block;
+  position: relative;
+  left: 120px;
+}
+
+@media screen and ( max-width: 1050px ) {
+  #logo {
+    display: none;
+  }
+  li.header-currency  a {
+  display: none;
+
+  }
+}
+@media screen and ( min-width: 1050px ) {
+  #logo-image {
+    display: none;
+  }
+}
+
+.header-currency {
+  margin-top: 10px;
+
+  .currency-logo {
+    color: black;
+  }
+}
+
+li.header-currency {
+  color: darkgreen;
+  font-weight: 700;
+  background-color: ghostwhite;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 5px;
+  padding-bottom: 25px;
+  height: 15px;
+  border: 1px solid #000000;
+  border-radius: 3px;
+}
