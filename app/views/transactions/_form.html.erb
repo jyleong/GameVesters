@@ -52,7 +52,7 @@
 
   <% owned_stock = current_user.user_owned_stocks.find_by(stock_id: @stock.id) %>
   <div class="form-group">
-    You currently have <strong>$<%= current_user.currency %></strong> rubies available
+    You currently have <strong>$<%= sprintf("%2.2f",current_user.currency) %></strong> rb available
     <br>
     and own <strong><%= owned_stock != nil ? owned_stock.quantity_owned : "0" %></strong> stocks of <strong><%= @stock.symbol %></strong> valued at <strong>$<%= owned_stock != nil ? @stock.current_price * owned_stock.quantity_owned : "0" %></strong>.
   </div>
