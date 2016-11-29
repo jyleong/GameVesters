@@ -16,26 +16,27 @@ a:hover {
 }
 
 #logo {
-  position: absolute;
-  left: 10px;
+  position: relative;
 }
 
 #logo-image img {
-  position: absolute;
-  left: 10px;
-  margin: 9px;
-  height: 30px;
-  width: 30px;
+  float: left;
+  height: 34px;
+  margin: 9px 0;
+  position: relative;
+  width: 34px;
 }
 
 .header-search-bar{
-  width: 300px;
   display: inline-block;
+  float: left;
+  margin-left: 15px;
+  margin-top: 8px;
   position: relative;
-  left: 120px;
+  width: 256px;
 }
 
-@media screen and ( max-width: 1050px ) {
+@media screen and ( max-width: 910px ) {
   #logo {
     display: none;
   }
@@ -44,29 +45,20 @@ a:hover {
 
   }
 }
-@media screen and ( min-width: 1050px ) {
+@media screen and ( min-width: 910px ) {
   #logo-image {
     display: none;
   }
 }
 
-.header-currency {
-  margin-top: 10px;
-
-  .currency-logo {
-    color: black;
-  }
-}
-
-li.header-currency {
-  color: darkgreen;
+.currency-banner {
+  background: #85bf4b;
+  border-radius: 5px;
+  color: white;
+  float: right;
   font-weight: 700;
-  background-color: ghostwhite;
-  padding-left: 3px;
-  padding-right: 3px;
-  padding-top: 5px;
-  padding-bottom: 25px;
-  height: 15px;
-  border: 1px solid #000000;
-  border-radius: 3px;
+  padding: 15px 15px 5px 10px;
+  position: relative;
+  right: -40px;
+  top: -55px;
 }
