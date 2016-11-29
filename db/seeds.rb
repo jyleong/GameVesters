@@ -71,8 +71,8 @@ followers.each { |follower| follower.follow(user) }
 Stock.create(symbol: "WIFI", name: "Boingo Wireless, Inc.",current_price: 11.37, amount_change: 0.45)
 Stock.create(symbol:"AAPL", name: "Apple Inc.", current_price: 105.35, amount_change: 1.34)
 Stock.create(symbol:"OPTT", name: "Ocean Power Technologies, Inc.", current_price: 3.2377, amount_change: -0.23)
-Stock.create(symbol: "SBUX", nama: "Starbucks Corporation", current_price: 57.65, amount_change: -0.86)
-Stock.create(symbol: "TSLA", nama: "Tesla Motors, Inc.", current_price: 196.12, amount_change: 4.32)
+Stock.create(symbol: "SBUX", name: "Starbucks Corporation", current_price: 57.65, amount_change: -0.86)
+Stock.create(symbol: "TSLA", name: "Tesla Motors, Inc.", current_price: 196.12, amount_change: 4.32)
 
 
 Question.create(qid:  "1",
