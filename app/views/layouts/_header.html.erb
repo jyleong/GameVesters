@@ -70,6 +70,10 @@
     </nav>
   </div>
 </header>
+<% if logged_in? %>
 <div class="currency-banner">
-  <%= sprintf("%2.2f rb",current_user.currency) %>
+  
+  <%= sprintf("%2.2f",@user.currency) %> rb
+  
 </div>
+<% end %>
