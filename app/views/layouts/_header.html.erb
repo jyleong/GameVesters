@@ -73,7 +73,7 @@
 <% if logged_in? %>
 <div class="currency-banner">
   
-  <%= sprintf("%2.2f",@user.currency) %> rb
+  <%= sprintf("%2.2f",current_user.currency) %> rb
   
 </div>
 <% end %>
