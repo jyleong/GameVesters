@@ -26,7 +26,7 @@
 </div>
 <div class="row">
   <% if @user.stocks.size > 0 %>
-      
+      <h1 class="h1center">Tracked Stocks</h1>
       <%= render 'stocks/list', stocks: @user_stocks %>
     <% else %>
       <% if @user != current_user %>

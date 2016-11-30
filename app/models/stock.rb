@@ -7,9 +7,11 @@ class Stock < ApplicationRecord
 	def self.find_by_symbol(ticker_symbol)
 		retrievedStock = where(symbol: ticker_symbol.upcase).first
 		looked_up = StockQuote::Stock.quote(ticker_symbol)
+
+
 		if (retrievedStock)
-			retrievedStock.update(current_price: looked_up.ask,
-			amount_change: looked_up.change,
+			retrievedStock.update(current_price: looked_up.ask.nil? ? 0: looked_up.ask,
+			amount_change: looked_up.change.nil? ? 0: looked_up.change,
 			year_high: looked_up.year_high,
 			year_low: looked_up.year_low,
 			percent_change: looked_up.percent_change

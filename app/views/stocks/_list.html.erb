@@ -1,9 +1,7 @@
-<% if !current_page?(controller: "stocks", action: "index")%>
-<h1 class="h1center">Tracked Stocks</h1>
-<% end %>
+
 <% if stocks.count <= 0 %>
 
-No stocks found.
+<p>No stocks found.</p>
 
 <% else %>
 
