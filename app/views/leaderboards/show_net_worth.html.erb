@@ -1,14 +1,14 @@
-<h1>Leaderboard</h1>
+<div class="leaderboard-tab">
+  <span class="left current">Net Worth</span>
+  <%= link_to 'Percent', leaderboard_path, class: 'tab-button right' %>
+</div>
+<h1 id="leaderboard-title">Leaderboard</h1>
 
 <table id="leaderboards">
-  <div class="leaderboard-tab">
-    <%= link_to 'Percent Increase', leaderboard_path %>
-    <span class="highlight">Net Worth</span>
-  </div>
   <tr class='leader-table-header'>
     <th>Rank</th>
     <th class="center-align">Name</th>
-    <th class="rank-value">Percent Increase</th>
+    <th class="rank-value">Net Worth</th>
   </tr>
   <tr id="first-place">
     <td class="ranking">1st</td>
