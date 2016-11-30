@@ -1,3 +1,4 @@
+<h1 class="h1center">Tracked Stocks</h1>
 <% if stocks.count <= 0 %>
 
 No stocks found.
@@ -28,9 +29,11 @@ No stocks found.
       <td class="negative_change"><%= stock.amount_change %></td>
       <% end %>
       <td>
+        <% if current_page?(controller: "users", action: "my_portfolio") %>
         <%= link_to "Buy", new_transaction_path(:symbol => stock.symbol, buy_sell: true), method: :get, class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
 
         <%= link_to "Sell", new_transaction_path(:symbol => stock.symbol, buy_sell: false), method: :get, class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+        <% end %>
 
         <% if current_user.can_add_stock?(stock.symbol) %>
             <%= link_to "Track", user_stocks_path(stock_symbol: stock.symbol, stock_id: stock.id ? stock.id : ""), class: "btn btn-xs btn-success", method: :post %>
