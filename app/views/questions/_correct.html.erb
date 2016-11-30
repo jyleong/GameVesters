@@ -2,7 +2,7 @@
 <h1>Your answer was correct!</h1>
 </div>
 <div class="modal-body" align = "center">
- <h3>You have earned <%= @reward %> rubies!</h3>
+ <h3>You have earned <%=sprintf("%2.2f", @reward) %> rb!</h3>
 </div>
  <div class="modal-footer">
 <%= link_to 'Okay',root_path,{ :class=>"btn btn-primary center-block" }  %>
