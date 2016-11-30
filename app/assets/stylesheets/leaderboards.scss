@@ -3,7 +3,7 @@
 }
 
 #leaderboards {
-  width: 600px;
+  width: 700px;
   margin: 0 auto;
 
   th.center-align {
@@ -48,4 +48,38 @@
   #third-place td {
     font-size: 16px;
   }
+}
+
+.leaderboard-tab {
+  font-size: 16px;
+  width: 200px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  a:hover {
+    color: black;
+  }
+}
+
+.left {
+  border: 1px solid #85bf4b;
+  border-radius: 5px 0 0 5px;
+  padding: 3px 5px;
+  position: relative;
+  left: 3px;
+}
+
+.right {
+  border: 1px solid #85bf4b;
+  border-radius: 0 5px 5px 0;
+  padding: 3px 5px;
+  position: relative;
+  right: 3px;
+
+}
+
+.current {
+  background-color: #85bf4b;
+  color: white;
 }

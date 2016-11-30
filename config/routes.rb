@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get '/leaderboard', to: 'leaderboards#show'
+  get 'leaderboard/show_net_worth', to: 'leaderboards#show_net_worth'
 
 	get 'password_resets/new'
 	get 'password_resets/edit'
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
 	get '/my_portfolio', to: "users#my_portfolio", as: 'my_portfolio'
-	
+
 
 	resources :users do
 		member do

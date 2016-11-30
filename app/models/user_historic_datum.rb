@@ -17,7 +17,7 @@ class UserHistoricDatum < ApplicationRecord
                 stock_worth = current_stock_prices[stock_id] * owned_stock.quantity_owned
                 net_worth = net_worth + stock_worth
             end
-            
+
             # If net_worth is same as last time, don't make a new record
             last_entry = UserHistoricDatum.where(user_id: user.id).last
             if (last_entry != nil) && (last_entry.net_worth == net_worth)
@@ -25,8 +25,9 @@ class UserHistoricDatum < ApplicationRecord
             else
                 new_data_entry = UserHistoricDatum.new(user_id: user.id, net_worth: net_worth)
                 new_data_entry.save
+                user.current_net_worth = net_worth # update the most recent net_worth in users table
             end
-            
+
         end
     end
 

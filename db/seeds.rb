@@ -14,7 +14,8 @@ User.create!(name:  "UserName Username",
              currency: 200000,
              activated: true,
              activated_at: Time.zone.now,
-             percent_increase: BigDecimal.new(1.0, 0)
+             percent_increase: BigDecimal.new(1.0, 0),
+             current_net_worth: BigDecimal.new(100000.0, 0)
              )
 
 user1 = User.create!(name:  "Eric Liu",
@@ -25,7 +26,8 @@ user1 = User.create!(name:  "Eric Liu",
              currency: 200000,
              activated: true,
              activated_at: Time.zone.now,
-             percent_increase: BigDecimal.new(9000.0, 0)
+             percent_increase: BigDecimal.new(9000.0, 0),
+             current_net_worth: BigDecimal.new(12340000.0, 0)
              )
 user2 = User.create!(name:  "Tyler Wong",
              email: "tylerwong333@gmail.com",
@@ -36,8 +38,8 @@ user2 = User.create!(name:  "Tyler Wong",
              currency: 200000,
              activated: true,
              activated_at: Time.zone.now,
-             percent_increase: BigDecimal.new((rand*25).round(2), 0)
-
+             percent_increase: BigDecimal.new((rand*25).round(2), 0),
+             current_net_worth: BigDecimal.new(100230.0, 0)
              )
 
 user1.create_notification("This is an example notification!", "/");
@@ -55,7 +57,8 @@ user1.create_notification("All notifications start as unread.", "/");
                currency: 200000,
                activated: true,
                activated_at: Time.zone.now,
-               percent_increase: BigDecimal.new((rand*25).round(2), 0)
+               percent_increase: BigDecimal.new((rand*25).round(2), 0),
+               current_net_worth: BigDecimal.new((rand*12500).round(2), 0)
                )
 end
 
