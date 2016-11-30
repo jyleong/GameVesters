@@ -1,4 +1,6 @@
 <h1>Trending Tickers</h1>
+
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -10,19 +12,21 @@
     </tr>
   </thead>
   <tbody>
-    <% @stocks.each do |stock| %>
+    <% @stock_for_user.each do |stock| %>
     <tr>
-      <td><%= stock.name %></td>
-      <td><%= stock.symbol %></td>
-      <td><%= stock.last_trade_price_only %></td>
-			<td><%= stock.change %></td>
-			<td><%= stock.percent_change %></td>
+      <td><%= stock[0].name %></td>
+      <td><%= stock[0].symbol %></td>
+      <td><%= stock[0].current_price %></td>
+			<td><%= stock[0].amount_change %></td>
+			<td><%= stock[0].percent_change %></td>
 
     </tr>
     <% end %>
 
   </tbody>
 </table>
+
+
   <h1>Latest News</h1>
 	<table class="table table-striped">
   <thead>
