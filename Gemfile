@@ -23,10 +23,10 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'stock_quote'
 
-
+gem 'figaro'
 
 # See http://feedjira.com/ for more information about RSS feed parser
-gem'feedjira'
+gem 'feedjira'
 
 # highcharts include
 

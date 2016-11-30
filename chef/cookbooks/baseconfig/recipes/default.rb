@@ -1,68 +1,68 @@
-# # Make sure the Apt package lists are up to date, so we're downloading versions that exist.
-cookbook_file "apt-sources.list" do
-  path "/etc/apt/sources.list"
-end
-execute 'apt_update' do
-  command 'apt-get update'
-end
+# # # Make sure the Apt package lists are up to date, so we're downloading versions that exist.
+# cookbook_file "apt-sources.list" do
+#   path "/etc/apt/sources.list"
+# end
+# execute 'apt_update' do
+#   command 'apt-get update'
+# end
 
-# # Base configuration recipe in Chef.
-package "wget"
-package "ntp"
-cookbook_file "ntp.conf" do
-  path "/etc/ntp.conf"
-end
-execute 'ntp_restart' do
-  command 'service ntp restart'
-end
+# # # Base configuration recipe in Chef.
+# package "wget"
+# package "ntp"
+# cookbook_file "ntp.conf" do
+#   path "/etc/ntp.conf"
+# end
+# execute 'ntp_restart' do
+#   command 'service ntp restart'
+# end
 
 
-# installing web server nginx
-package "nginx"
-package "git"
-package "libpq-dev"
+# # installing web server nginx
+# package "nginx"
+# package "git"
+# package "libpq-dev"
 
-#install and set up postgres db
+# #install and set up postgres db
 
-package "postgresql"
+# package "postgresql"
 
-execute 'setup_db' do
-  command 'echo "CREATE DATABASE mydb; CREATE USER ubuntu; GRANT ALL PRIVILEGES ON DATABASE mydb TO ubuntu;" | sudo -u postgres psql'
-end
+# execute 'setup_db' do
+#   command 'echo "CREATE DATABASE mydb; CREATE USER ubuntu; GRANT ALL PRIVILEGES ON DATABASE mydb TO ubuntu;" | sudo -u postgres psql'
+# end
 
-cookbook_file "nginx-default" do
-  path "/etc/nginx/sites-available/default"
-end
-execute 'nginx_restart' do
-  command 'service nginx restart'
-end
+# cookbook_file "nginx-default" do
+#   path "/etc/nginx/sites-available/default"
+# end
+# execute 'nginx_restart' do
+#   command 'service nginx restart'
+# end
 
-execute 'nginx_reload' do
-  command 'service nginx reload'
-end
+# execute 'nginx_reload' do
+#   command 'service nginx reload'
+# end
 
-# # Rails setup
+# # # Rails setup
 
-package "ruby-dev"
-package "sqlite3"
-package "libsqlite3-dev"
-package "zlib1g-dev"
-package "nodejs"
-package "build-essential"
+# package "ruby-dev"
+# package "sqlite3"
+# package "libsqlite3-dev"
+# package "zlib1g-dev"
+# package "nodejs"
+# package "build-essential"
 
-execute 'install nokigiri first' do
-  command 'gem install nokogiri -v 1.6.8.1'
-end
+# execute 'install nokigiri first' do
+#   command 'gem install nokogiri -v 1.6.8.1'
+# end
 
-execute 'bundler install' do
-  command 'gem install bundler --conservative'
-end
+# execute 'bundler install' do
+#   command 'gem install bundler --conservative'
+# end
 
-execute 'bundler' do
-  user 'ubuntu'
-  cwd '/home/ubuntu/project'
-  command 'bundle install'
-end
+# execute 'bundler' do
+#   user 'ubuntu'
+#   cwd '/home/ubuntu/project'
+#   command 'bundle install'
+# end
 
 
 execute 'migrate db' do

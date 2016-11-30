@@ -34,3 +34,6 @@ Gemfile.lock
 log/*
 .bundle
 >>>>>>> template/master
+
+# Ignore application configuration
+/config/application.yml
