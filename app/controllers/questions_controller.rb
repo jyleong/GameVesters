@@ -9,7 +9,7 @@ def display_question
    
 
    respond_to do |f|
-   
+      
       f.js
 
     end
@@ -18,20 +18,43 @@ def answer_question
 #render plain: params[:reward].inspect
 @user = current_user
 @user.update_attribute(:question_answered, true)
+@correct_answer=params[:answer]
+@reward=params[:reward]
+
+respond_to do |f|
 if (params[:useranswer]==params[:answer])
 
 
 @user.add_currency(params[:reward].to_d)
 
-redirect_to confirmation_path
+#f.html {redirect_to confirmation_path}
+f.js
 
-#render plain: @user.currency
-#redirect_to questions_path
+
 else
- 
-  redirect_to incorrect_path(params[:answer])
+#f.html {redirect_to incorrect_path(params[:answer])}
+f.js
 end
 
+end
+# if (params[:useranswer]==params[:answer])
+
+
+# @user.add_currency(params[:reward].to_d)
+
+# redirect_to confirmation_path
+
+# #render plain: @user.currency
+# #redirect_to questions_path
+# else
+ 
+#   redirect_to incorrect_path(params[:answer])
+# end
+# respond_to do |f|
+#       f.html
+#       f.js
+
+#     end
 
 
 
