@@ -10,3 +10,55 @@
 a:hover {
     background-color: none;
 }
+
+.container {
+  width: 100%;
+}
+
+#logo {
+  position: relative;
+}
+
+#logo-image img {
+  float: left;
+  height: 34px;
+  margin: 9px 0;
+  position: relative;
+  width: 34px;
+}
+
+.header-search-bar{
+  display: inline-block;
+  float: left;
+  margin-left: 15px;
+  margin-top: 8px;
+  position: relative;
+  width: 256px;
+}
+
+@media screen and ( max-width: 910px ) {
+  #logo {
+    display: none;
+  }
+  li.header-currency  a {
+  display: none;
+
+  }
+}
+@media screen and ( min-width: 910px ) {
+  #logo-image {
+    display: none;
+  }
+}
+
+.currency-banner {
+  background: #85bf4b;
+  border-radius: 5px;
+  color: white;
+  float: right;
+  font-weight: 700;
+  padding: 15px 15px 5px 10px;
+  position: relative;
+  right: -40px;
+  top: -55px;
+}

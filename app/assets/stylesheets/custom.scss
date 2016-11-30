@@ -57,6 +57,10 @@ p {
 	line-height: 1.7em;
 }
 
+h1.h1center {
+	text-align: center;
+}
+
 /* header */
 
 #logo {
@@ -298,5 +302,19 @@ div.fixed {
 }
 .negative_change{
 	color:red;
+}
+
+/* networth chart */
+div#networth-chart {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* users stocks/list table */
+
+table.trackedList {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
 }
 

@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def my_portfolio
     @owned_stocks = current_user.owned_stocks.select('*')
+    @user_stocks = current_user.stocks
   end
 
   def index
@@ -133,12 +134,12 @@ class UsersController < ApplicationController
       f.options[:xAxis] = {
           type: 'datetime',
           dateTimeLabelFormats: {
-            month: '%e. %b',
-            year: '%b'
+            month: '%b. %e'
           },
           title: {
             text: 'Date'
-          }
+          },
+          minTickInterval: (24 * 3600 * 1000)
       }
 
       f.yAxis [
@@ -147,7 +148,7 @@ class UsersController < ApplicationController
 
       f.series(name: "Net Worth", data: networth_data)
 
-      f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
+      # f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
       f.chart({defaultSeriesType: "line"})
     end
 
