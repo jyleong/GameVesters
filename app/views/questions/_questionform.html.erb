@@ -1,6 +1,6 @@
 
     <!-- <div class="modal-content question-modal-content"> -->
-    <%= form_tag(answer_question_path, method: "post", id: "question_form_tag") do |f|%>
+    <%= form_tag(answer_question_path,remote: true, method: "post", id: "question_form_tag") do |f|%>
 
      
         <div class="modal-header  " align = "center">
