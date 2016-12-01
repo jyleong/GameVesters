@@ -29,7 +29,7 @@
       <td class="negative_change"><%= stock.amount_change %></td>
       <% end %>
       <td>
-        
+
         <%= link_to "Buy", new_transaction_path(:symbol => stock.symbol, buy_sell: true), method: :get, class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
 
         <%= link_to "Sell", new_transaction_path(:symbol => stock.symbol, buy_sell: false), method: :get, class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>

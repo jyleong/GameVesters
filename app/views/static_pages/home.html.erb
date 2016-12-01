@@ -12,20 +12,15 @@
 		</aside>
 
 	</div>
-
-
-	<div class ="col-md-8">
 	<h1 class="h1center">Tracked Stocks</h1>
     <%= render "stocks/list", stocks: @user_stocks %>
 
-	</div>
-<div class="col-md-4">
 <%= render 'tickernews' %>
 </div>
+
 <% else %>
 
 	<%= render 'jumbotron' %>
-	<!--<%= link_to image_tag("rails.png", alt: "Rails logo"),
-              'http://rubyonrails.org/' %>-->
+	
 	<%= render 'tickernews' %>
 <% end %>
