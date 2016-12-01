@@ -27,7 +27,7 @@ class Stock < ApplicationRecord
 		@new_stock = Stock.create(symbol: looked_up_stock.symbol, 
 			name: looked_up_stock.name, 
 			current_price: looked_up_stock.ask,
-			amount_change: looked_up_stock.change,
+			amount_change: looked_up_stock.change.nil? ? 0: looked_up_stock.change,
 			year_high: looked_up_stock.year_high,
 			year_low: looked_up_stock.year_low,
 			percent_change: looked_up_stock.percent_change
