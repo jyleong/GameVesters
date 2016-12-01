@@ -8,16 +8,25 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page.
     	if @user.activated?
-        log_in @user
 
-        if been_24_hours?(@user.last_login)
-          gib_daily_bonus
-          flash[:success] = "You have obtained $20,000 for daily login bonus!"
+        if !@user.block #not blocked, can log in
+          log_in @user
+
+          if been_24_hours?(@user.last_login)
+            gib_daily_bonus
+            flash[:success] = "You have obtained $20,000 for daily login bonus!"
+            @user.update_attribute(:question_answered, false)
+          end
+          @user.update_attribute(:last_login, Time.now)
+
+    		  params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+        	redirect_back_or @user
+        else
+          message = "Warning: This account is blocked"
+          message += "Please contact an admin user to change your status"
+          flash[:warning] = message
+          redirect_to root_url
         end
-        @user.update_attribute(:last_login, Time.now)
-
-  		  params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      	redirect_back_or @user
       else
         message = "Account not activated. "
         message += "Check your email for the activation link."

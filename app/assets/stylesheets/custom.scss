@@ -57,6 +57,10 @@ p {
 	line-height: 1.7em;
 }
 
+h1.h1center {
+	text-align: center;
+}
+
 /* header */
 
 #logo {
@@ -284,12 +288,37 @@ section#DetailWell {
 	top: 8px;
 }
 
+
+/* question button */
+
+div.fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
 .positive_change{
 	color:green;
 }
 .negative_change{
 	color:red;
 }
+
+
+/* networth chart */
+div#networth-chart {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* users stocks/list table */
+
+table.trackedList {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 
 .hyperlink-news a{
 	text-decoration: underline;

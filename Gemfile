@@ -23,10 +23,10 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'stock_quote'
 
-
+gem 'figaro'
 
 # See http://feedjira.com/ for more information about RSS feed parser
-gem'feedjira'
+gem 'feedjira'
 
 # highcharts include
 
@@ -68,6 +68,9 @@ gem 'kaminari'
 
 # Using cells for leaderboard
 gem 'cells'
+
+# Use Whenever to run tasks at set times. See config/schedule.rb
+gem 'whenever', :require => false
 
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

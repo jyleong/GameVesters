@@ -1,6 +1,6 @@
 <div class="leaderboard-tab">
-  <%= link_to 'Net Worth', leaderboard_show_net_worth_path, class: 'tab-button left' %>
-  <span class="right current">Percent</span>
+  <span class="left current">Net Worth</span>
+  <%= link_to 'Percent', leaderboard_path, class: 'tab-button right' %>
 </div>
 <h1 id="leaderboard-title">Leaderboard</h1>
 
@@ -8,28 +8,28 @@
   <tr class='leader-table-header'>
     <th>Rank</th>
     <th class="center-align">Name</th>
-    <th class="rank-value">Percent Increase</th>
+    <th class="rank-value">Net Worth</th>
   </tr>
   <tr id="first-place">
     <td class="ranking">1st</td>
     <td class="ranker"><%= link_to @first[@name_index], user_path(@first[@user_id_index]) %></td>
-    <td class="rank-value"><%= @first[@rank_value_index] %>%</td>
+    <td class="rank-value"><%= @first[@rank_value_index] %> rubies</td>
   </tr>
   <tr id="second-place">
     <td class="ranking">2nd</td>
     <td class="ranker"><%= link_to @second[@name_index], user_path(@second[@user_id_index]) %></td>
-    <td class="rank-value"><%= @second[@rank_value_index] %>%</td>
+    <td class="rank-value"><%= @second[@rank_value_index] %> rubies</td>
   </tr>
   <tr id="third-place">
     <td class="ranking">3rd</td>
     <td class="ranker"><%= link_to @third[@name_index], user_path(@third[@user_id_index]) %></td>
-    <td class="rank-value"><%= @third[@rank_value_index] %>%</td>
+    <td class="rank-value"><%= @third[@rank_value_index] %> rubies</td>
   </tr>
   <% @leaders.each do |leader|  %>
     <tr id="leaders">
       <td class="ranking"><%= leader[@ranking_index] %>th</td>
       <td class="ranker"><%= link_to leader[@name_index], user_path(leader[@user_id_index]) %></td>
-      <td class="rank-value"><%= leader[@rank_value_index] %>%</td>
+      <td class="rank-value"><%= leader[@rank_value_index] %> rubies</td>
     </tr>
   <% end %>
 </table>

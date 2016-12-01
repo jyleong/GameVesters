@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+
   	# if logged_in?
   	#  	@micropost  = current_user.microposts.build
    #   	@feed_items = current_user.feed.paginate(page: params[:page], per_page: 15)
@@ -8,7 +9,7 @@ class StaticPagesController < ApplicationController
     query = "SELECT * FROM (SELECT stock_id, count(user_id) FROM user_stocks GROUP BY stock_id) as new ORDER BY count(new.stock_id) ASC Limit 5"
 
     @stocks = ActiveRecord::Base.connection.execute(query)
-    puts @stocks
+
 
     @trending =[]
     @stocks.each do |stock|
@@ -17,16 +18,17 @@ class StaticPagesController < ApplicationController
         #puts @trending
 
     end
-    puts @trending
+
     @stock_for_user = []
     @trending.each do |trend|
-      puts trend
+
       @stock_for_user << Stock.where(id: trend).select(:name, :symbol, :current_price, :amount_change, :percent_change)
 
     end
 
-puts @stock_for_user
-#binding.pry
+
+
+
     @feed = FeedEntry.update_from_feed("http://rss.cnn.com/rss/money_markets.rss")
 
     #http://www.investing.com/rss/stock.rss

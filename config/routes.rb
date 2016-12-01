@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get '/leaderboard', to: 'leaderboards#show'
+  get 'leaderboard/show_net_worth', to: 'leaderboards#show_net_worth'
 
 	get 'password_resets/new'
 	get 'password_resets/edit'
@@ -11,6 +12,13 @@ Rails.application.routes.draw do
  	resources :questions
 	get '/display_question', to: 'questions#display_question', as: 'display_question'
 	post '/display_question', to: 'questions#answer_question', as: 'answer_question'
+
+	get '/confirmation', to: 'questions#confirmation', as: 'confirmation'
+
+	get '/display_incorrect/:answer', to: 'questions#incorrect', as: 'incorrect'
+
+	#get 'questions/:id/display_question', to: 'questions#display_question', as: 'display_question'
+
 
 	get 'sessions/new'
 
@@ -28,9 +36,11 @@ Rails.application.routes.draw do
 	delete '/logout', to: 'sessions#destroy'
 	get '/my_portfolio', to: "users#my_portfolio", as: 'my_portfolio'
 
+
 	resources :users do
 		member do
 			get :following, :followers
+			post :block
 		end
 	end
 	# Note: show and index is only for the current user
