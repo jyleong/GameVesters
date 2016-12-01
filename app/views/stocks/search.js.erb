@@ -1,4 +1,6 @@
 // var win = window.open('<%= my_portfolio_path %>', "_self");
+var resultsdiv = $(".searchresults")
+
 
 var init_stock_lookup = function() {
   
@@ -9,12 +11,10 @@ var init_stock_lookup = function() {
     $('#spinner').hide();
   })
   
-  var resultsdiv = $(".searchresults")
   resultsdiv.css({
     "background-color": "#cde364",
     "padding": "4px",
-    "border-radius": "5px"
-
+    "border-radius": "5px",
   })
 
   var stocklookup = $("#stock-lookup-results")
@@ -41,5 +41,8 @@ var init_stock_lookup = function() {
 }
 
 $(document).ready(function() {
+  resultsdiv.animate({
+    "opacity":"show", top: "100"} ,300
+  );
   init_stock_lookup();
 });
