@@ -1,3 +1,4 @@
+<div class="col-md-6">
 <h1>Trending Tickers</h1>
 
 
@@ -17,16 +18,24 @@
       <td><%= stock[0].name %></td>
       <td><%= stock[0].symbol %></td>
       <td><%= stock[0].current_price %></td>
-			<td><%= stock[0].amount_change %></td>
-			<td><%= stock[0].percent_change %></td>
+      <% if stock[0].amount_change.to_f >= 0 %>
+      <td class="positive_change"><%= stock[0].amount_change %></td>
+      <% else %>
+      <td class="negative_change"><%= stock[0].amount_change %></td>
+      <% end %>
+      <% if stock[0].percent_change.to_f >= 0 %>
+      <td class="positive_change"><%= stock[0].percent_change %></td>
+      <% else %>
+      <td class="negative_change"><%= stock[0].percent_change %></td>
+      <% end %>
 
     </tr>
     <% end %>
 
   </tbody>
 </table>
-
-
+</div>
+<div class="col-md-6">
   <h1>Latest News</h1>
 	<table class="table table-striped">
   <thead>
@@ -38,9 +47,10 @@
 		<tbody>
   		<% @feed.each do |entry| %>
 			<tr>
-		    <td><%= link_to h(entry.name), entry.url, :target => "_blank" %></td>
+		    <td class="hyperlink-news"><%= link_to h(entry.name), entry.url, :target => "_blank" %></td>
 				<td><%= entry.published_at.to_formatted_s(:long_ordinal)  %></td>
 			</tr>
   		<% end %>
 		</tbody>
 	</table>
+</div>

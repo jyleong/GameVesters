@@ -14,16 +14,16 @@
 	</div>
 
 
-	<div class ="col-md-8">
+
 
     <h2>Tracked Stocks</h2>
     <%= render "stocks/list", stocks: @user_stocks %>
 
 
-</div>
-<div class="col-md-4">
+
+
 <%= render 'tickernews.html.erb' %>
-</div>
+
 <% else %>
 
 	<%= render 'jumbotron' %>
