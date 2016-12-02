@@ -45,7 +45,16 @@ class StocksController < ApplicationController
     chart_url_query = build_url_params
     chart_url_base = "http://chart.finance.yahoo.com"
     @chart_url = "#{chart_url_base}/#{chart_url_query}"
+
+stocksymbol = @stock.symbol
+request_url = "https://api.intrinio.com/companies?ticker=#{stocksymbol}"
+auth = {:username => "eea5a08c8f5be03301c8f0121ba35d37", :password => "574f54e13dcc1e1c828113d81807cd6c"}
+response = HTTParty.get(request_url, 
+                     :basic_auth => auth)
+ body = JSON.parse(response.body)
+@company = body["short_description"]
   end
+
 
   def new
     @stock = Stock.new
