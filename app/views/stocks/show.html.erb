@@ -23,6 +23,9 @@
     <div id="stock-lookup-chart">
         <img src=<%= @chart_url %> />
     </div>
+    <div class="well">
+        <p><%= @stock.description %></p>
+    </div>
     <br/>
     <section class="well well-sm" id="DetailWell">
         <div class="wellDiv">
@@ -38,10 +41,7 @@
                         <td><%= value%></td>
                     </tr>
                 <% end %>
-                <tr>
-                    <td>Company Description:</td>
-                    <td><%= @company %></td>
-                </tr>
+                
             </table>
         </div>
         
