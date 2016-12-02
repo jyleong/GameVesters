@@ -40,8 +40,8 @@ class StocksController < ApplicationController
         :name, :current_price,
         :amount_change, :percent_change,
         :year_high,
-        :year_low).take
-
+        :year_low, :description).take
+    
     chart_url_query = build_url_params
     chart_url_base = "http://chart.finance.yahoo.com"
     @chart_url = "#{chart_url_base}/#{chart_url_query}"

@@ -23,9 +23,7 @@
     <div id="stock-lookup-chart">
         <img src=<%= @chart_url %> />
     </div>
-    <div class="well">
-        <p><%= @stock.description %></p>
-    </div>
+    
     <br/>
     <section class="well well-sm" id="DetailWell">
         <div class="wellDiv">
@@ -37,8 +35,10 @@
                 </tr>
                 <% @stock.attributes.each do |key, value|%>
                     <tr>
+                        <% if key != "description" %>
                         <td><%= key %></td>
                         <td><%= value%></td>
+                        <% end %>
                     </tr>
                 <% end %>
                 
@@ -47,5 +47,9 @@
         
 
     </section>
+    <div class="well well-sm descriptionWell">
+        <h3 class="center">Description</h3>
+        <p><%= @stock.description %></p>
+    </div>
 
 </div>

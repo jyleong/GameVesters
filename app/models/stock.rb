@@ -24,20 +24,24 @@ class Stock < ApplicationRecord
 	def self.new_from_lookup(ticker_symbol)
 		looked_up_stock = StockQuote::Stock.quote(ticker_symbol)
 		return nil unless looked_up_stock.name
+		
+		ticker_symbol.upcase!
+		request_url = "https://api.intrinio.com/companies?ticker=#{ticker_symbol}"
+		response = HTTParty.get(request_url, :basic_auth => AUTH)
+		puts response
+		body = JSON.parse(response.body)
+
+		
 		@new_stock = Stock.create(symbol: looked_up_stock.symbol, 
 			name: looked_up_stock.name, 
 			current_price: looked_up_stock.ask,
 			amount_change: looked_up_stock.change.nil? ? 0: looked_up_stock.change,
 			year_high: looked_up_stock.year_high,
 			year_low: looked_up_stock.year_low,
-			percent_change: looked_up_stock.percent_change
+			percent_change: looked_up_stock.percent_change,
+			description: body["short_description"]
 			)
-		
-		request_url = "https://api.intrinio.com/companies?ticker=#{ticker_symbol}"
-		auth = {:username => "eea5a08c8f5be03301c8f0121ba35d37", :password => "574f54e13dcc1e1c828113d81807cd6c"}
-		response = HTTParty.get(request_url, :basic_auth => auth)
-		body = JSON.parse(response.body)
-		@new_stock.description = body["short_description"]
+
 		##debugger
 		@new_stock.save
 		@new_stock
