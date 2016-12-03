@@ -33,6 +33,43 @@
                     <th>Metric:</th>
                     <th>Value:</th>
                 </tr>
+
+                <tr>
+                    <td>Symbol</td>
+                    <td><%=@stock.symbol %></td>
+                </tr>
+                 
+
+                <tr>
+                    <td>Current Price</td>
+                    <td><%=@stock.current_price %></td>
+                </tr>
+
+                <tr>
+                    <td>Year High</td>
+                    <td><%=@stock.year_high %></td>
+                </tr>
+
+                <tr>
+                    <td>Year Low</td>
+                    <td><%=@stock.year_low %></td>
+                </tr>
+                <tr>
+                    <td>Amount Change</td>
+                    <td><%=@stock.amount_change %></td>
+                </tr>
+                 <tr>
+                    <td>Percent Change</td>
+                    <td><%=@stock.percent_change %></td>
+                </tr>
+
+
+
+                
+
+
+
+                 <% if false %>
                 <% @stock.attributes.each do |key, value|%>
                     <tr>
                         <% if key != "description" %>
@@ -41,6 +78,8 @@
                         <% end %>
                     </tr>
                 <% end %>
+                <% end %>
+
                 
             </table>
         </div>
