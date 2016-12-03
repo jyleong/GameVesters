@@ -20,8 +20,8 @@
     <% else %>
     <% @stock_for_user.each do |stock| %>
       <tr>
-        <td><%= stock[0].name %></td>
-        <td><%= stock[0].symbol %></td>
+        <td><%= link_to stock[0].name, stock_path(id: stock[0]) %></td>
+        <td><%= link_to stock[0].symbol, stock_path(id: stock[0]) %></td>
         <td><%= stock[0].current_price %></td>
         <% if stock[0].amount_change.to_f >= 0 %>
         <td class="positive_change"><%= stock[0].amount_change %></td>
