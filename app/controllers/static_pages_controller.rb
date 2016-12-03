@@ -27,7 +27,7 @@ class StaticPagesController < ApplicationController
       end
       # Create an array of the values that we want using the stock_id
       @trending.each do |trend|
-        @stock_for_user << Stock.where(id: trend).select(:name, :symbol, :current_price, :amount_change, :percent_change)
+        @stock_for_user << Stock.where(id: trend).select(:id, :name, :symbol, :current_price, :amount_change, :percent_change)
       end
     end
 
