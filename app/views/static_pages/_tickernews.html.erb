@@ -13,23 +13,29 @@
     </tr>
   </thead>
   <tbody>
-    <% @stock_for_user.each do |stock| %>
+    <% if @stock_for_user.nil? %>
     <tr>
-      <td><%= stock[0].name %></td>
-      <td><%= stock[0].symbol %></td>
-      <td><%= stock[0].current_price %></td>
-      <% if stock[0].amount_change.to_f >= 0 %>
-      <td class="positive_change"><%= stock[0].amount_change %></td>
-      <% else %>
-      <td class="negative_change"><%= stock[0].amount_change %></td>
-      <% end %>
-      <% if stock[0].percent_change.to_f >= 0 %>
-      <td class="positive_change"><%= stock[0].percent_change %></td>
-      <% else %>
-      <td class="negative_change"><%= stock[0].percent_change %></td>
-      <% end %>
-
+      <td>This information is currently unavailable</td>
     </tr>
+    <% else %>
+    <% @stock_for_user.each do |stock| %>
+      <tr>
+        <td><%= stock[0].name %></td>
+        <td><%= stock[0].symbol %></td>
+        <td><%= stock[0].current_price %></td>
+        <% if stock[0].amount_change.to_f >= 0 %>
+        <td class="positive_change"><%= stock[0].amount_change %></td>
+        <% else %>
+        <td class="negative_change"><%= stock[0].amount_change %></td>
+        <% end %>
+        <% if stock[0].percent_change.to_f >= 0 %>
+        <td class="positive_change"><%= stock[0].percent_change %></td>
+        <% else %>
+        <td class="negative_change"><%= stock[0].percent_change %></td>
+        <% end %>
+
+      </tr>
+      <% end %>
     <% end %>
 
   </tbody>
