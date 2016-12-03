@@ -6,9 +6,25 @@ class StaticPagesController < ApplicationController
    #   	@feed_items = current_user.feed.paginate(page: params[:page], per_page: 15)
   	# end
     #@stocks = StockQuote::Stock.quote(["optt", "dcix", "esea", "ship","drys"])
-    query = "SELECT new.stock_id FROM (SELECT stock_id, count(user_id) FROM user_stocks GROUP BY stock_id) as new ORDER BY count(new.stock_id) ASC Limit 5"
 
-    @stocks = ActiveRecord::Base.connection.execute(query)
+    # query = "SELECT new.stock_id 
+    # FROM (SELECT stock_id, count(user_id) \
+    # FROM user_stocks GROUP BY stock_id) 
+    # as new ORDER BY count(new.stock_id) \
+    # ASC Limit 5"
+
+    # @stocks = ActiveRecord::Base.connection.execute(query)
+
+    # select("songs.id, OTHER_ATTRS_YOU_NEED, count(listens.id) AS listens_count").
+    # joins(:listens).
+    # group("songs.id").
+    # order("listens_count DESC").
+    # limit(5)
+
+    # @stocks = UserStock.group('stock_id').count('user_id').order()
+    @stocks = UserStock.select("stock_id, count(user_id) AS c").
+              group('stock_id').order("c ASC").limit(5)
+    puts @stocks
     @trending =[]
     @stock_for_user = []
 
@@ -18,7 +34,7 @@ class StaticPagesController < ApplicationController
     else
 
       @stocks.each do |stock|
-        @trending << stock["new.stock_id"]
+        @trending << stock["stock_id"]
           #@trending =  Stock.where(id: stock["stock_id"]).select(:symbol, :name, :current_price, :amount_change, :percent_change);
           #puts @trending
 
@@ -27,7 +43,8 @@ class StaticPagesController < ApplicationController
 
       @trending.each do |trend|
 
-        @stock_for_user << Stock.where(id: trend).select(:name, :symbol, :current_price, :amount_change, :percent_change)
+        @stock_for_user << Stock.where(id: trend).
+        select(:name, :symbol, :current_price, :amount_change, :percent_change)
 
       end
 
