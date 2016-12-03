@@ -41,13 +41,13 @@ h1,h2,h3,h4,h5,h6 {
 h1 {
 	font-size: 3em;
 	letter-spacing: -2px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 h2 {
 	font-size: 2em;
 	letter-spacing: -1px;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	font-weight: normal;
 	color: $light-gray;
 }
@@ -60,6 +60,7 @@ p {
 h1.h1center {
 	text-align: center;
 }
+/* homepage tracked stocks div*/
 
 /* header */
 
@@ -304,6 +305,7 @@ div.fixed {
 	color:red;
 }
 
+
 /* networth chart */
 div#networth-chart {
 	margin-left: auto;
@@ -313,8 +315,24 @@ div#networth-chart {
 /* users stocks/list table */
 
 table.trackedList {
-	width: 80%;
+	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
+/* stock lookup results */
+div#stock-lookup-results p {
+	margin: 0;
+}
+
+
+.hyperlink-news a{
+	text-decoration: underline;
+}
+
+div.descriptionWell {
+	position: relative;
+	float: left;
+	width: 35%;
+
+}

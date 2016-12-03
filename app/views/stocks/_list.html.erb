@@ -1,9 +1,7 @@
-<% if !current_page?(controller: "stocks", action: "index")%>
-<h1 class="h1center">Tracked Stocks</h1>
-<% end %>
+
 <% if stocks.count <= 0 %>
 
-No stocks found.
+<p>No stocks found.</p>
 
 <% else %>
 
@@ -31,7 +29,7 @@ No stocks found.
       <td class="negative_change"><%= stock.amount_change %></td>
       <% end %>
       <td>
-        
+
         <%= link_to "Buy", new_transaction_path(:symbol => stock.symbol, buy_sell: true), method: :get, class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
 
         <%= link_to "Sell", new_transaction_path(:symbol => stock.symbol, buy_sell: false), method: :get, class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>

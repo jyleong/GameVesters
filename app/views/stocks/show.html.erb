@@ -23,6 +23,7 @@
     <div id="stock-lookup-chart">
         <img src=<%= @chart_url %> />
     </div>
+    
     <br/>
     <section class="well well-sm" id="DetailWell">
         <div class="wellDiv">
@@ -32,14 +33,62 @@
                     <th>Metric:</th>
                     <th>Value:</th>
                 </tr>
+
+                <tr>
+                    <td>Symbol</td>
+                    <td><%=@stock.symbol %></td>
+                </tr>
+                 
+
+                <tr>
+                    <td>Current Price</td>
+                    <td><%=@stock.current_price %></td>
+                </tr>
+
+                <tr>
+                    <td>Year High</td>
+                    <td><%=@stock.year_high %></td>
+                </tr>
+
+                <tr>
+                    <td>Year Low</td>
+                    <td><%=@stock.year_low %></td>
+                </tr>
+                <tr>
+                    <td>Amount Change</td>
+                    <td><%=@stock.amount_change %></td>
+                </tr>
+                 <tr>
+                    <td>Percent Change</td>
+                    <td><%=@stock.percent_change %></td>
+                </tr>
+
+
+
+                
+
+
+
+                 <% if false %>
                 <% @stock.attributes.each do |key, value|%>
                     <tr>
+                        <% if key != "description" %>
                         <td><%= key %></td>
                         <td><%= value%></td>
+                        <% end %>
                     </tr>
                 <% end %>
+                <% end %>
+
+                
             </table>
         </div>
+        
+
     </section>
+    <div class="well well-sm descriptionWell">
+        <h3 class="center">Description</h3>
+        <p><%= @stock.description %></p>
+    </div>
 
 </div>

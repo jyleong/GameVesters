@@ -1,4 +1,4 @@
-<h1>My Portfolio</h1>
+<h1 class="h1center">My Portfolio</h1>
 
 <% if @owned_stocks.count <= 0 %>
 
@@ -45,4 +45,5 @@ No stocks found.
 
 <% end %>
 <!-- maybe have tracked stocks with bought stocks -->
+<h1 class="h1center">Tracked Stocks</h1>
 <%= render "stocks/list", stocks: @user_stocks %>

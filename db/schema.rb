@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130014108) do
+ActiveRecord::Schema.define(version: 20161202144651) do
 
   create_table "feed_entries", force: :cascade do |t|
     t.string   "name"
@@ -59,12 +59,13 @@ ActiveRecord::Schema.define(version: 20161130014108) do
     t.string   "symbol"
     t.string   "name"
     t.decimal  "current_price"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.float    "amount_change"
     t.float    "year_high"
     t.float    "year_low"
     t.string   "percent_change"
+    t.string   "description",    default: "Placeholder description"
   end
 
   create_table "transactions", force: :cascade do |t|
