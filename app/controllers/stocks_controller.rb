@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
   before_action :getStock, only: :search
-  before_action :logged_in_user ,only: [:index]
+  # before_action :logged_in_user ,only: [:index]
 
   def search
     ## this method user getStock function

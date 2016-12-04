@@ -29,7 +29,7 @@
       <td class="negative_change"><%= stock.amount_change %></td>
       <% end %>
       <td>
-
+        <% if logged_in? %>
         <%= link_to "Buy", new_transaction_path(:symbol => stock.symbol, buy_sell: true), method: :get, class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
 
         <%= link_to "Sell", new_transaction_path(:symbol => stock.symbol, buy_sell: false), method: :get, class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
@@ -38,6 +38,11 @@
             <%= link_to "Track", user_stocks_path(stock_symbol: stock.symbol, stock_id: stock.id ? stock.id : ""), class: "btn btn-xs btn-success", method: :post %>
         <% else %>
             <%= link_to "Un-track", user_stock_path(stock), method: :delete, class: "btn btn-xs btn-danger" %>
+        <% end %>
+        <% else %>
+          <span class="label label-default">
+            Sign up <%= link_to "here", signup_path %> to track the stock!
+          </span>
         <% end %>
       </td>
       <td><%= link_to "Details", stock, class: "btn btn-xs btn-primary" %></td>
