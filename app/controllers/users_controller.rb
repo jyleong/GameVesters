@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def my_portfolio
-    @owned_stocks = current_user.owned_stocks.select('*')
+    @owned_stocks = current_user.owned_stocks.select('*').where("quantity_owned > ?", 0)
     @user_stocks = current_user.stocks
   end
 
