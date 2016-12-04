@@ -68,8 +68,8 @@ class TransactionsController < ApplicationController
     else
 
         # Check if user has enough stocks to sell
-        num_stocks = current_user.user_owned_stocks.find_by(stock_id: @transaction.stock_id).quantity_owned
-        if num_stocks < @transaction.quantity
+        owned_stock = current_user.user_owned_stocks.find_by(stock_id: @transaction.stock_id)
+        if !owned_stock || owned_stock.quantity_owned < @transaction.quantity
             @transaction.errors.add(:quantity, :invalid, message: "is too high. You do not own that many stocks.")
         else
             # Add to user's money
