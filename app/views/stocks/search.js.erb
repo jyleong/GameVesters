@@ -1,35 +1,36 @@
 var display_lookup_result = function() {
 
-  $('#stock-lookup-form').on('ajax:before', function(event, data, status) {
-    $('#spinner').show();
-  });
-  $('#stock-lookup-form').on('ajax:after', function(event, data, status) {
-    $('#spinner').hide();
-  });
-
   var stocklookup = $("#stock-lookup-results");
   stocklookup.empty();
-
-  //apend the symbols
-  stocklookup.append("<a href='<%= stock_path(id: @stock) %>'><strong><%= @stock.symbol %> - <%= @stock.name %></strong></a>");
-
-  stocklookup.
-  append("<br> <strong><%= @stock.current_price %></strong>")
-
-  stocklookup.
-  append(" <% if @stock.amount_change >= 0%>\
-    <p class='positive_change'><%= @stock.amount_change %> ( <%= @stock.percent_change %> )</p>\
-    <% else %>\
-    <p class='negative_change'> <%= @stock.amount_change %> ( <%= @stock.percent_change %> )</p>\
-    <% end %>" );
-
-  //make a clickable button
-  stocklookup.append("<%= j render 'useradd' %>");
-
-  // Chart
   var stockLookupChart = $("#stock-lookup-chart");
   stockLookupChart.empty();
-  stockLookupChart.append('<img src=<%= @chart_url %> />');
+
+  <% if @stock %>
+
+      //apend the symbols
+      stocklookup.append("<a href='<%= stock_path(id: @stock) %>'><strong><%= @stock.symbol %> - <%= @stock.name %></strong></a>");
+
+      stocklookup.
+      append("<br> <strong><%= @stock.current_price %></strong>")
+
+      stocklookup.
+      append(" <% if @stock.amount_change >= 0%>\
+        <p class='positive_change'><%= @stock.amount_change %> ( <%= @stock.percent_change %> )</p>\
+        <% else %>\
+        <p class='negative_change'> <%= @stock.amount_change %> ( <%= @stock.percent_change %> )</p>\
+        <% end %>" );
+
+      //make a clickable button
+      stocklookup.append("<%= j render 'useradd' %>");
+
+      // Chart
+      stockLookupChart.append('<img src=<%= @chart_url %> />');
+
+  <% else %>
+
+    stocklookup.append("<p>Symbol not found.</p>")
+
+  <% end %>
 
   // dropdown
   $("#search-dropdown-toggle").dropdown("toggle");
