@@ -5,8 +5,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
-
+    @transactions = Transaction.where(user_id: current_user.id)
   end
 
   # GET /transactions/1
