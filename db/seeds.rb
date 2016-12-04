@@ -50,6 +50,10 @@ user1.create_notification("All notifications start as unread.", "/");
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
+  percent_increase = BigDecimal.new(rand*25, 0)
+  percent_increase = '%.2f' % percent_increase
+  net_worth = BigDecimal.new(rand*12500, 0)
+  net_worth = '%.2f' % net_worth
   User.create!(name:  name,
                email: email,
                password:              password,
@@ -57,8 +61,8 @@ user1.create_notification("All notifications start as unread.", "/");
                currency: 200000,
                activated: true,
                activated_at: Time.zone.now,
-               percent_increase: BigDecimal.new((rand*25).round(2), 0),
-               current_net_worth: BigDecimal.new((rand*12500).round(2), 0)
+               percent_increase: BigDecimal.new(percent_increase, 0),
+               current_net_worth: BigDecimal.new(net_worth, 0)
                )
 end
 
