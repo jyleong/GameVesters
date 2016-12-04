@@ -81,6 +81,8 @@ Stock.create(symbol:"OPTT", name: "Ocean Power Technologies, Inc.", current_pric
 Stock.create(symbol: "SBUX", name: "Starbucks Corporation", current_price: 57.65, amount_change: -0.86)
 Stock.create(symbol: "TSLA", name: "Tesla Motors, Inc.", current_price: 196.12, amount_change: 4.32)
 
+# Seed net worth for users
+UserHistoricDatum.update_users_net_worth
 
 Question.create(qid:  "1",
              reward: 1000,
