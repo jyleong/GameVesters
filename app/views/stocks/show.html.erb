@@ -7,6 +7,7 @@
         <div class="col-sm-4">
             <br/>
             <% if logged_in? %>
+
                 <%= link_to "Buy", new_transaction_path(:symbol => @stock.symbol, buy_sell: true), method: :get, class: "btn btn-lg btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
 
                 <%= link_to "Sell", new_transaction_path(:symbol => @stock.symbol, buy_sell: false), method: :get, class: "btn btn-lg btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
@@ -16,7 +17,7 @@
                 <% else %>
                     <%= link_to "Un-track", user_stock_path(@stock), method: :delete, class: "btn btn-lg btn-danger" %>
                 <% end %>
-
+            
             <% end %>
         </div>
     </div>
@@ -42,7 +43,6 @@
                     <td><%=@stock.symbol %></td>
                 </tr>
                  
-
                 <tr>
                     <td>Current Price</td>
                     <td><%=@stock.current_price %></td>
@@ -69,11 +69,9 @@
             </table>
         </div>
         
-
     </section>
     <div class="well well-sm descriptionWell">
         <h3 class="center">Description</h3>
         <p><%= @stock.description %></p>
     </div>
-
 </div>
