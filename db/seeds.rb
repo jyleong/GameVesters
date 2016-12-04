@@ -86,30 +86,75 @@ UserHistoricDatum.update_users_net_worth
 
 Question.create(qid:  "1",
              reward: 1000,
-             content: "The answer is A",
-             ans1: "abcd",
-             ans2: "efgh",
-             ans3: "ijkl",
-             ans4: "mnop",
-             answer: "a"
+             content: "Which of the four investments has shown the highest returns historically?",
+             ans1: "Real Estate",
+             ans2: "Bonds",
+             ans3: "Stocks",
+             ans4: "Cash",
+             answer: "c"
              )
 Question.create(qid:  "2",
              reward: 1000,
-             content: "The answer is B",
-             ans1: "ahahaa ",
-             ans2: "Pick this",
-             ans3: "ajajajaja",
-             ans4: "business",
-             answer: "b"
+             content: "Which feature do Exchange-Trade Funds (ETFs) have in common with mutual funds?",
+             ans1: "They can be traded at any time",
+             ans2: "They are tied to an index",
+             ans3: "One investment purchases a group of assets",
+             ans4: "They are both deliberately confusing",
+             answer: "a"
              )
 Question.create(qid:  "3",
              reward: 1000,
-             content: "The answer is C",
-             ans1: "Password1",
-             ans2: "Password1",
-             ans3: "correct answer",
-             ans4: "Password1",
+             content: "How is the term Beta used to understand stock data?",
+             ans1: "It measures the change in stock price compared to yesterday's closing price",
+             ans2: "It is a test to see if a stock will sell in the stock market",
+             ans3: "It indicates the total shares outstanding multiplied by the current stock price",
+             ans4: "It measures the volatility of a stock",
+             answer: "d"
+             )
+Question.create(qid:  "4",
+             reward: 1000,
+             content: "What is the Sharpe Ratio Index?",
+             ans1: "A measure of risk that helps you select the right stocks",
+             ans2: "A way to spread out your stock sales",
+             ans3: "A pen that helps you calculate stock prices",
+             ans4: "A conservative way to purchase and sell stocks",
+             answer: "a"
+             )
+Question.create(qid:  "5",
+             reward: 1000,
+             content: " What does technical analysis look at for investment purposes?",
+             ans1: "A company's revenue growth",
+             ans2: "A company's competition",
+             ans3: "A company's profit margins",
+             ans4: "The price at which the stock trades",
+             answer: "d"
+             )
+Question.create(qid:  "6",
+             reward: 1000,
+             content: "What happens when an investor over-diversifies?",
+             ans1: "They are spread too thin",
+             ans2: "They make more money",
+             ans3: "They drive their money manager crazy",
+             ans4: "They create high-risk scenarios",
              answer: "c"
+             )
+Question.create(qid:  "7",
+             reward: 1000,
+             content: "What is implied volatility?",
+             ans1: "A risk probability equation",
+             ans2: "A measure of how risk could occur",
+             ans3: "A calculation that compares the current market price and theoretical future value",
+             ans4: "Something that only impacts option writers",
+             answer: "c"
+             )
+Question.create(qid:  "8",
+             reward: 1000,
+             content: "What partially defines a Bull Market? ",
+             ans1: "A positive outlook about the current business cycle",
+             ans2: "Lack of investor confidence",
+             ans3: "Stimulating energy drinks",
+             ans4: "Low stock prices",
+             answer: "a"
              )
 
 listUsers = users[2..30]
