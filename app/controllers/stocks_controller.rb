@@ -15,7 +15,7 @@ class StocksController < ApplicationController
         # redirect_to my_portfolio_path
         f.js
       else
-        flash[:error] = "Stock not found"
+        # flash[:error] = "Stock not found"
         # f.json {render body: nil}
         f.js
       end
