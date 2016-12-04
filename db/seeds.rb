@@ -114,7 +114,7 @@ Question.create(qid:  "3",
 
 listUsers = users[2..30]
 listUsers.each {|n|
-  user = User.find(n)
+  
   UserStock.create(stock_id: 1, user_id: n.id)
   UserStock.create(stock_id: 2, user_id: n.id)
   UserStock.create(stock_id: 3, user_id: n.id)
