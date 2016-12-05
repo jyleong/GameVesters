@@ -1,37 +1,55 @@
-<table class="table table-striped">
+
+<% if stocks.count <= 0 %>
+
+<p>No stocks found.</p>
+
+<% else %>
+
+<table class="table table-striped trackedList">
   <thead>
     <tr>
       <th>Name</th>
       <th>Symbol</th>
-      <th>Current Price</th>
-      <% if @user.id == current_user.id %>
-        <th>Actions</th>
-      <% end %>
+      <th>Quote</th>
+      <th>Up/Down</th>
+      <th>Actions</th>
+      <th>View</th>
     </tr>
   </thead>
   <tbody>
-    <% @user_stocks.each do |user_stock| %>
+
+    <% stocks.each do |stock| %>
     <tr>
-      <!-- <td><%= user_stock.name %></td> -->
-      <td><%= link_to user_stock.name, stock_path(id: user_stock) %></td>
-      <td><%= user_stock.symbol %></td>
-      <td><%= user_stock.current_price %></td>
-      <% if @user.id == current_user.id %>
-      <td>
-        <%= link_to 'Un-track', user_stock_path(user_stock), :method => :delete,
-        :data => {:confirm => "Are you sure?"}, :class => "btn btn-xs btn-danger" %>
-        <!--## will only delte association-->
-
-        <%= link_to "Buy", new_transaction_path(:symbol => user_stock.symbol, buy_sell: true), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
-
-        <%= link_to "Sell", new_transaction_path(:symbol => user_stock.symbol, buy_sell: false), method: "get", class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
-
-      </td>
+      <td><%= link_to stock.name, stock_path(id: stock) %></td>
+      <td><%= link_to stock.symbol, stock_path(id: stock) %></td>
+      <td><%= stock.current_price %></td>
+      <% if stock.amount_change >= 0%>
+      <td class="positive_change"><%= stock.amount_change %></td>
+      <% else %>
+      <td class="negative_change"><%= stock.amount_change %></td>
       <% end %>
+      <td>
+        <% if logged_in? %>
+        <%= link_to "Buy", new_transaction_path(:symbol => stock.symbol, buy_sell: true), method: :get, class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+
+        <%= link_to "Sell", new_transaction_path(:symbol => stock.symbol, buy_sell: false), method: :get, class: "btn btn-xs btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+
+        <% if current_user.can_add_stock?(stock.symbol) %>
+            <%= link_to "Track", user_stocks_path(stock_symbol: stock.symbol, stock_id: stock.id ? stock.id : ""), class: "btn btn-xs btn-success", method: :post %>
+        <% else %>
+            <%= link_to "Un-track", user_stock_path(stock), method: :delete, class: "btn btn-xs btn-danger" %>
+        <% end %>
+        <% else %>
+          <span class="label label-default">
+            Sign up <%= link_to "here", signup_path %> to track the stock!
+          </span>
+        <% end %>
+      </td>
+      <td><%= link_to "Details", stock, class: "btn btn-xs btn-primary" %></td>
     </tr>
     <% end %>
 
   </tbody>
 </table>
 
-<%= render 'transactions/form_modal' %>
+<% end %>

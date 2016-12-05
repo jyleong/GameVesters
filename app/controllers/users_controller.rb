@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   end
 
   def my_portfolio
+    @owned_stocks = current_user.owned_stocks.select('*').where("quantity_owned > ?", 0)
     @user_stocks = current_user.stocks
-    @user = current_user
   end
 
   def index
@@ -34,17 +34,23 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_stocks = @user.stocks
     @user_notifications = @user.notifications
+    show_networth_chart(@user)
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
     #handle succesful save ,login upon new signup
-    log_in @user
 
-    flash[:success] = "Welcome to the Investors app!"
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
 
-    redirect_to @user
+      # log_in @user
+
+      # flash[:success] = "Welcome to the Investors app!"
+
+      # redirect_to @user
     else
       render 'new'
     end
@@ -70,6 +76,24 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def block
+    @user = User.find(params[:id])
+
+    opposite = !@user.block
+    if @user.update_attribute(:block, opposite)
+
+      if (@user.block)
+        flash[:success] = "#{@user.name} has been blocked"
+
+      else
+        flash[:success] = "#{@user.name} has been unblocked"
+      end
+      redirect_to users_url
+    else
+      redirect_to @user
+    end
+  end
+
   def following
     @title = "Following"
     @user  = User.find(params[:id])
@@ -82,6 +106,71 @@ class UsersController < ApplicationController
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
+  end
+
+  def show_networth_chart(user)
+
+    networth_data = []
+    historic_data = user.user_historic_data
+    historic_data.each do |data|
+
+        networth_float = data.net_worth.truncate(2).to_f()
+
+        # Multiply 1000 because Javascript DateTimes are in milliseconds
+        data_node = [data.created_at.to_i * 1000, networth_float]
+        networth_data.push(data_node)
+
+        # Create extra data point if the entry has been updated.
+        # It means the net worth has not changed during that time.
+        if data.created_at != data.updated_at
+            data_node = [data.updated_at.to_i * 1000, networth_float]
+            networth_data.push(data_node)
+        end
+    end
+
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+
+      f.title(text: "Progress Report")
+      f.options[:xAxis] = {
+          type: 'datetime',
+          dateTimeLabelFormats: {
+            month: '%b. %e'
+          },
+          title: {
+            text: 'Date'
+          },
+          minTickInterval: (24 * 3600 * 1000)
+      }
+
+      f.yAxis [
+        { title: { text: "Net Worth ($)" }, margin: 70 },
+      ]
+
+      f.series(name: "Net Worth", data: networth_data)
+
+      # f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')
+      f.chart({defaultSeriesType: "line"})
+    end
+
+    @chart_globals = LazyHighCharts::HighChartGlobals.new do |f|
+      f.global(useUTC: false)
+      f.chart(
+        backgroundColor: {
+          linearGradient: [0, 0, 500, 500],
+          stops: [
+            [0, "rgb(255, 255, 255)"],
+            [1, "rgb(240, 240, 255)"]
+          ]
+        },
+        borderWidth: 2,
+        plotBackgroundColor: "rgba(255, 255, 255, .9)",
+        plotShadow: true,
+        plotBorderWidth: 1
+      )
+      f.lang(thousandsSep: ",")
+      f.colors(["#90ed7d", "#f7a35c", "#8085e9", "#f15c80", "#e4d354"])
+    end
+
   end
 
   private

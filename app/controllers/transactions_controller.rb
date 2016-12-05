@@ -1,12 +1,11 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: :show
+  before_action :logged_in_user ,only: [:index, :create, :show, :new]
 
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
-    # user = getUser
-    #@transactions = Transaction.where(user_id: user.id);
+    @transactions = Transaction.where(user_id: current_user.id)
   end
 
   # GET /transactions/1
@@ -69,8 +68,8 @@ class TransactionsController < ApplicationController
     else
 
         # Check if user has enough stocks to sell
-        num_stocks = current_user.user_owned_stocks.find_by(stock_id: @transaction.stock_id).quantity_owned
-        if num_stocks < @transaction.quantity
+        owned_stock = current_user.user_owned_stocks.find_by(stock_id: @transaction.stock_id)
+        if !owned_stock || owned_stock.quantity_owned < @transaction.quantity
             @transaction.errors.add(:quantity, :invalid, message: "is too high. You do not own that many stocks.")
         else
             # Add to user's money
@@ -104,11 +103,4 @@ class TransactionsController < ApplicationController
       params.require(:transaction).permit(:stock_id, :quantity, :total_price, :buy_sell)
     end
 
-    def getUser()
-      return User.find(params[:user_id])
-    end
-
-    def fillRestFields()
-
-    end
 end

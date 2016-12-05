@@ -1,0 +1,12 @@
+ //$('#question-modal').modal('hide');
+
+ //console.log("hello");
+// alert('hi');
+<% if (params[:useranswer]==params[:answer]) %>
+
+ $(".question-modal-content").html('<%= j render "correct", question: @question %>');
+
+ <% else %>
+$(".question-modal-content").html('<%= j render "incorrect" %>');
+
+<% end %>

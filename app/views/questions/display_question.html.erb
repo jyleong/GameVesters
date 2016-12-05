@@ -1,20 +1,30 @@
 
-
-
-  
-
 <h1><%= @question.content %></h1>
- 	<h2>This question is worth <%= @question.reward %> currency</h2>
-<%= form_tag("answer", method: "post") do %>
-<%= radio_button_tag(:useranswer, "A") %>
-<%= label_tag(:optiona, @question.ans1 ) %>
-<%= radio_button_tag(:useranswer, "B") %>
-<%= label_tag(:optionb, @question.ans2) %>
-<%= radio_button_tag(:useranswer, "C") %>
-<%= label_tag(:optionc, @question.ans3) %>
-<%= radio_button_tag(:useranswer, "D") %>
-<%= label_tag(:optiond, @question.ans4) %>
+ 	<h2>This question is worth <%= @question.reward %> rb</h2>
 
+
+<%= form_tag(answer_question_path, method: "post") do %>
+<%= hidden_field_tag(:reward, @question.reward) %>
+<%= hidden_field_tag(:answer, @question.answer) %>
+<%= hidden_field_tag(:id, @question.id) %>
+<table>
+	<tr><td>A)<%= radio_button_tag(:useranswer, "a") %><%= label_tag(:optiona, @question.ans1 ) %>
+	</td></tr>
+	<tr><td>
+B)<%= radio_button_tag(:useranswer, "b") %>
+<%= label_tag(:optionb, @question.ans2) %>
+	</td></tr>
+	<tr><td>
+C)<%= radio_button_tag(:useranswer, "c") %>
+<%= label_tag(:optionc, @question.ans3) %>
+</td></tr>
+<tr><td>
+D)<%= radio_button_tag(:useranswer, "d") %>
+<%= label_tag(:optiond, @question.ans4) %>
+</td></tr>
+
+</table>
+<%= submit_tag("Submit") %>
  <% end %>
 
-   
+  

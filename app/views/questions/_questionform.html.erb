@@ -1,0 +1,52 @@
+
+    <!-- <div class="modal-content question-modal-content"> -->
+    <%= form_tag(answer_question_path,remote: true, method: "post", id: "question_form_tag") do |f|%>
+
+     
+        <div class="modal-header  " align = "center">
+           <h2> <%= @question.content %></h2>
+            <h4>Point Value: <%= sprintf("%2.2f",@question.reward) %> rb</h4>
+
+
+            
+        </div>
+
+        <div class="modal-body">
+
+        <table>
+            <tr>
+                <td>A)<%= radio_button_tag(:useranswer, "a") %><%= label_tag(:optiona, @question.ans1 ) %>
+                </td>
+            </tr>
+            <tr>
+                <td>B)<%= radio_button_tag(:useranswer, "b") %>
+        <%= label_tag(:optionb, @question.ans2) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                C)<%= radio_button_tag(:useranswer, "c") %>
+                <%= label_tag(:optionc, @question.ans3) %>
+                </td>
+            </tr>
+            <tr><td>
+            D)<%= radio_button_tag(:useranswer, "d") %>
+            <%= label_tag(:optiond, @question.ans4) %>
+            </td></tr>
+
+        </table>
+<%= hidden_field_tag(:reward, @question.reward) %>
+<%= hidden_field_tag(:answer, @question.answer) %>
+<%= hidden_field_tag(:id, @question.id) %>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submit_tag" >Submit Answer</button>
+        </div>
+        
+    <!-- </div> -->
+
+
+<% end %>

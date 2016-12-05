@@ -7,9 +7,11 @@
         <%= @user.name %>
 
       </h1>
+      <% if @user == current_user %>
       <p>
-        <%= @user.currency %>
+        <%= sprintf("%2.2f",@user.currency) %> rb
       </p>
+      <% end %>
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
@@ -21,12 +23,26 @@
 
   </div>
 
-    <% if @user.stocks.size > 0 %>
-      <%= render 'stocks/list' %>
+</div>
+<div class="row">
+  <% if @user.stocks.size > 0 %>
+      <h1 class="h1center">Tracked Stocks</h1>
+      <%= render 'stocks/list', stocks: @user_stocks %>
     <% else %>
       <% if @user != current_user %>
         <p class="lead">This user is not tracking any stocks</p>
       <% end %>
     <% end %>
-
 </div>
+
+<!-- 
+style width and height
+
+-->
+<% if @user == current_user %>
+<div id="networth-chart" style="width:80%;height:400px;">
+</div>
+
+<%= high_chart_globals(@chart_globals) %>
+<%= high_chart("networth-chart", @chart) %>
+<% end %>

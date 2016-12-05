@@ -1,11 +1,10 @@
 class StocksController < ApplicationController
   before_action :getStock, only: :search
+  # before_action :logged_in_user ,only: [:index]
+
   def search
     ## this method user getStock function
     respond_to do |f|
-
-      # redirect_to my_portfolio_path
-
       if @stock
         chart_url_query = build_url_params
         chart_url_base = "http://chart.finance.yahoo.com"
@@ -16,40 +15,38 @@ class StocksController < ApplicationController
         # redirect_to my_portfolio_path
         f.js
       else
-        flash[:error] = "Stock not found"
+        # flash[:error] = "Stock not found"
         # f.json {render body: nil}
         f.js
-
       end
     end
   end
 
-	def index
-	    @stocks = Stock.all
+    def index
+        @stocks = Stock.all
 
-	    ## for each stock do find_by?
-	    @stocks.each do |stock|
-        if (stock.compareTime())
-          stock = Stock.find_by_symbol(stock.symbol)
+        ## for each stock do find_by?
+        @stocks.each do |stock|
+            if (stock.compareTime())
+              stock = Stock.find_by_symbol(stock.symbol)
 
+            end
         end
+        @stocks ## make sure we return it
+    end
 
-	    end
-	    @stocks ## make sure we return it
-
-	end
-
-	def show
-		@stock = Stock.where(id: params[:id]).select(:id,:symbol,
-            :name, :current_price,
-            :amount_change, :percent_change,
-            :year_high,
-            :year_low).take
+  def show
+    @stock = Stock.where(id: params[:id]).select(:id,:symbol,
+        :name, :current_price,
+        :amount_change, :percent_change,
+        :year_high,
+        :year_low, :description).take
     
     chart_url_query = build_url_params
     chart_url_base = "http://chart.finance.yahoo.com"
     @chart_url = "#{chart_url_base}/#{chart_url_query}"
   end
+
 
   def new
     @stock = Stock.new

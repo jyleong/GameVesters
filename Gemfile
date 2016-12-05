@@ -23,6 +23,20 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'stock_quote'
 
+gem 'figaro'
+
+# See http://feedjira.com/ for more information about RSS feed parser
+gem 'feedjira'
+
+# highcharts include
+
+gem 'lazy_high_charts'
+
+gem 'execjs'
+gem 'therubyracer'
+
+
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -32,6 +46,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'unicorn'
 
+# faker for both dev and production
+
+gem 'faker', '1.6.6'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -40,11 +58,25 @@ gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'leaderboard'
+
+# Using redis for leaderboard serevr
+gem 'redis', '~>3.2'
+
+# Using kaminari for leaderboard pagination
+gem 'kaminari'
+
+# Using cells for leaderboard
+gem 'cells'
+
+# Use Whenever to run tasks at set times. See config/schedule.rb
+gem 'whenever', :require => false
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3', '>= 0.0'
   gem 'byebug', platform: :mri
-  gem 'faker', '1.6.6'
+
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
@@ -67,3 +99,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+#need this for json api with authentication for stocks
+gem 'httparty'

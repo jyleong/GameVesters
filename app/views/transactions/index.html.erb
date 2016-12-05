@@ -2,6 +2,12 @@
 
 <h1>Transactions</h1>
 
+<% if @transactions.count == 0 %>
+
+<p>No transactions found.</p>
+
+<% else %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -16,19 +22,21 @@
   </thead>
 
   <tbody>
-    <% @transactions.each do |transaction| %>
+    <% @transactions.order(created_at: :desc).each do |transaction| %>
       <% stock = Stock.find(transaction.stock_id) %>
       <tr>
         <td><%= stock.name %></td>
         <td><%= stock.symbol %></td>
-        <td>$<%= transaction.current_stock_val %></td>
+        <td><%= number_to_currency(transaction.current_stock_val) %></td>
         <td><%= transaction.quantity %></td>
-        <td>$<%= transaction.total_price %></td>
+        <td><%= number_to_currency(transaction.total_price) %></td>
         <td><%= transaction.buy_sell ? "Buy" : "Sell" %></td>
         <td><%= transaction.created_at.strftime("%c") %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<% end %>
 
 <br>

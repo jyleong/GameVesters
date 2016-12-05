@@ -1,6 +1,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+/* jumbotron */
+
+.jumbotron {
+	background-image:image-url("banner.jpg");
+	background-size: cover;
+	h1{
+		color: white;
+	}
+}
 /* mixins, variables and such */
 
 $light-gray: #777;
@@ -30,6 +40,9 @@ textarea {
 	h1 {
 		margin-bottom: 10px;
 	}
+	ul li {
+		display: inline-block;
+	}
 }
 
 /* typography */
@@ -41,15 +54,13 @@ h1,h2,h3,h4,h5,h6 {
 h1 {
 	font-size: 3em;
 	letter-spacing: -2px;
-	margin-bottom: 30px;
-	text-align: center;
+	margin-bottom: 20px;
 }
 
 h2 {
-	font-size: 1.2em;
+	font-size: 2em;
 	letter-spacing: -1px;
-	margin-bottom: 30px;
-	text-align: center;
+	margin-bottom: 15px;
 	font-weight: normal;
 	color: $light-gray;
 }
@@ -58,6 +69,11 @@ p {
 	font-size: 1.1em;
 	line-height: 1.7em;
 }
+
+h1.h1center {
+	text-align: center;
+}
+/* homepage tracked stocks div*/
 
 /* header */
 
@@ -80,6 +96,7 @@ p {
 /*footer*/
 
 footer {
+	clear:both;
 	margin-top: 45px;
 	padding-top: 5px;
 	border-top: 1px solid $gray-medium-light;
@@ -249,7 +266,6 @@ input {
 		border-bottom: 1px solid $gray-medium-light;
 	}
 }
-
 /* pagination */
 
 div.pagination {
@@ -278,5 +294,58 @@ section#DetailWell {
 	width: 60%;
 	top: -200px;
 	float:right;
+
+}
+
+#logo{
+	position:relative;
+	top: 8px;
+}
+
+
+/* question button */
+
+div.fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.positive_change{
+	color:green;
+}
+.negative_change{
+	color:red;
+}
+
+
+/* networth chart */
+div#networth-chart {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* users stocks/list table */
+
+table.trackedList {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* stock lookup results */
+div#stock-lookup-results p {
+	margin: 0;
+}
+
+
+.hyperlink-news a{
+	text-decoration: underline;
+}
+
+div.descriptionWell {
+	position: relative;
+	float: left;
+	width: 35%;
 
 }

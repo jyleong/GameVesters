@@ -18,6 +18,9 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore precompiled assets
+/public/assets/*
+
 # Ignore Byebug command history file.
 .byebug_history
 =======
@@ -31,3 +34,6 @@ Gemfile.lock
 log/*
 .bundle
 >>>>>>> template/master
+
+# Ignore application configuration
+/config/application.yml

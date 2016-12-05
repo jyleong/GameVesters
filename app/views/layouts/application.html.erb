@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,20 +7,47 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-    
+
     <div class="container">
 
-      
       <div class="flash-alerts">
 		<% flash.each do |message_type, message| %>
-			<div class="alert alert-<%= message_type %>"><%= message %></div>
+			<div class="alert alert-<%= message_type %> alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <%= message %>
+            </div>
 		<% end %>
       </div>
-      <%= render 'layouts/stock_results' %>
+
+      <%= render 'transactions/form_modal' %>
+
       <%= yield %>
+
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
 
     </div>
+
+<%= render 'questions/question_modal' %>
+<div class="fixed">
+
+<%if logged_in? %>
+<% @display_question_bool=  !current_user.question_answered %>
+<%end%>
+<!--% if true %-->
+<%if @display_question_bool %>
+<%= link_to 'Answer Daily Questions', display_question_path, method: :get,
+  class: "fixed btn-info btn" , remote: true, "data-toggle": "modal", "data-target": "#question-modal" %>
+
+  <% end %>
+ 
+
+<% if false %>
+
+<%= link_to( 'Answer Daily Question', questions_path, remote: true, "data-toggle": "modal" ) %>
+<%= link_to( 'Answer Daily Question', questions_path, 'data-popup' => true ) %>
+<% end %>
+
+</div>
   </body>
 </html>
