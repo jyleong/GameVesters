@@ -2,7 +2,7 @@
 
 CMPT 470 Group 1's Final project
 
-## Gamevesters (tentative title)
+## Gamevesters
 
 By:
     James Leong
@@ -11,144 +11,158 @@ By:
     Tyler Wong
     Eric Liu
 
-to run app in development mode
+**Quick Start**
 
-navigate to ./Final_Project
+Navigate to ./Final_Project
+Start the VM by:
 
-----------------------------------------------------
-
-**Notes for seeding database:**
-
-clear initial db by
-rails db:migrate:reset
-
-this resets db under db/seeds.rb
-
-----------------------------------------------------
-**to run in regular development mode (our own work/testing)**
-
-clear db
-seed db
-
-rails db:seed
-
-rails s <- start server
-
-----------------------------------------------------
-### FOR CHECKPOINT SUBMISSION
-To run in Vagrant Development Mode
-
-run
+```
 $vagrant up
+```
 
-to be sane run
-$Vagrant provision
+After VM is running go to your browser and navigate to ```localhost:8080```
 
-this will run vagrant installing and setting up the virtual machine,
-this will seed the database and everything else as a admin user
+You can login as the default admin user:
+```
+fakeadminUser@gmail.com
+```
 
-your user email and password are:
+```
+Password1
+```
 
-user email: fakeadminUser@gmail.com
-Password: Password1
+Or go ahead and create a normal user by clicking the 'Sign up' button.
 
-go to browser and open up localhost:3000
 
-----------------------------------------------------
-
-### CHECKPOINT SUBMISSION TASKS FLOWS AND FEATURES TO ASSESS
+# Main Features
 **Disclaimer: All currencies are virtual and are not to be confused with real dollars**
 
-### Current Features
 
-**New user creation**
-- create new user with any email.
-- default currency will be given at 100,000 for first time sign up.
-- After first time sign in, you will land in your user page, click the 'Gamevesters' logo to navigate to Home
+# 1. User
 
-**Search stocks by symbol**
-- currently user can only search stocks by their official symbol.
-- example symbols => 'goog', 'aapl', 'yhoo'
+## 1.1 New user creation
 
-- there are 2 ways to search stocks:
-1. searhbar on the header
-2. searchbar in the '/my_portfolio' path
+- Create a new user with any valid email Activate account by email verification.
+- Password reset feature is functional.
+- New user will be given 100,000 rubies along with the daili login bonus when logging in first time.
 
-**Add stocks to your portfolio (track stocks)**
-- after searching for a stock (by symbol) click the 'Add to my Stocks' button to add it to your portfolio.
-- the stocks just added will be displayed on Home page above trending stocks.
-- added stocks will also be displayed in your "My Profile" page for you to have quick glance over basic stats.
-- the added stocks will have the **'tracked'** status.
+## 1.2 Users page
+```
+/users
+```
 
-**(Daily) login rewards**
-- currently, for demo purpose, all users will be awarded 20,000 everytime they login. In final version this will be once every 24 hours.
+- Search an existing user by their name
+- Admin users can block other users to prevent them from loggin in or do any other activities.
 
-**Daily challenge questions**
-- this is a planned feature, the back-end code is ready however no front-end is in place.
+## 1.3 User's own account
 
-**See trending stocks on Home page**
-- 5 most trending stokcs will be displayed on Home page.
-- this information is currently being pulled from external site, in the final version we will display the top 5 stocks in user's tracked stocks.
+![alt text][profile-dropdown]
 
-**Follow other users**
+
+- Profile page contains tracked stocks, progress chart, folling/followers, currency
+- Transactions page contains past transactions made (buying/selling stocks)
+- My Portfolio page contains information shown to other users (your tracked stocks are publicly viewable by other users)
+-Setting page contains functions to change password, email, name, and avatar(through gravatar)
+
+## 1.4 See other user's tracked stocks
+
+- Navigate to another user's profile page by clicking their name in the users page.
+- Their tracked stocks will be displayed.
+- Other users' currency is sensitive information and is hidden.
+
+## 1.5 Follow other users
 - You can follow other users to see how they are doing and learn their trading behavior.
 - To follow a user, go to Users page, and search for a particular user or select one from the list.
 - Click on the user name and jump to their public profile page.
 - Click the big blue 'Follow' button to follow them.
-- In final version more information about the user will be displayed and some sensitive information will be hidden to other users.
 
-**Notification System**
-- Back-end and polling is done, but no actual messages being sent out yet.
-- Notification system will be used for following status or followed users' buying/selling information.
-- Front-end is in place for viewing on the top right hand corner.
+# 2. Stock
 
-**Buy/Sell stocks**
+## 2.1 Search stocks by symbol
+
+- The top navigation bar contains a searchbox for searching a specific stock information.
+- Check various stock information by searching with official symbol.
+- Search is only available through symbols.
+- example symbols => 'goog', 'aapl', 'yhoo'
+
+## 2.2 Add stocks to your portfolio (track stocks)
+
+- You can track the stock you are interested by clicking the 'Track' button.
+
+![alt text][track-tut]
+
+
+- the stocks just added will be displayed on Home page above trending stocks.
+- you can buy/sell or untrack stocks by clicking the correspoding buttons.
+
+![alt text][tracked-home]
+
+
+- added stocks will also be displayed in your "My Profile" page for you to have quick glance over basic stats.
+
+![alt text][tracked-profile]
+
+
+## 2.3 Trending Tickers
+
+- Top 5 most tracked stocks are shown on the Home page as tickers.
+- The list refreshes with every page load
+
+![alt text][trending]
+
+
+## 2.4 Buy/Sell stocks
 - Users can make transactions when buying or selling stocks using their virtual currency.
 - To make transactions users can click the buy/sell button on their tracked stocks.
-- A popup will show with a form to buy/sell the particular stock.
+- A popup for buying/selling will be displayed as follows:
+
+![alt text][transaction]
+
+
 - Adjust the ammount and click 'Make Transaction'.
 - Flash message will appear comfirming the transaction (if successful).
 - Error messages will be displated in the popup if illegal transaction amount is entered.
-- Final price will change based on the quantity, however not fully functional at this checkpoint.
+
+- After making a transaction, the record will be kept in the Transactions page
+
+![alt text][history]
+
+# 3. Other
+
+## 3.1 Daily Currency Bonuses
+
+- The daily bonuses are a way to keep the user flowing, even if they run out of the virtual currency.
+
+### 3.1.1 Login Bonus
+
+- currently, for demo purpose, all users will be awarded 20,000 everytime they login. This is to demostrate the daily bonus feature easily.
+
+### 3.1.2 Daily Challenge Questions
+
+- You can answer a financial/stock related question once per day to receive additional currency bonus.
+- Click the light blue button at the bottom left to answer a question for bonus.
 
 
-----------------------------------------------------
+![alt text][question-button]
 
-If wanting to deploy production mode:
+## 3.2 Notification System
 
-When migrating (or doing other management commands), make sure you specify production mode:
+- You will recieve notifications about:
+* A user followed you
+* You have new bonus questions available
 
-rake db:migrate RAILS_ENV=production
+- To test this feature you can follow the user Eric Liu (as an example, any user would work)
+- Then login as Eric (007.ericliu@gmail.com, Password1) and check the notifications
 
-----------------------------------------------------
-
-### FOR DEV WORK AND COMMITS
-
-** We will have a master branch and a development branch
-
-we will merge to development first before updating the master for our final project
-
-do this by
-
-pulling initial repo then
-$git fetch
-
-*this updates your local with our remote
-
-make your own branch from here as stated in step 1)
-
-1) everyone works on their own branch
-  start a branch by
-  $git checkout -b <yourbranchname>
-
-2) commit and add changes to your own branch
-  $git add -A
-  $git commit -am <commit message>
-  $git push
-
-3) to merge
-  follow practice like in real sw engineering
-  make pull requests to merge to our dev branch
-  others to review code before merging
+![alt text][notification]
 
 
+[notification]: https://raw.githubusercontent.com/KenRiku/cmpt470_personal/master/notif.png "notification 1"
+[question-button]: https://raw.githubusercontent.com/KenRiku/cmpt470_personal/master/question%20but.png "questions 1"
+[history]: https://raw.githubusercontent.com/KenRiku/cmpt470_personal/master/trans.png "history 1"
+[transaction]: https://raw.githubusercontent.com/KenRiku/cmpt470_personal/master/Screen%20Shot%202016-12-05%20at%203.05.03%20PM.png "buy sell popup 1"
+[profile-dropdown]: https://raw.githubusercontent.com/KenRiku/cmpt470_personal/master/pro.png "account dropdown 1"
+[track-tut]: https://raw.githubusercontent.com/KenRiku/cmpt470_personal/master/track.png "Track Stock Button 1"
+[tracked-home]: https://raw.githubusercontent.com/KenRiku/cmpt470_personal/master/Screen%20Shot%202016-12-05%20at%202.25.44%20PM.png "Home with Tracked stock 1"
+[tracked-profile]:https://raw.githubusercontent.com/KenRiku/cmpt470_personal/master/Screen%20Shot%202016-12-05%20at%202.31.02%20PM.png "Profile with tracked stock 1"
+[trending]: https://raw.githubusercontent.com/KenRiku/cmpt470_personal/master/trending.png "trending tickers 1"
