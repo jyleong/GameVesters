@@ -6,14 +6,18 @@
         </div>
         <div class="col-sm-4">
             <br/>
-            <%= link_to "Buy", new_transaction_path(:symbol => @stock.symbol, buy_sell: true), method: :get, class: "btn btn-lg btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+            <% if logged_in? %>
 
-            <%= link_to "Sell", new_transaction_path(:symbol => @stock.symbol, buy_sell: false), method: :get, class: "btn btn-lg btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+                <%= link_to "Buy", new_transaction_path(:symbol => @stock.symbol, buy_sell: true), method: :get, class: "btn btn-lg btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
 
-            <% if current_user.can_add_stock?(@stock.symbol) %>
-                <%= link_to "Track", user_stocks_path(stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : ""), class: "btn btn-lg btn-success", method: :post %>
-            <% else %>
-                <%= link_to "Un-track", user_stock_path(@stock), method: :delete, class: "btn btn-lg btn-danger" %>
+                <%= link_to "Sell", new_transaction_path(:symbol => @stock.symbol, buy_sell: false), method: :get, class: "btn btn-lg btn-primary", remote: true, "data-toggle": "modal", "data-target": "#transaction-modal" %>
+
+                <% if current_user.can_add_stock?(@stock.symbol) %>
+                    <%= link_to "Track", user_stocks_path(stock_symbol: @stock.symbol, stock_id: @stock.id ? @stock.id : ""), class: "btn btn-lg btn-success", method: :post %>
+                <% else %>
+                    <%= link_to "Un-track", user_stock_path(@stock), method: :delete, class: "btn btn-lg btn-danger" %>
+                <% end %>
+            
             <% end %>
         </div>
     </div>
@@ -39,7 +43,6 @@
                     <td><%=@stock.symbol %></td>
                 </tr>
                  
-
                 <tr>
                     <td>Current Price</td>
                     <td><%=@stock.current_price %></td>
@@ -62,33 +65,13 @@
                     <td>Percent Change</td>
                     <td><%=@stock.percent_change %></td>
                 </tr>
-
-
-
-                
-
-
-
-                 <% if false %>
-                <% @stock.attributes.each do |key, value|%>
-                    <tr>
-                        <% if key != "description" %>
-                        <td><%= key %></td>
-                        <td><%= value%></td>
-                        <% end %>
-                    </tr>
-                <% end %>
-                <% end %>
-
-                
+          
             </table>
         </div>
         
-
     </section>
     <div class="well well-sm descriptionWell">
         <h3 class="center">Description</h3>
         <p><%= @stock.description %></p>
     </div>
-
 </div>

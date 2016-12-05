@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
   before_action :getStock, only: :search
-  before_action :logged_in_user ,only: [:index]
+  # before_action :logged_in_user ,only: [:index]
 
   def search
     ## this method user getStock function
@@ -15,7 +15,7 @@ class StocksController < ApplicationController
         # redirect_to my_portfolio_path
         f.js
       else
-        flash[:error] = "Stock not found"
+        # flash[:error] = "Stock not found"
         # f.json {render body: nil}
         f.js
       end

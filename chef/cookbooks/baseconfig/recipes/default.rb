@@ -64,6 +64,11 @@ execute 'bundler' do
   command 'bundle install'
 end
 
+execute 'bundler binstubs' do
+  user 'ubuntu'
+  cwd '/home/ubuntu/project'
+  command 'bundle install --binstubs'
+end
 
 execute 'migrate db' do
   user 'ubuntu'
