@@ -110,29 +110,3 @@ execute 'whenever_cron_tasks' do
   cwd 'home/ubuntu/project'
   user 'ubuntu'
 end
-
-# unicorn set up
-# execute 'enable unicorn' do
-#   user 'ubuntu'
-#   cwd '/home/ubuntu/project'
-#   command "update-rc.d unicorn_rails defaults"
-# end
-
-# execute 'startup' do
-#   user 'ubuntu'
-#   cwd '/home/ubuntu/project'
-#   command 'service unicorn_rails start'
-# end
-
-# execute 'run unicorn production ' do
-#   user 'ubuntu'
-#   cwd '/home/ubuntu/project'
-#   command "bundle exec unicorn -c config/unicorn.rb -E production -D"
-# end
-
-
-# execute 'run server' do
-#   user 'ubuntu'
-#   cwd '/home/ubuntu/project'
-#   command 'rails server -d -b 0.0.0.0'
-# end

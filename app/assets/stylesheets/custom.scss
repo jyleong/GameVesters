@@ -1,6 +1,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+/* jumbotron */
+
+.jumbotron {
+	background-image:image-url("banner.jpg");
+	background-size: cover;
+	h1{
+		color: white;
+	}
+}
 /* mixins, variables and such */
 
 $light-gray: #777;
