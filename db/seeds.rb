@@ -66,6 +66,19 @@ user1.create_notification("All notifications start as unread.", "/");
                )
 end
 
+counter = 0
+30.times do |p|
+    net_worth = BigDecimal.new(rand*12500, 0) + BigDecimal.new(200000.0, 0)
+    net_worth = '%.2f' % net_worth
+    seeded_date = Date.today - counter.days
+    UserHistoricDatum.create!(user_id: 1,
+                             net_worth: net_worth,
+                             created_at: seeded_date,
+                             updated_at: seeded_date
+                             )
+    counter += 1
+end
+
 # Following relationships
 users = User.all
 user  = users.first
@@ -159,7 +172,7 @@ Question.create(qid:  "8",
 
 listUsers = users[2..30]
 listUsers.each {|n|
-  
+
   UserStock.create(stock_id: 1, user_id: n.id)
   UserStock.create(stock_id: 2, user_id: n.id)
   UserStock.create(stock_id: 3, user_id: n.id)
