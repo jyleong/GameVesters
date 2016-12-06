@@ -42,10 +42,6 @@ user2 = User.create!(name:  "Tyler Wong",
              current_net_worth: BigDecimal.new(100230.0, 0)
              )
 
-user1.create_notification("This is an example notification!", "/");
-user1.create_notification("This notification links to a user!", "/users/5");
-user1.create_notification("All notifications start as unread.", "/");
-
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
@@ -74,6 +70,12 @@ followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
+# Sample notifications
+User.find_each do |user|
+    user.create_notification("This is an example notification!", "/");
+    user.create_notification("This notification links to a user!", "/users/5");
+    user.create_notification("All notifications start as unread.", "/");
+end
 
 Stock.create(symbol: "WIFI", name: "Boingo Wireless, Inc.",current_price: 11.37, amount_change: 0.45)
 Stock.create(symbol:"AAPL", name: "Apple Inc.", current_price: 105.35, amount_change: 1.34)
@@ -159,7 +161,7 @@ Question.create(qid:  "8",
 
 listUsers = users[2..30]
 listUsers.each {|n|
-  
+
   UserStock.create(stock_id: 1, user_id: n.id)
   UserStock.create(stock_id: 2, user_id: n.id)
   UserStock.create(stock_id: 3, user_id: n.id)
