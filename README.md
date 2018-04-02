@@ -35,16 +35,17 @@ Or go ahead and create a normal user by clicking the 'Sign up' button.
 
 
 # Main Features
-**Disclaimer: All currencies are virtual and are not to be confused with real dollars**
+**Disclaimer: Do not confuse the currency "Rubies" with real money**
 
 
 # 1. User
 
 ## 1.1 New user creation
 
-- Create a new user with any valid email Activate account by email verification.
+- Create a new user with any valid email.
+- Activate account by email verification.
 - Password reset feature is functional.
-- New user will be given 100,000 rubies along with the daili login bonus when logging in first time.
+- New user will be given 100,000 rubies when they first log in. Additional rubies can be gained from daily login.
 
 ## 1.2 Users page
 ```
@@ -52,28 +53,28 @@ Or go ahead and create a normal user by clicking the 'Sign up' button.
 ```
 
 - Search an existing user by their name
-- Admin users can block other users to prevent them from loggin in or do any other activities.
+- Admins have the ability to block users and prevent them from logging in or perform any other activities.
 
 ## 1.3 User's own account
 
 ![alt text][profile-dropdown]
 
 
-- Profile page contains tracked stocks, progress chart, folling/followers, currency
-- Transactions page contains past transactions made (buying/selling stocks)
+- Profile page contains tracked stocks, progress chart, following/followers, and currency
+- Transactions page contains past transactions made which includes buying and selling stocks
 - My Portfolio page contains information shown to other users (your tracked stocks are publicly viewable by other users)
--Setting page contains functions to change password, email, name, and avatar(through gravatar)
+- Setting page contains functions to change password, email, name, and avatar(through gravatar)
 
 ## 1.4 See other user's tracked stocks
 
-- Navigate to another user's profile page by clicking their name in the users page.
+- Navigate to other user profile page by clicking their name in the users page.
 - Their tracked stocks will be displayed.
-- Other users' currency is sensitive information and is hidden.
+- Other users' currency is hidden because it is sensitive information.
 
 ## 1.5 Follow other users
 - You can follow other users to see how they are doing and learn their trading behavior.
-- To follow a user, go to Users page, and search for a particular user or select one from the list.
-- Click on the user name and jump to their public profile page.
+- To follow a user, go to Users page and search for a particular user or select one from the list.
+- Click on the user name and that will bring you to their public profile page.
 - Click the big blue 'Follow' button to follow them.
 
 # 2. Stock
