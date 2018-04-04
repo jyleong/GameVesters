@@ -81,27 +81,17 @@ Or go ahead and create a normal user by clicking the 'Sign up' button.
 
 ## 2.1 Search stocks by symbol
 
-- The top navigation bar contains a searchbox for searching a specific stock information.
-- Check various stock information by searching with official symbol.
-- Search is only available through symbols.
+- The navigation bar contains a search box for searching a specific stock for information.
+- Search is only available through official symbols.
 - example symbols => 'goog', 'aapl', 'yhoo'
+- Various stocks information will be displayed by searching with the official symbol
+
 
 ## 2.2 Add stocks to your portfolio (track stocks)
 
-- You can track the stock you are interested by clicking the 'Track' button.
-
-![alt text][track-tut]
-
-
-- the stocks just added will be displayed on Home page above trending stocks.
-- you can buy/sell or untrack stocks by clicking the correspoding buttons.
-
-![alt text][tracked-home]
-
-
-- added stocks will also be displayed in your "My Profile" page for you to have quick glance over basic stats.
-
-![alt text][tracked-profile]
+- You can track the stocks you are interested in by clicking the 'Track' button.
+- The stocks you track will be shown on the Home page above trending stocks.
+- Tracked stocks will be displayed in your "My Profile" page for you to have quick glance over basic statistics.
 
 
 ## 2.3 Trending Tickers
@@ -109,24 +99,18 @@ Or go ahead and create a normal user by clicking the 'Sign up' button.
 - Top 5 most tracked stocks are shown on the Home page as tickers.
 - The list refreshes with every page load
 
-![alt text][trending]
-
 
 ## 2.4 Buy/Sell stocks
-- Users can make transactions when buying or selling stocks using their virtual currency.
-- To make transactions users can click the buy/sell button on their tracked stocks.
-- A popup for buying/selling will be displayed as follows:
+- Users can create transactions by buying or selling stocks using their virtual currency.
+To create a transaction:
+1. Click the buy/sell button on their tracked stocks
+    a. A popup for buying/selling will be displayed
+2. Adjust the amount of stocks you would like to buy/sell
+3. Click 'Make Transaction'
+    a. Pop-up message will appear confirming the transaction (if successful)
+    b. Error messages will be displayed in the popup if illegal transaction amount is entered
+4. After making a transaction, the record will be kept in the Transactions page
 
-![alt text][transaction]
-
-
-- Adjust the ammount and click 'Make Transaction'.
-- Flash message will appear comfirming the transaction (if successful).
-- Error messages will be displated in the popup if illegal transaction amount is entered.
-
-- After making a transaction, the record will be kept in the Transactions page
-
-![alt text][history]
 
 # 3. Other
 
