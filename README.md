@@ -43,7 +43,7 @@ Or create a normal user by clicking the 'Sign up' button.
 ## 1.1 New user creation
 
 - Create a new user with any valid email.
-- Activate account by email verification.
+- Activate an account by email verification.
 - Password reset feature is functional.
 - New user will be given 100,000 rubies when they first log in. Additional rubies can be gained from daily login.
 
@@ -53,7 +53,7 @@ Or create a normal user by clicking the 'Sign up' button.
 ```
 
 - Search an existing user by their name
-- Admins have the ability to block users and prevent them from logging in or perform any other activities.
+- Admins have the ability to block users and prevent them from logging in or performing any other activities.
 
 ## 1.3 User's own account
 
@@ -72,9 +72,9 @@ Or create a normal user by clicking the 'Sign up' button.
 - Other users' currency is hidden because it is sensitive information.
 
 ## 1.5 Follow other users
-- You can follow other users to see how they are doing and learn their trading behavior.
+- Follow other users to see how they are doing and learn their trading behavior.
 - To follow a user, go to Users page and search for a particular user or select one from the list.
-- Click on the user name and that will bring you to their public profile page.
+- Click on the user name and that will load their public profile page.
 - Click the big blue 'Follow' button to follow them.
 
 # 2. Stock
@@ -108,7 +108,7 @@ To create a transaction:
 2. Adjust the amount of stocks you would like to buy/sell
 3. Click 'Make Transaction'
     a. Pop-up message will appear confirming the transaction (if successful)
-    b. Error messages will be displayed in the popup if illegal transaction amount is entered
+    b. Error messages will be displayed in the popup if an illegal transaction amount is entered
 4. After making a transaction, the record will be kept in the Transactions page
 
 
@@ -133,8 +133,8 @@ To create a transaction:
 ## 3.2 Notification System
 
 - You will recieve notifications about:
-* A user followed you
-* You have new bonus questions available
+* Users following you
+* New available bonus questions
 
 - To test this feature you can follow the user Eric Liu (as an example, any user would work)
 - Then login as Eric (007.ericliu@gmail.com, Password1) and check the notifications
