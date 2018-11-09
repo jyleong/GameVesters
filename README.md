@@ -22,7 +22,7 @@ $vagrant up
 
 After VM is running go to your browser and navigate to ```localhost:8080```
 
-You can login as the default admin user:
+Login as the default admin user:
 ```
 fakeadminUser@gmail.com
 ```
@@ -31,7 +31,7 @@ fakeadminUser@gmail.com
 Password1
 ```
 
-Or go ahead and create a normal user by clicking the 'Sign up' button.
+Or create a normal user by clicking the 'Sign up' button.
 
 
 # Main Features
@@ -81,7 +81,7 @@ Or go ahead and create a normal user by clicking the 'Sign up' button.
 
 ## 2.1 Search stocks by symbol
 
-- The navigation bar contains a search box for searching a specific stock for information.
+- The navigation bar contains a search box 
 - Search is only available through official symbols.
 - example symbols => 'goog', 'aapl', 'yhoo'
 - Various stocks information will be displayed by searching with the official symbol
@@ -120,11 +120,11 @@ To create a transaction:
 
 ### 3.1.1 Login Bonus
 
-- currently, for demo purpose, all users will be awarded 20,000 everytime they login. This is to demostrate the daily bonus feature easily.
+- Currently, for demo purpose, all users will be awarded 20,000 everytime they login. This is to demostrate the daily bonus feature easily.
 
 ### 3.1.2 Daily Challenge Questions
 
-- You can answer a financial/stock related question once per day to receive additional currency bonus.
+- Answer a financial/stock related question once per day to receive additional currency bonus.
 - Click the light blue button at the bottom left to answer a question for bonus.
 
 
